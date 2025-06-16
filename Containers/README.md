@@ -1,5 +1,9 @@
 # README
 
+These examples uses [Podman](https://podman.io/) but if you prefer to use Docker you will only need to replace **podman** by **docker** on the commands.
+
+You can also use [Podman Desktop](https://podman-desktop.io/) to easyly run containers from your favorite Operating System using a Grafphical User Interface.
+
 ## Creating the container
 
 In the directory where the _Containerfile_ is:
@@ -8,17 +12,28 @@ In the directory where the _Containerfile_ is:
 $ podman build -t qhe:v1.0 .
 ...
 $ podman images
-REPOSITORY                               TAG                   IMAGE ID      CREATED       SIZE
-localhost/notebook                       v1                    414943d5a01a  4 days ago    6.48 GB
+REPOSITORY                  TAG                    IMAGE ID      CREATED         SIZE
+localhost/qhe               v1.0                   9a61b32b7696  10 seconds ago  2.31 GB
 ...
 $
 ```
 
 ## Running the container
 
+If you only want to try the examples included in the container:
+
 ```console
 $ podman run --rm -d --name qhe -p 8888:8888 localhost/qhe:v1.0
 ```
+
+If you want to run your own notebooks you need to mount the directory where the notebooks are:
+
+
+```console
+$ podman run --rm -d --name qhe -v <YOUR NOTEBOOKS' DIRECTORY>:/home/notebook/data:Z -p 8888:8888 localhost/qhe:v1.0
+```
+
+Now you can use your favorite browser to browse https://localhost:8888
 
 ## Custom configuration 
 

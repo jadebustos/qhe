@@ -5,8 +5,8 @@ COPY requirements.txt /tmp
 RUN /usr/bin/apt update && /usr/bin/apt upgrade --yes && \
     /usr/bin/apt install gcc g++ clang gfortran flang-16 libopenblas-dev cmake cargo texlive-full pandoc --yes && \
     /usr/bin/apt autoremove --yes && /usr/bin/apt clean && /usr/sbin/useradd -md /home/notebook -s /bin/bash notebook && \
-    /usr/bin/mkdir -p /home/notebook/examples/data && /usr/bin/chown -R notebook: /home/notebook
-COPY 101-Paillier.ipynb /home/notebook/examples/101-Paillier.ipynb
+    /usr/bin/mkdir -p /home/notebook/examples && /usr/bin/mkdir -p /home/notebook/data && /usr/bin/chown -R notebook: /home/notebook
+COPY 101-Paillier.ipynb /home/notebook/examples/
 USER notebook
 RUN /usr/local/bin/python3 -m venv /home/notebook/jupyter && \
     /bin/bash -c "source /home/notebook/jupyter/bin/activate ; /usr/local/bin/pip install --upgrade pip ; \
