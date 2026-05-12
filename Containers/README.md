@@ -15,8 +15,6 @@ You have different options to try this notebook:
 
   and after that running it.
 
-* You can download the notebooks and run them in your environment.
-
 ## Creating the container
 
 We will build the container in two phases:
