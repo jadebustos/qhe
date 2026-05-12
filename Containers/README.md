@@ -44,7 +44,7 @@ We will build the container in two phases:
 2. From this directory create the container to run quantum computing code:
 
   ```console
-  $ podman build -t qhe:v1.0 .
+  $ podman build -t qhe:1.0 .
   ...
   $ podman images
   REPOSITORY                 TAG         IMAGE ID      CREATED       SIZE
