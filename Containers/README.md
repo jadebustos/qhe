@@ -6,7 +6,7 @@ You can also use [Podman Desktop](https://podman-desktop.io/) to easyly run cont
 
 You have different options to try this notebook:
 
-* You can create the container by you self.
+* You can create the container by yourself.
 * You can get the container from my container repository:
 
   ```console
