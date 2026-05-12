@@ -1,6 +1,6 @@
 # README
 
-These examples uses [Podman](https://podman.io/) but if you prefer to use Docker you will only need to replace **podman** by **docker** on the commands.
+These examples use [Podman](https://podman.io/), but if you prefer to use Docker you will only need to replace **podman** by **docker** on the commands.
 
 You can also use [Podman Desktop](https://podman-desktop.io/) to easyly run containers from your favorite Operating System using a Graphical User Interface.
 
