@@ -41,7 +41,7 @@ We will build the container in two phases:
    localhost/pyfhel           latest      241c576f789d  17 hours ago  954 MB
    $
    ```
-2. Create the container to run quantum computing code:
+2. From this directory create the container to run quantum computing code:
 
   ```console
   $ podman build -t qhe:v1.0 .
