@@ -29,7 +29,7 @@ We will build the container in two phases:
 
    Go to the repository directory, edit the _Dockerfile_ and change the base image to use **ubuntu:24.04** instead of **ubuntu:latest**:
 
-   ```docker
+   ```dockerfile
    FROM ubuntu:24.04
    ```
 
