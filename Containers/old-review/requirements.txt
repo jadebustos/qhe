@@ -1,12 +1,12 @@
 bs4
-cirq
+concrete-python
 dimod
-dwave-neal
 ipywidgets
 jupyterlab
 kaleido
 matplotlib
 netqasm
+openfhe
 ortools
 pandas
 pandoc

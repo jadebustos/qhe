@@ -4,6 +4,19 @@ These examples uses [Podman](https://podman.io/) but if you prefer to use Docker
 
 You can also use [Podman Desktop](https://podman-desktop.io/) to easyly run containers from your favorite Operating System using a Grafphical User Interface.
 
+You have different options to try this notebook:
+
+* You can create the container by you self.
+* You can get the container from my container repository:
+
+  ```console
+  $ podman pull quay.io/rhte_2019/qhe:latest
+  ```
+
+  and after that running it.
+
+* You can download the notebooks and run them in your environment.
+
 ## Creating the container
 
 In the directory where the _Containerfile_ is:
@@ -26,11 +39,23 @@ If you only want to try the examples included in the container:
 $ podman run --rm -d --name qhe -p 8888:8888 localhost/qhe:v1.0
 ```
 
+If you downloaded from my container repository:
+
+```console
+$ podman run --rm -d --name qhe -p 8888:8888 quay.io/rhte_2019/qhe:latest
+```
+
 If you want to run your own notebooks you need to mount the directory where the notebooks are:
 
 
 ```console
 $ podman run --rm -d --name qhe -v <YOUR NOTEBOOKS' DIRECTORY>:/home/notebook/data:Z -p 8888:8888 localhost/qhe:v1.0
+```
+
+If you downloaded from my container repository:
+
+```console
+$ podman run --rm -d --name qhe -v <YOUR NOTEBOOKS' DIRECTORY>:/home/notebook/data:Z -p 8888:8888 quay.io/rhte_2019/qhe:latest
 ```
 
 Now you can use your favorite browser to browse https://localhost:8888
