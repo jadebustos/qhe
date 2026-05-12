@@ -31,7 +31,7 @@ We will build the container in two phases:
 
    ```docker
    FROM ubuntu:24.04
-   '''
+   ```
 
    Create the container:
 
@@ -52,7 +52,7 @@ We will build the container in two phases:
   REPOSITORY                 TAG         IMAGE ID      CREATED       SIZE
   localhost/qhe              1.0         3d606bff58a9  17 hours ago  1.38 GB
   $
-  '''
+  ```
 
 ## Running the container
 
