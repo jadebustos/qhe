@@ -19,17 +19,40 @@ You have different options to try this notebook:
 
 ## Creating the container
 
-In the directory where the _Containerfile_ is:
+We will build the container in two phases:
 
-```console
-$ podman build -t qhe:v1.0 .
-...
-$ podman images
-REPOSITORY                  TAG                    IMAGE ID      CREATED         SIZE
-localhost/qhe               v1.0                   9a61b32b7696  10 seconds ago  2.31 GB
-...
-$
-```
+1. Clone the Pyfhel repository:
+
+   ```console
+   $ git clone --recursive https://github.com/ibarrond/Pyfhel.git
+   ```
+
+   Go to the repository directory, edit the _Dockerfile_ and change the base image to use **ubuntu:24.04** instead of **ubuntu:latest**:
+
+   ```docker
+   FROM ubuntu:24.04
+   '''
+
+   Create the container:
+
+   ```
+   $ podman build -t pyfhel .
+   ...
+   $ podman images
+   REPOSITORY                 TAG         IMAGE ID      CREATED       SIZE
+   localhost/pyfhel           latest      241c576f789d  17 hours ago  954 MB
+   $
+   ```
+2. Create the container to run quantum computing code:
+
+  ```console
+  $ podman build -t qhe:v1.0 .
+  ...
+  $ podman images
+  REPOSITORY                 TAG         IMAGE ID      CREATED       SIZE
+  localhost/qhe              1.0         3d606bff58a9  17 hours ago  1.38 GB
+  $
+  '''
 
 ## Running the container
 

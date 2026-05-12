@@ -1,0 +1,18 @@
+# podman run -ti -v $(pwd):/workspace localhost/ccuantica
+# podman run -p 8888:8888 -v $(pwd):/workspace:Z localhost/ccuantica
+
+ARG PY_VERSION="3.12"
+ARG VENV_PATH="home/venv"
+ARG REPO_PATH="home/Pyfhel"
+
+FROM localhost/pyfhel
+# Install python libs on  virtual environment
+ARG VENV_PATH
+ARG REPO_PATH
+RUN mkdir /home/ccuantica
+COPY requirements.txt /home/ccuantica
+RUN . ${VENV_PATH}/bin/activate && pip install -r /home/ccuantica/requirements.txt -v
+
+ENV PATH="${VENV_PATH}/bin:${PATH}"
+EXPOSE 8888
+ENTRYPOINT ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--ServerApp.token=", "--ServerApp.password=", "--ServerApp.root_dir=/workspace"]
