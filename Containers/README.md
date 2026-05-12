@@ -60,6 +60,8 @@ Go to the directory where you have the jupyter notebooks you want to run:
 $ podman run -p 8888:8888 -v $(pwd):/workspace:Z localhost/qhe:1.0
 ```
 
+If you are not using SELinux you can remove **:Z**.
+
 If you downloaded it from my container repository:
 
 ```console
