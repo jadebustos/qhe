@@ -56,34 +56,21 @@ We will build the container in two phases:
 
 ## Running the container
 
-If you only want to try the examples included in the container:
+Go to the directory where you have the jupyter notebooks you want to run:
 
 ```console
-$ podman run --rm -d --name qhe -p 8888:8888 localhost/qhe:v1.0
+$ podman run -p 8888:8888 -v $(pwd):/workspace:Z localhost/qhe:1.0
 ```
 
-If you downloaded from my container repository:
+If you downloaded it from my container repository:
 
 ```console
 $ podman run --rm -d --name qhe -p 8888:8888 quay.io/rhte_2019/qhe:latest
 ```
 
-If you want to run your own notebooks you need to mount the directory where the notebooks are:
-
-
-```console
-$ podman run --rm -d --name qhe -v <YOUR NOTEBOOKS' DIRECTORY>:/home/notebook/data:Z -p 8888:8888 localhost/qhe:v1.0
-```
-
-If you downloaded from my container repository:
-
-```console
-$ podman run --rm -d --name qhe -v <YOUR NOTEBOOKS' DIRECTORY>:/home/notebook/data:Z -p 8888:8888 quay.io/rhte_2019/qhe:latest
-```
-
 Now you can use your favorite browser to browse https://localhost:8888
 
-## Custom configuration 
+## Custom configuration (Not yet implemented)
 
 You can create your custom configuration file **jupyter_server_config.json**:
 
