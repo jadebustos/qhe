@@ -19,38 +19,18 @@ You have different options to try this notebook:
 
 We will build the container in two phases:
 
-1. Clone the Pyfhel repository:
+From this directory create the container to run quantum computing code:
 
-   ```console
-   $ git clone --recursive https://github.com/ibarrond/Pyfhel.git
-   ```
-
-   Go to the repository directory, edit the _Dockerfile_ and change the base image to use **ubuntu:24.04** instead of **ubuntu:latest**:
-
-   ```dockerfile
-   FROM ubuntu:24.04
-   ```
-
-   Create the container:
-
-   ```
-   $ podman build -t pyfhel .
-   ...
-   $ podman images
-   REPOSITORY                 TAG         IMAGE ID      CREATED       SIZE
-   localhost/pyfhel           latest      241c576f789d  17 hours ago  954 MB
-   $
-   ```
-2. From this directory create the container to run quantum computing code:
-
-  ```console
-  $ podman build -t qhe:1.0 .
-  ...
-  $ podman images
-  REPOSITORY                 TAG         IMAGE ID      CREATED       SIZE
-  localhost/qhe              1.0         3d606bff58a9  17 hours ago  1.38 GB
-  $
-  ```
+```console
+$ podman build -t qhe:1.0 -f Containerfile . 
+...
+$ podman images
+REPOSITORY                 TAG         IMAGE ID      CREATED       SIZE
+localhost/qhe              1.0         b2955f6be9c3  13 seconds ago      841 MB
+<none>                     <none>      5029d1ec36b4  About a minute ago  1.26 GB
+docker.io/library/ubuntu   24.04       0b1ebe5dd426  4 weeks ago         80.7 MB
+$
+```
 
 ## Running the container
 
@@ -60,7 +40,7 @@ Go to the directory where you have the jupyter notebooks you want to run:
 $ podman run -p 8888:8888 -v $(pwd):/workspace:Z localhost/qhe:1.0
 ```
 
-If you are not using SELinux you can remove **:Z**.
+If you are not using SELinux you can skip **:Z**. Ensure write privileges for all users in the notebooks directory due to Jupyterlab will be executing as a non-root user.
 
 If you downloaded it from my container repository:
 
