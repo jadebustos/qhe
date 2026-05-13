@@ -36,8 +36,6 @@
 #       podman run -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
 #   3. Running the container with an interactive shell:
 #       podman run -it localhost/qhe:1.0 /bin/bash
-#   podman build -t qhe:1.0 -f Containerfile .
-#   podman run -it --rm -v "$PWD":/workspace:Z qhe:1.0
 # ============================================================
 
 # BUILDER
