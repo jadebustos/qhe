@@ -33,16 +33,14 @@
 #       --build-arg VCS_REF="$(git rev-parse --short HEAD 2>/dev/null || echo 'no-git')" \
 #       -t qhe:1.0 -f Containerfile .        
 #   2. Running the container with a volume mount to the current directory and port forwarding for JupyterLab:
-#      podman run -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
+#       podman run -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
 #   3. Running the container with an interactive shell:
-#      podman run -it --entrypoint /bin/bash localhost/qhe:1.0
-#   4. Running the container with a custom Jupyter Server configuration:
-#      podman run -v jupyter_server_config.json:/etc/jupyter/jupyter_server_config.json:ro \
-#       -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
+#       podman run -it localhost/qhe:1.0 /bin/bash
 # ============================================================
 
 # BUILDER
-FROM ubuntu:24.04 AS builder
+FROM public.ecr.aws/ubuntu/ubuntu:24.04 AS builder
+#FROM ubuntu:24.04 AS builder
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Madrid
@@ -190,4 +188,4 @@ COPY LICENSE home/${USERNAME}/LICENSE
 WORKDIR /workspace
 
 EXPOSE 8888
-ENTRYPOINT ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--IdentityProvider.token=", "--ServerApp.password=", "--ServerApp.root_dir=/workspace"]
+ENTRYPOINT ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--ServerApp.token=", "--ServerApp.password=", "--ServerApp.root_dir=/workspace"]
