@@ -28,7 +28,7 @@
 set -euo pipefail
 
 SERVER_NAME="${SERVER_NAME:-*.local}"
-SERVER_IP="${SERVER_IP:-192.168.1.250}"
+SERVER_IP="${SERVER_IP:-0.0.0.0}"
 CERT_DAYS="${CERT_DAYS:-365}"
 KEY_BITS="${KEY_BITS:-4096}"
 KEY_NAME="${KEY_NAME:-jupyter.key}"

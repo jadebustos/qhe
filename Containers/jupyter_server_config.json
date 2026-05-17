@@ -4,8 +4,8 @@
     "port": 8888,
     "open_browser": false,
     "root_dir": "/workspace",
-    "certfile": "~/.jupyter/certs/jupyter.crt",
-    "keyfile": "~/.jupyter/certs/jupyter.key"
+    "certfile": "/etc/jupyter/certs/jupyter.crt",
+    "keyfile": "/etc/jupyter/certs/jupyter.key"
   },
   "IdentityProvider": {
     "token": ""
