@@ -83,21 +83,7 @@ $ cat jupyter_server_config.json
 }
 ```
 
-After having created the password modify the file according to:
-
-```json
-{
-  "ServerApp": {
-    "ip": "0.0.0.0",
-    "port": 8888,
-    "open_browser": false,
-    "root_dir": "/workspace"
-  },
-  "IdentityProvider": {
-    "hashed_password": "argon2:$argon2id$v=19$..."
-  }
-}
-```
+After having created the password modify the file according to [jupyter_server_config.json.example](jupyter_server_config.json.example).
 
 You can add this file via a secret volume to your container:
 
