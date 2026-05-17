@@ -76,7 +76,7 @@ $ cat jupyter_server_config.json
 $
 ```
 
-You can add this file via a secret volume to your container:
+You can add this file via a volume to your container:
 
 ```console
 $ podman run -v ../Containers/jupyter_server_config.json:/home/qcomputing/.jupyter/jupyter_server_config.json:ro -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
