@@ -1,7 +1,13 @@
+bqplot
+ipydatagrid
 ipykernel
+ipympl
+ipyvolume
+ipywidgets
 jupyterlab
 matplotlib
 numpy
 pandas
+plotly
 scipy
 scikit-learn
