@@ -73,6 +73,7 @@ $ cat jupyter_server_config.json
     "hashed_password": "argon2:19$..."
   }
 }
+$
 ```
 
 You can add this file via a secret volume to your container:
