@@ -179,7 +179,8 @@ RUN python3.12 -m venv /home/${USERNAME}/venv && \
     /home/${USERNAME}/venv/bin/pip install --no-cache-dir -r /home/${USERNAME}/requirements.txt -v && \
     cp /tmp/openfhe.cpython-312-*.so /home/${USERNAME}/venv/lib/python3.12/site-packages/ && \
     /home/${USERNAME}/venv/bin/pip install --no-cache-dir /tmp/pyfhel-*.whl && \
-    echo "source /home/${USERNAME}/venv/bin/activate" >> /home/${USERNAME}/.bashrc
+    echo "source /home/${USERNAME}/venv/bin/activate" >> /home/${USERNAME}/.bashrc && \
+    mkdir -p /home/${USERNAME}/jupyter/certs
 
 # Copying Jupyter Server configuration file to the container. 
 # This file can be overridden at runtime with a volume mount.
