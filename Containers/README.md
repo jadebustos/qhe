@@ -50,7 +50,7 @@ $ podman run --rm -d --name qhe -p 8888:8888 quay.io/rhte_2019/qhe:latest
 
 Now you can use your favorite browser to browse https://localhost:8888
 
-## Custom configuration (Not yet implemented)
+## Custom configuration
 
 You can create your custom configuration file **jupyter_server_config.json**:
 
@@ -72,9 +72,32 @@ Verify password:
 $ cat jupyter_server_config.json
 {
   "IdentityProvider": {
-    "hashed_password": "argon2:..."
+    "hashed_password": "argon2:19$..."
   }
 }
 ```
 
-You can add this file via a secret volume to your container, mounting it in _/home/notebook/.jupyter/jupyter_server_config.json_
+After having created the password modify the file according to:
+
+```json
+{
+  "ServerApp": {
+    "ip": "0.0.0.0",
+    "port": 8888,
+    "open_browser": false,
+    "root_dir": "/workspace"
+  },
+  "IdentityProvider": {
+    "hashed_password": "argon2:$argon2id$v=19$..."
+  }
+}
+```
+
+You can add this file via a secret volume to your container:
+
+```console
+$ podman run -v jupyter_server_config.json:/etc/jupyter/jupyter_server_config.json:ro -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
+...
+$
+```
+
