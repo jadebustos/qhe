@@ -1,7 +1,7 @@
 {
   "_comment": "Password: temporal",    
   "ServerApp": {
-    "ip": "192.168.1.250",
+    "ip": "0.0.0.0",
     "port": 8888,
     "open_browser": false,
     "certfile": "/home/qcomputing/.jupyter/certs/jupyter.crt",
