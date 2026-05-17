@@ -4,8 +4,8 @@
     "port": 8888,
     "open_browser": false,
     "root_dir": "/workspace",
-    "certfile": "/home/qcomputing/jupyter/certs/jupyter.crt",
-    "keyfile": "/home/qcomputing/jupyter/certs/jupyter.key"
+    "certfile": "/home/qcomputing/.jupyter/certs/jupyter.crt",
+    "keyfile": "/home/qcomputing/.jupyter/certs/jupyter.key"
   },
   "IdentityProvider": {
     "token": ""
