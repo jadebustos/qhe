@@ -180,16 +180,16 @@ RUN python3.12 -m venv /home/${USERNAME}/venv && \
     cp /tmp/openfhe.cpython-312-*.so /home/${USERNAME}/venv/lib/python3.12/site-packages/ && \
     /home/${USERNAME}/venv/bin/pip install --no-cache-dir /tmp/pyfhel-*.whl && \
     echo "source /home/${USERNAME}/venv/bin/activate" >> /home/${USERNAME}/.bashrc && \
-    mkdir -p /home/${USERNAME}/jupyter/certs
+    mkdir -p /home/${USERNAME}/.jupyter/certs && chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/.jupyter
 
 # Copying Jupyter Server configuration file to the container. 
 # This file can be overridden at runtime with a volume mount.
-COPY jupyter_server_config.json /home/${USERNAME}/jupyter/certs/jupyter_server_config.json
+COPY jupyter_server_config.json /home/${USERNAME}/.jupyter/certs/jupyter_server_config.json
 
 # Copying certificates for Jupyter Server configuration
 # These files can be overridden at runtime with volume mounts.
-COPY --chmod=600 jupyter.key /home/${USERNAME}/jupyter/certs/jupyter.key
-COPY --chmod=644 jupyter.crt /home/${USERNAME}/jupyter/certs/jupyter.crt
+COPY --chown=${USERNAME}:${USERNAME} --chmod=600 jupyter.key /home/${USERNAME}/.jupyter/certs/jupyter.key
+COPY --chown=${USERNAME}:${USERNAME} --chmod=644 jupyter.crt /home/${USERNAME}/.jupyter/certs/jupyter.crt
 
 # Copying the LICENSE file to the user's home directory.
 COPY LICENSE home/${USERNAME}/LICENSE
