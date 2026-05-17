@@ -1,8 +1,9 @@
-7026-05-13  José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
+2026-05-13  José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
 
+	* Added support for https.
 	* Added Jupyter widgets python modules.
 	* Added custom configuration for Jupyter Lab.
-	* Containerfile optimizations, mergin several RUN commands in one single RUN command.
+	* Containerfile optimizations, merging several RUN commands in one single RUN command.
 	
 2026-05-13  José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
 

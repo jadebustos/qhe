@@ -4,6 +4,8 @@
     "ip": "192.168.1.250",
     "port": 8888,
     "open_browser": false,
+    "certfile": "/etc/jupyter/certs/jupyter.crt",
+    "keyfile": "/etc/jupyter/certs/jupyter.key"
     "root_dir": "/workspace"
   },
   "IdentityProvider": {

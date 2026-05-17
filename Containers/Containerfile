@@ -161,7 +161,8 @@ RUN if id ubuntu >/dev/null 2>&1; then \
         groupadd --gid 1000 ${USERNAME} && \
         useradd --uid 1000 --gid 1000 --create-home \
                 --shell /bin/bash ${USERNAME}; \
-    fi && mkdir -p /workspace && chown -R ${USERNAME}:${USERNAME} /workspace
+    fi && mkdir -p /workspace && chown -R ${USERNAME}:${USERNAME} /workspace && \
+    mkdir -p /etc/jupyter/certs
 
 # Enable non-root user
 USER ${USERNAME}
@@ -179,7 +180,12 @@ RUN python3.12 -m venv /home/${USERNAME}/venv && \
     /home/${USERNAME}/venv/bin/pip install --no-cache-dir -r /home/${USERNAME}/requirements.txt -v && \
     cp /tmp/openfhe.cpython-312-*.so /home/${USERNAME}/venv/lib/python3.12/site-packages/ && \
     /home/${USERNAME}/venv/bin/pip install --no-cache-dir /tmp/pyfhel-*.whl && \
-    echo "source /home/${USERNAME}/venv/bin/activate" >> /home/${USERNAME}/.bashrc  
+    echo "source /home/${USERNAME}/venv/bin/activate" >> /home/${USERNAME}/.bashrc && \
+    mkdir -p /home/${USERNAME}/.jupyter/certs
+
+# Copying certificates for Jupyter Server configuration
+COPY --chown=${USERNAME}: --chmod=600 jupyter.key /home/${USERNAME}/.jupyter/certs
+COPY --chown=${USERNAME}: --chmod=644 jupyter.crt /home/${USERNAME}/.jupyter/certs
 
 # Environment variables to find the OpenFHE and shared libraries
 ENV VIRTUAL_ENV=/home/${USERNAME}/venv
