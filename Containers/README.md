@@ -23,7 +23,7 @@ We will build the container in two phases. From this directory:
 
   ```console
   $ SERVER_NAME=jupyter.local SERVER_IP=192.168.1.250 CERT_DAYS=90 KEY_BITS=4096 KEY_NAME=jupyter.key CERT_NAME=jupyter.crt ./certificate-creation.sh
-  '''
+  ```
 
 * Build the container:
 
