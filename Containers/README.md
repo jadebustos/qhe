@@ -58,15 +58,7 @@ Now you can use your favorite browser to browse https://localhost:8888
 
 ## Custom configuration
 
-You can create your custom configuration file **jupyter_server_config.json**:
-
-```json
-{
-  "IdentityProvider": {
-    "hashed_password": "argon2:..."
-  }
-}
-```
+You can create your custom configuration file [jupyter_server_config.json](jupyter_server_config.json.example).:
 
 Where the hashed password can be created:
 
@@ -82,8 +74,6 @@ $ cat jupyter_server_config.json
   }
 }
 ```
-
-After having created the password modify the file according to [jupyter_server_config.json.example](jupyter_server_config.json.example).
 
 You can add this file via a secret volume to your container:
 
