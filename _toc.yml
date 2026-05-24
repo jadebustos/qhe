@@ -14,6 +14,9 @@ parts:
     chapters:
       - file: chapters/quantum-basics  # a Markdown chapter
 
-  - caption: "Running the Jupyter Notebooks on your environment"
+  - caption: "Running the Jupyter Notebooks on your own environment"
     chapters:
       - file: chapters/running-notebooks       # a Markdown chapter
+        sections: 
+          - file: notebooks/creating-container         # a Markdown section
+          - file: notebooks/running-container          # a Markdown section

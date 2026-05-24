@@ -1,4 +1,4 @@
-# README
+# Introduction
 
 These examples use [Podman](https://podman.io/), but if you prefer to use Docker you will only need to replace **podman** by **docker** on the commands.
 
@@ -15,80 +15,9 @@ You have different options to try this notebook:
 
   and after that running it.
 
-## Creating the container
+You can find all the required files:
 
-We will build the container in two phases. From this directory:
-
-* Create the certificates:
-
-  ```console
-  $ SERVER_NAME=jupyter.local SERVER_IP=192.168.1.250 CERT_DAYS=90 KEY_BITS=4096 KEY_NAME=jupyter.key CERT_NAME=jupyter.crt ./certificate-creation.sh
-  ```
-
-* Build the container:
-
-  ```console
-  $ podman build -t qhe:1.0 -f Containerfile . 
-  ...
-  $ podman images
-  REPOSITORY                 TAG         IMAGE ID      CREATED       SIZE
-  localhost/qhe              1.0         b2955f6be9c3  13 seconds ago      841 MB
-  <none>                     <none>      5029d1ec36b4  About a minute ago  1.26 GB
-  docker.io/library/ubuntu   24.04       0b1ebe5dd426  4 weeks ago         80.7 MB
-  $
-  ```
-
-## Running the container
-
-Go to the directory where you have the jupyter notebooks you want to run:
-
-```console
-$ podman run -p 8888:8888 -v $(pwd):/workspace:Z localhost/qhe:1.0
-```
-
-If you are not using SELinux you can skip **:Z**. Ensure write privileges for all users in the notebooks directory due to Jupyterlab will be executing as a non-root user.
-
-If you downloaded it from my container repository:
-
-```console
-$ podman run --rm -d --name qhe -p 8888:8888 quay.io/rhte_2019/qhe:latest
-```
-
-Now you can use your favorite browser to browse https://localhost:8888
-
-## Running the container using your custom configuration
-
-You can create your custom configuration file [jupyter_server_config.json](jupyter_server_config.json.example).:
-
-Where the hashed password can be created:
-
-```console
-$ JUPYTER_CONFIG_DIR=$PWD jupyter server password
-Enter password:
-Verify password:
-[JupyterPasswordApp] Wrote hashed password to ./jupyter_server_config.json
-$ cat jupyter_server_config.json
-{
-  "IdentityProvider": {
-    "hashed_password": "argon2:19$..."
-  }
-}
-$
-```
-
-You can add this file via a volume to your container:
-
-```console
-$ podman run -v ../Containers/jupyter_server_config.json:/home/qcomputing/.jupyter/jupyter_server_config.json:ro -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
-...
-$
-```
-
-You can also create your own certificates and map them as a volume:
-
-* Map your key to **/home/qcomputing/.jupyter/certs/jupyter.key**.
-* Map your certificate to **/home/qcomputing/.jupyter/certs/jupyter.crt**.
-
-
-
+* [Jupyter Notebooks](https://github.com/jadebustos/qhe/tree/main/notebooks)
+* [Containerfiles](https://github.com/jadebustos/qhe/tree/main/Containers)
+* [Container](quay.io/rhte_2019/qhe:latest)
 
