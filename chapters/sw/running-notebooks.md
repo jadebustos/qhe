@@ -4,7 +4,7 @@ These examples use [Podman](https://podman.io/), but if you prefer to use Docker
 
 You can also use [Podman Desktop](https://podman-desktop.io/) to easyly run containers from your favorite Operating System using a Graphical User Interface.
 
-You have different options to try this notebook:
+You have different options to try these notebooks:
 
 * You can create the container by yourself.
 * You can get the container from my container repository:

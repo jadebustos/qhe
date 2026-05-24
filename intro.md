@@ -2,6 +2,8 @@
 
 This site documents my master's thesis on how **quantum computing** (QC) and **homomorphic encryption** (HE) can be used together to solve the challenges each one faces. It collects notebooks, short tutorials, and background notes so anyone curious about the topic can follow along.
 
+Unless stated otherwise all content from this repository is distributed under the [GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.en.html).
+
 ## What you'll find here
 
 - A gentle intro to quantum computing: qubits, gates, and measurement.

@@ -3,6 +3,13 @@
 format: jb-book
 root: intro                        # the landing page
 parts:
+  - caption: "Running the Jupyter Notebooks on your own environment"
+    chapters:
+      - file: chapters/sw/running-notebooks       # a Markdown chapter
+        sections: 
+          - file: notebooks/sw/creating-container         # a Markdown section
+          - file: notebooks/sw/running-container          # a Markdown section
+          
   - caption: "Homomorphic Encryption"
     chapters:
       - file: chapters/he/he-basics       # another Markdown chapter
@@ -13,10 +20,3 @@ parts:
   - caption: "Quantum Computing"
     chapters:
       - file: chapters/qc/quantum-basics  # a Markdown chapter
-
-  - caption: "Running the Jupyter Notebooks on your own environment"
-    chapters:
-      - file: chapters/sw/running-notebooks       # a Markdown chapter
-        sections: 
-          - file: notebooks/sw/creating-container         # a Markdown section
-          - file: notebooks/sw/running-container          # a Markdown section
