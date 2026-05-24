@@ -16,14 +16,12 @@ parts:
         sections:
           - file: notebooks/Paillier       # a Jupyter notebook
           - file: notebooks/BFV            # a Jupyter notebook
-          - file: notebooks/CKKS           # another Jupyter notebook    
+          - file: notebooks/CKKS           # another Jupyter notebook
+      - file: chapters/references    # a Markdown chapter with links to papers, libraries, etc. 
 
   - caption: "Quantum Computing"
     chapters:
       - file: chapters/qc/quantum-basics  # a Markdown chapter
         sections:
           - file: chapters/qc/quantum-gates      # a Markdown section
-
-  - caption: "References"
-    chapters:
-      - file: chapters/references          
+      - file: chapters/references    # a Markdown chapter with links to papers, libraries, etc.

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+rm -Rf _build/
+
 jupyter-book build . 2>&1 | grep -iE "warning|error|missing"
 
 git add . ; LANG=C git commit -S -m "$1" ; git push
