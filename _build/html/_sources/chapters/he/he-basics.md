@@ -10,13 +10,13 @@ $$
 
 A server can therefore evaluate a function $f$ on your encrypted data and return $\mathrm{Enc}(f(x))$ — without ever learning $x$.
 
-When we talk about homomorphic encryption we mean that the homomorphic algorithm is homomorphic for some mathematical operations. Most homomorphic algorithms will be homomorphic regarding addition and/or multiplication. That means that we can perform addition and/or multplication using the crypted data withouht having to decrypt it.
+When we talk about homomorphic encryption we mean that the homomorphic algorithm is homomorphic for some mathematical operations. Most homomorphic algorithms will be homomorphic regarding addition and/or multiplication. That means that we can perform addition and/or multplication using the crypted data without having to decrypt it.
 
 ## A quick taxonomy
 
 - **Partially HE (PHE)**: supports *one* operation an unbounded number of times. RSA is multiplicatively homomorphic; Paillier is additively.
 - **Somewhat HE (SHE)**: supports both, but for a bounded number of operations before noise overwhelms the ciphertext.
-- **Fully HE (FHE)**: arbitrary circuits. Made practical by Gentry's 2009 breakthrough using *bootstrapping* {cite}`gentry2009`.
+- **Fully HE (FHE)**: arbitrary circuits. Made practical by Gentry's 2009 breakthrough using *bootstrapping* {cite}`10.1145/1536414.1536440`.
 
 Modern FHE schemes most thesis projects touch:
 
