@@ -1,4 +1,4 @@
-# Quick intro to Quantum computing
+# Quick introduction to Quantum computing
 
 A **qubit** is the quantum analogue of a classical bit. Where a bit is either $0$ or $1$, a qubit's state is a unit vector in $\mathbb{C} ^2$:
 
