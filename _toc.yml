@@ -8,13 +8,13 @@ parts:
     chapters:
       - file: chapters/sw/running-notebooks       # a Markdown chapter
         sections: 
-          - file: notebooks/sw/creating-container         # a Markdown section
-          - file: notebooks/sw/running-container          # a Markdown section
+          - file: chapters/sw/creating-container         # a Markdown section
+          - file: chapters/sw/running-container          # a Markdown section
           
   - caption: "Homomorphic Encryption"
     numbered: true
     chapters:
-      - file: chapters/he/he-basics       # another Markdown chapter
+      - file: chapters/he/he-basics       # a Markdown chapter
       - file: chapters/he/references      # references page
       - file: notebooks/BFV            # a Jupyter notebook
       - file: notebooks/CKKS           # another Jupyter notebook      

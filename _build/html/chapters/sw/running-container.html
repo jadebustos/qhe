@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Running the container &#8212; Quantum Computing meets Homomorphic Encryption (provisional title)</title>
+    <title>1.2. Running the container &#8212; Quantum Computing meets Homomorphic Encryption (provisional title)</title>
   
   
   
@@ -63,6 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/sw/running-container';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2. Homomorphic encryption in 5 minutes" href="../he/he-basics.html" />
+    <link rel="prev" title="1.1. Creating the container" href="creating-container.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -114,8 +116,6 @@
       
       
       
-        
-      
       <dialog id="pst-primary-sidebar-modal"></dialog>
       <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
@@ -163,25 +163,28 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running the Jupyter Notebooks on your own environment</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="running-notebooks.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="running-notebooks.html">1. Introduction</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="creating-container.html">1.1. Creating the container</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.2. Running the container</a></li>
+
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homomorphic Encryption</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../he/he-basics.html">Homomorphic encryption in 5 minutes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../he/references.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks/BFV.html">Author: José Ángel de Bustos Pérez</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../he/he-basics.html">2. Homomorphic encryption in 5 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../he/references.html">3. References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/BFV.html">4. Author: José Ángel de Bustos Pérez</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks/CKKS.html">Author: José Ángel de Bustos Pérez</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/CKKS.html">5. Author: José Ángel de Bustos Pérez</a></li>
 
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../qc/quantum-basics.html">Quantum computing in 5 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qc/quantum-basics.html">6. Quantum computing in 5 minutes</a></li>
 </ul>
 
     </div>
@@ -391,8 +394,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Running the container</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-container-using-your-custom-configuration">Running the container using your custom configuration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1.2. Running the container</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-container-using-your-custom-configuration">1.3. Running the container using your custom configuration</a></li>
 </ul>
 
             </nav>
@@ -406,7 +409,7 @@
                 <article class="bd-article">
                   
   <section id="running-the-container">
-<h1>Running the container<a class="headerlink" href="#running-the-container" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">1.2. </span>Running the container<a class="headerlink" href="#running-the-container" title="Link to this heading">#</a></h1>
 <p>Go to the directory where you have the jupyter notebooks you want to run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>localhost/qhe:1.0
 </pre></div>
@@ -419,7 +422,7 @@
 <p>Now you can use your favorite browser to browse <a class="reference external" href="https://localhost:8888">https://localhost:8888</a></p>
 </section>
 <section id="running-the-container-using-your-custom-configuration">
-<h1>Running the container using your custom configuration<a class="headerlink" href="#running-the-container-using-your-custom-configuration" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">1.3. </span>Running the container using your custom configuration<a class="headerlink" href="#running-the-container-using-your-custom-configuration" title="Link to this heading">#</a></h1>
 <p>You can create your custom configuration file <a class="reference internal" href="#jupyter_server_config.json.example"><span class="xref myst">jupyter_server_config.json</span></a>.:</p>
 <p>Where the hashed password can be created:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">JUPYTER_CONFIG_DIR</span><span class="o">=</span><span class="nv">$PWD</span><span class="w"> </span>jupyter<span class="w"> </span>server<span class="w"> </span>password
@@ -478,6 +481,24 @@
                 <footer class="prev-next-footer d-print-none">
                   
 <div class="prev-next-area">
+    <a class="left-prev"
+       href="creating-container.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">1.1. </span>Creating the container</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../he/he-basics.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">2. </span>Homomorphic encryption in 5 minutes</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
 </div>
                 </footer>
               
@@ -496,8 +517,8 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Running the container</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-container-using-your-custom-configuration">Running the container using your custom configuration</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1.2. Running the container</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-container-using-your-custom-configuration">1.3. Running the container using your custom configuration</a></li>
 </ul>
 
   </nav></div>
