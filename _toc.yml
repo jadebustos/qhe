@@ -15,9 +15,11 @@ parts:
     numbered: true
     chapters:
       - file: chapters/he/he-basics       # a Markdown chapter
+        sections:
+          - file: notebooks/BFV            # a Jupyter notebook
+          - file: notebooks/CKKS           # another Jupyter notebook    
       - file: chapters/he/references      # references page
-      - file: notebooks/BFV            # a Jupyter notebook
-      - file: notebooks/CKKS           # another Jupyter notebook      
+
 
   - caption: "Quantum Computing"
     numbered: true

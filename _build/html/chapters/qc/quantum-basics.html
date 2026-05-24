@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>6. Quantum computing in 5 minutes &#8212; When Quantum Computing meets Homomorphic Encryption</title>
+    <title>4. Quantum computing in 5 minutes &#8212; When Quantum Computing meets Homomorphic Encryption</title>
   
   
   
@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/qc/quantum-basics';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="5. Author: José Ángel de Bustos Pérez" href="../../notebooks/CKKS.html" />
+    <link rel="prev" title="3. References" href="../he/references.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -174,18 +174,16 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homomorphic Encryption</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../he/he-basics.html">2. Homomorphic encryption in 5 minutes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../he/he-basics.html">2. Homomorphic encryption in 5 minutes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/BFV.html">2.3. Basic implementation for the BFV algorithm using Pyphel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/CKKS.html">2.4. Basic implementation for the CKKS algorithm using Pyphel</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../he/references.html">3. References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks/BFV.html">4. Author: José Ángel de Bustos Pérez</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks/CKKS.html">5. Author: José Ángel de Bustos Pérez</a></li>
-
-
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Quantum computing in 5 minutes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Quantum computing in 5 minutes</a></li>
 </ul>
 
     </div>
@@ -395,7 +393,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gates">6.1. Gates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gates">4.1. Gates</a></li>
 </ul>
             </nav>
         </div>
@@ -408,7 +406,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="quantum-computing-in-5-minutes">
-<h1><span class="section-number">6. </span>Quantum computing in 5 minutes<a class="headerlink" href="#quantum-computing-in-5-minutes" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">4. </span>Quantum computing in 5 minutes<a class="headerlink" href="#quantum-computing-in-5-minutes" title="Link to this heading">#</a></h1>
 <p>A <strong>qubit</strong> is the quantum analogue of a classical bit. Where a bit is
 either <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, a qubit’s state is a unit vector in <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>:</p>
 <div class="math notranslate nohighlight">
@@ -420,7 +418,7 @@ either <span class="math notranslate nohighlight">\(0\)</span> or <span class="m
 On measurement in the computational basis, you observe <span class="math notranslate nohighlight">\(0\)</span> with
 probability <span class="math notranslate nohighlight">\(|\alpha|^2\)</span> and <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(|\beta|^2\)</span>.</p>
 <section id="gates">
-<h2><span class="section-number">6.1. </span>Gates<a class="headerlink" href="#gates" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.1. </span>Gates<a class="headerlink" href="#gates" title="Link to this heading">#</a></h2>
 <p>Single-qubit gates are <span class="math notranslate nohighlight">\(2\times 2\)</span> unitary matrices. A few you’ll see
 repeatedly:</p>
 <div class="pst-scrollable-table-container"><table class="table">
@@ -489,12 +487,12 @@ are believed to resist quantum attacks — see <span class="bibtex-citation" id=
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../../notebooks/CKKS.html"
+       href="../he/references.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Author: José Ángel de Bustos Pérez</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>References</p>
       </div>
     </a>
 </div>
@@ -515,7 +513,7 @@ are believed to resist quantum attacks — see <span class="bibtex-citation" id=
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gates">6.1. Gates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gates">4.1. Gates</a></li>
 </ul>
   </nav></div>
 
