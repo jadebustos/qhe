@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>1.1. Creating the container &#8212; When Quantum Computing meets Homomorphic Encryption</title>
+    <title>Creating the container &#8212; When Quantum Computing meets Homomorphic Encryption</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -63,8 +63,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/sw/creating-container';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="1.2. Running the container" href="running-container.html" />
-    <link rel="prev" title="1. Introduction" href="running-notebooks.html" />
+    <link rel="next" title="Running the container" href="running-container.html" />
+    <link rel="prev" title="Introduction" href="running-notebooks.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -164,27 +164,29 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running the Jupyter Notebooks on your own environment</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="running-notebooks.html">1. Introduction</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">1.1. Creating the container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="running-container.html">1.2. Running the container</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="running-notebooks.html">Introduction</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Creating the container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="running-container.html">Running the container</a></li>
+
 
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homomorphic Encryption</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../he/he-basics.html">2. Homomorphic encryption in 5 minutes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../he/references.html">3. References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks/BFV.html">4. Author: José Ángel de Bustos Pérez</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks/CKKS.html">5. Author: José Ángel de Bustos Pérez</a></li>
-
-
+<li class="toctree-l1 has-children"><a class="reference internal" href="../he/he-basics.html">Homomorphic encryption in 5 minutes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/Paillier.html">Basic example of homomorphic encryption with the Paillier algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/BFV.html">Basic implementation for the BFV algorithm using Pyphel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/CKKS.html">Basic implementation for the CKKS algorithm using Pyphel</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../qc/quantum-basics.html">6. Quantum computing in 5 minutes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../qc/quantum-basics.html">Quantum computing in 5 minutes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../qc/quantum-gates.html">Gates</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -397,7 +399,7 @@
                 <article class="bd-article">
                   
   <section id="creating-the-container">
-<h1><span class="section-number">1.1. </span>Creating the container<a class="headerlink" href="#creating-the-container" title="Link to this heading">#</a></h1>
+<h1>Creating the container<a class="headerlink" href="#creating-the-container" title="Link to this heading">#</a></h1>
 <p>We will build the container in two phases. From this directory:</p>
 <ul>
 <li><p>Create the certificates:</p>
@@ -456,7 +458,7 @@
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">1. </span>Introduction</p>
+        <p class="prev-next-title">Introduction</p>
       </div>
     </a>
     <a class="right-next"
@@ -464,7 +466,7 @@
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">1.2. </span>Running the container</p>
+        <p class="prev-next-title">Running the container</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

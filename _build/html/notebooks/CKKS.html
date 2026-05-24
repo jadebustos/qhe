@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2.5. Basic implementation for the CKKS algorithm using Pyphel &#8212; When Quantum Computing meets Homomorphic Encryption</title>
+    <title>Basic implementation for the CKKS algorithm using Pyphel &#8212; When Quantum Computing meets Homomorphic Encryption</title>
   
   
   
@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -65,8 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/CKKS';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="3. Quantum computing in 5 minutes" href="../chapters/qc/quantum-basics.html" />
-    <link rel="prev" title="2.4. Basic implementation for the BFV algorithm using Pyphel" href="BFV.html" />
+    <link rel="next" title="Quantum computing in 5 minutes" href="../chapters/qc/quantum-basics.html" />
+    <link rel="prev" title="Basic implementation for the BFV algorithm using Pyphel" href="BFV.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -166,25 +166,29 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running the Jupyter Notebooks on your own environment</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../chapters/sw/running-notebooks.html">1. Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../chapters/sw/creating-container.html">1.1. Creating the container</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../chapters/sw/running-container.html">1.2. Running the container</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapters/sw/running-notebooks.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/sw/creating-container.html">Creating the container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/sw/running-container.html">Running the container</a></li>
+
 
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homomorphic Encryption</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="../chapters/he/he-basics.html">2. Homomorphic encryption in 5 minutes</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="Paillier.html">2.3. Basic example of homomorphic encryption with the Paillier algorithm</a></li>
-<li class="toctree-l2"><a class="reference internal" href="BFV.html">2.4. Basic implementation for the BFV algorithm using Pyphel</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">2.5. Basic implementation for the CKKS algorithm using Pyphel</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../chapters/he/he-basics.html">Homomorphic encryption in 5 minutes</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Paillier.html">Basic example of homomorphic encryption with the Paillier algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BFV.html">Basic implementation for the BFV algorithm using Pyphel</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Basic implementation for the CKKS algorithm using Pyphel</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../chapters/qc/quantum-basics.html">3. Quantum computing in 5 minutes</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapters/qc/quantum-basics.html">Quantum computing in 5 minutes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/quantum-gates.html">Gates</a></li>
+</ul>
+</details></li>
 </ul>
 
     </div>
@@ -394,13 +398,13 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">2.5.1. Author: José Ángel de Bustos Pérez</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">2.5.2. License: GNU GENERAL PUBLIC LICENSE v3</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">2.5.3. Basic operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">2.5.4. Performing homomorphic encryption with multiple operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">2.5.5. Batching operation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-or-scalar-product">2.5.6. Dot product or scalar product</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-operations-can-be-done-before-data-is-corrupted">2.5.7. How many operations can be done before data is corrupted?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">Basic operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">Performing homomorphic encryption with multiple operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">Batching operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-or-scalar-product">Dot product or scalar product</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-operations-can-be-done-before-data-is-corrupted">How many operations can be done before data is corrupted?</a></li>
 </ul>
             </nav>
         </div>
@@ -413,12 +417,12 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="basic-implementation-for-the-ckks-algorithm-using-pyphel">
-<h1><span class="section-number">2.5. </span>Basic implementation for the CKKS algorithm using Pyphel<a class="headerlink" href="#basic-implementation-for-the-ckks-algorithm-using-pyphel" title="Link to this heading">#</a></h1>
+<h1>Basic implementation for the CKKS algorithm using Pyphel<a class="headerlink" href="#basic-implementation-for-the-ckks-algorithm-using-pyphel" title="Link to this heading">#</a></h1>
 <section id="author-jose-angel-de-bustos-perez">
-<h2><span class="section-number">2.5.1. </span>Author: José Ángel de Bustos Pérez<a class="headerlink" href="#author-jose-angel-de-bustos-perez" title="Link to this heading">#</a></h2>
+<h2>Author: José Ángel de Bustos Pérez<a class="headerlink" href="#author-jose-angel-de-bustos-perez" title="Link to this heading">#</a></h2>
 </section>
 <section id="license-gnu-general-public-license-v3">
-<h2><span class="section-number">2.5.2. </span>License: <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GENERAL PUBLIC LICENSE v3</a><a class="headerlink" href="#license-gnu-general-public-license-v3" title="Link to this heading">#</a></h2>
+<h2>License: <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GENERAL PUBLIC LICENSE v3</a><a class="headerlink" href="#license-gnu-general-public-license-v3" title="Link to this heading">#</a></h2>
 <p>This notebook uses <a class="reference external" href="https://pyfhel.readthedocs.io/">Pyphel</a> to implement the CKKS homomorphic encryption algorithm.</p>
 <p>CKKS (Cheon–Kim–Kim–Song, 2017) is a homomorphic encryption scheme based on RLWE (Ring Learning With Errors), like BFV, but designed to work with real or complex numbers in an approximate way. That means that the operations will add some error.</p>
 <p>Key differences compared to BFV:</p>
@@ -485,7 +489,7 @@
 <p>Unlike BFV, in CKKS the <strong>noise budget</strong> is not measured in the same way. What matters is the LEVEL of the ciphertext (how many primes remain in the modulus chain). Each rescale consumes one level. When you reach the last level, you can no longer perform multiplications.</p>
 </section>
 <section id="basic-operations">
-<h2><span class="section-number">2.5.3. </span>Basic operations<a class="headerlink" href="#basic-operations" title="Link to this heading">#</a></h2>
+<h2>Basic operations<a class="headerlink" href="#basic-operations" title="Link to this heading">#</a></h2>
 <p>We will perform basic operations such as addition and multiplications to check how noise is increasing. We will start with addition:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -566,7 +570,7 @@ Error: 3.19e-07
 </div>
 </section>
 <section id="performing-homomorphic-encryption-with-multiple-operations">
-<h2><span class="section-number">2.5.4. </span>Performing homomorphic encryption with multiple operations<a class="headerlink" href="#performing-homomorphic-encryption-with-multiple-operations" title="Link to this heading">#</a></h2>
+<h2>Performing homomorphic encryption with multiple operations<a class="headerlink" href="#performing-homomorphic-encryption-with-multiple-operations" title="Link to this heading">#</a></h2>
 <p>We are going to show how to perform more complex operations with homomorphic encryption. Let’s assume we want to perform homomorphic encryption to:</p>
 <div class="math notranslate nohighlight">
 \[f(x,y) = (x+y)^2 - (x-y)^2\]</div>
@@ -681,7 +685,7 @@ Error: 2.01e-04
 </div>
 </section>
 <section id="batching-operation">
-<h2><span class="section-number">2.5.5. </span>Batching operation<a class="headerlink" href="#batching-operation" title="Link to this heading">#</a></h2>
+<h2>Batching operation<a class="headerlink" href="#batching-operation" title="Link to this heading">#</a></h2>
 <p>Batching allows us to perform the same homomorphic operation to several data at the same time, parallelism.</p>
 <p>If we are familiar with processor architectures we will know what <strong>SIMD</strong> (<strong>S</strong>imple <strong>I</strong>nstruction <strong>M</strong>ultiple <strong>D</strong>ata) is. One single operation using only one clock cicle operate on multiple data. Batching is the same but used in homomorphic encryption and it is used to speed up operations.</p>
 <div class="cell docutils container">
@@ -766,7 +770,7 @@ Error: [2.02115393e-04 5.42051864e-04 1.94113882e-04 3.89480871e-06
 </div>
 </section>
 <section id="dot-product-or-scalar-product">
-<h2><span class="section-number">2.5.6. </span>Dot product or scalar product<a class="headerlink" href="#dot-product-or-scalar-product" title="Link to this heading">#</a></h2>
+<h2>Dot product or scalar product<a class="headerlink" href="#dot-product-or-scalar-product" title="Link to this heading">#</a></h2>
 <p>Dot product or scalar product is a fundamental operation used in multiple algorithms such as linear regresion, support vector machines (SVM) or neural network algorithms. For this reason been able to operate it using homomorphic encription will ease using such algoritms with homomorphic encryption.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -814,7 +818,7 @@ Error: 1.77e-05
 </div>
 </section>
 <section id="how-many-operations-can-be-done-before-data-is-corrupted">
-<h2><span class="section-number">2.5.7. </span>How many operations can be done before data is corrupted?<a class="headerlink" href="#how-many-operations-can-be-done-before-data-is-corrupted" title="Link to this heading">#</a></h2>
+<h2>How many operations can be done before data is corrupted?<a class="headerlink" href="#how-many-operations-can-be-done-before-data-is-corrupted" title="Link to this heading">#</a></h2>
 <p>We have seen that the multiplication operation adds noise to the data. For this reason is important to know how many operations can be done without corrupting data. This number  of operations is the operational limit which indicates the maximum number of operations that can be performed by the algorithm.</p>
 <p>In CKKS the limit is the prime number chain defined in <strong>qi_sizes = [60, 30, 30, 30, 30, 30, 60]</strong>. With each rescaling operation one prime number is used, in this case we have five multiplication levels</p>
 <div class="cell docutils container">
@@ -905,7 +909,7 @@ Iteration 6: FALLO - no more multiplication levels available.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2.4. </span>Basic implementation for the BFV algorithm using Pyphel</p>
+        <p class="prev-next-title">Basic implementation for the BFV algorithm using Pyphel</p>
       </div>
     </a>
     <a class="right-next"
@@ -913,7 +917,7 @@ Iteration 6: FALLO - no more multiplication levels available.
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">3. </span>Quantum computing in 5 minutes</p>
+        <p class="prev-next-title">Quantum computing in 5 minutes</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -935,13 +939,13 @@ Iteration 6: FALLO - no more multiplication levels available.
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">2.5.1. Author: José Ángel de Bustos Pérez</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">2.5.2. License: GNU GENERAL PUBLIC LICENSE v3</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">2.5.3. Basic operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">2.5.4. Performing homomorphic encryption with multiple operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">2.5.5. Batching operation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-or-scalar-product">2.5.6. Dot product or scalar product</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-operations-can-be-done-before-data-is-corrupted">2.5.7. How many operations can be done before data is corrupted?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">Basic operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">Performing homomorphic encryption with multiple operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">Batching operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-or-scalar-product">Dot product or scalar product</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-operations-can-be-done-before-data-is-corrupted">How many operations can be done before data is corrupted?</a></li>
 </ul>
   </nav></div>
 
