@@ -9,6 +9,11 @@ $$
 
 The coefficients $\alpha, \beta \in \mathbb{C}$ are called *amplitudes*. On measurement in the computational basis, you observe $0$ with probability $|\alpha|^2$ and $1$ with probability $|\beta|^2$ where $|\alpha|^2 + |\beta|^2 = 1$.
 
+```{admonition} Why this matters for HE
+:class: important
+$|\alpha|^2 + |\beta|^2 = 1$
+```
+
 ## Gates
 
 Single-qubit gates are $2\times 2$ unitary matrices. A few you'll see repeatedly:
