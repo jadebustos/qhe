@@ -5,7 +5,8 @@ We will build the container in two phases. From this directory:
 * Creating the certificates:
 
   ```console
-  $ SERVER_NAME=jupyter.local SERVER_IP=192.168.1.250 CERT_DAYS=90 KEY_BITS=4096 KEY_NAME=jupyter.key CERT_NAME=jupyter.crt ./certificate-creation.sh
+  $ SERVER_NAME=jupyter.local SERVER_IP=192.168.1.250 CERT_DAYS=90 KEY_BITS=4096 \
+      KEY_NAME=jupyter.key CERT_NAME=jupyter.crt ./certificate-creation.sh
   ```
 
 * Building the container:
@@ -21,11 +22,12 @@ We will build the container in two phases. From this directory:
   $
   ```
 
-:::{admonition} You can also add building args to the container image
+:::{admonition} You can also include building args to the container image
 :class: tip
 
   ```console
-  $ podman build --build-arg BUILD_DATE="$(date -u +'%Y-%m-%dT%H:%M:%SZ')" --build-arg VCS_REF="$(git rev-parse \
+  $ podman build --build-arg BUILD_DATE="$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
+      --build-arg VCS_REF="$(git rev-parse \
       --short HEAD 2>/dev/null || echo 'no-git')" -t qhe:1.0 -f Containerfile .
 ...
 $
