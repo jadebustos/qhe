@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>4. Author: José Ángel de Bustos Pérez &#8212; When Quantum Computing meets Homomorphic Encryption</title>
+    <title>4. Basic implementation for BFV algorithm using Pyphel &#8212; When Quantum Computing meets Homomorphic Encryption</title>
   
   
   
@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/BFV';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Author: José Ángel de Bustos Pérez" href="CKKS.html" />
+    <link rel="next" title="5. Basic implementation for CKKS algorithm using Pyphel" href="CKKS.html" />
     <link rel="prev" title="3. References" href="../chapters/he/references.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -177,12 +177,8 @@
 <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../chapters/he/he-basics.html">2. Homomorphic encryption in 5 minutes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../chapters/he/references.html">3. References</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Author: José Ángel de Bustos Pérez</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="CKKS.html">5. Author: José Ángel de Bustos Pérez</a></li>
-
-
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Basic implementation for BFV algorithm using Pyphel</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CKKS.html">5. Basic implementation for CKKS algorithm using Pyphel</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="nav bd-sidenav">
@@ -386,7 +382,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Author: José Ángel de Bustos Pérez</h1>
+    <h1>Basic implementation for BFV algorithm using Pyphel</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -396,18 +392,14 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">4. Author: José Ángel de Bustos Pérez</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3-0">4. License: GNU General Public License v3.0</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-implementation-for-bfv-algorithm-using-pyphel-https-pyfhel-readthedocs-io">4. Basic implementation for BFV algorithm using Pyphel (https://pyfhel.readthedocs.io/)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">4.1. Basic operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">4.2. Performing homomorphic encryption with multiple operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">4.3. Batching operation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-or-scalar-product">4.4. Dot product or scalar product</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-operations-can-be-done-before-data-is-corrupted">4.5. How many operations can be done before data is corrupted?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">4.1. Author: José Ángel de Bustos Pérez</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3-0">4.2. License: GNU General Public License v3.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">4.3. Basic operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">4.4. Performing homomorphic encryption with multiple operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">4.5. Batching operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-or-scalar-product">4.6. Dot product or scalar product</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-operations-can-be-done-before-data-is-corrupted">4.7. How many operations can be done before data is corrupted?</a></li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -418,14 +410,14 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="author-jose-angel-de-bustos-perez">
-<h1><span class="section-number">4. </span>Author: José Ángel de Bustos Pérez<a class="headerlink" href="#author-jose-angel-de-bustos-perez" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-implementation-for-bfv-algorithm-using-pyphel">
+<h1><span class="section-number">4. </span>Basic implementation for BFV algorithm using Pyphel<a class="headerlink" href="#basic-implementation-for-bfv-algorithm-using-pyphel" title="Link to this heading">#</a></h1>
+<section id="author-jose-angel-de-bustos-perez">
+<h2><span class="section-number">4.1. </span>Author: José Ángel de Bustos Pérez<a class="headerlink" href="#author-jose-angel-de-bustos-perez" title="Link to this heading">#</a></h2>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="license-gnu-general-public-license-v3-0">
-<h1><span class="section-number">4. </span>License: GNU General Public License v3.0<a class="headerlink" href="#license-gnu-general-public-license-v3-0" title="Link to this heading">#</a></h1>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="basic-implementation-for-bfv-algorithm-using-pyphel-https-pyfhel-readthedocs-io">
-<h1><span class="section-number">4. </span>Basic implementation for BFV algorithm using Pyphel (<a class="reference external" href="https://pyfhel.readthedocs.io/">https://pyfhel.readthedocs.io/</a>)<a class="headerlink" href="#basic-implementation-for-bfv-algorithm-using-pyphel-https-pyfhel-readthedocs-io" title="Link to this heading">#</a></h1>
+<section id="license-gnu-general-public-license-v3-0">
+<h2><span class="section-number">4.2. </span>License: GNU General Public License v3.0<a class="headerlink" href="#license-gnu-general-public-license-v3-0" title="Link to this heading">#</a></h2>
+<p>This notebook uses <a class="reference external" href="https://pyfhel.readthedocs.io/">Pyphel</a> to implement the BFV homomorphic encryption algorithm.</p>
 <p>BFV (Brakerski–Fan–Vercauteren) is a homomorphic encryption scheme based on the RLWE (Ring Learning With Errors) problem, which is resistant to quantum attacks.</p>
 <p>This scheme works with integers modulo t exactly.</p>
 <p>The first step is to set the parameters and generate the keys:</p>
@@ -478,8 +470,9 @@
 </div>
 </div>
 </div>
+</section>
 <section id="basic-operations">
-<h2><span class="section-number">4.1. </span>Basic operations<a class="headerlink" href="#basic-operations" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.3. </span>Basic operations<a class="headerlink" href="#basic-operations" title="Link to this heading">#</a></h2>
 <p>We will perform basic operations such as addition and multiplications to check how noise is increasing. We will start with addition:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -547,7 +540,7 @@ Noise budget after multiplication: 114 bits
 <p><strong>Noise budget</strong> has been increased from 146 bits to 114 bits. Homomorphic multiplication adds more noise than homomorphic addition. This means that after a number of operations we will not be able to perform more homomorphic multiplications due to data will be corrupted.</p>
 </section>
 <section id="performing-homomorphic-encryption-with-multiple-operations">
-<h2><span class="section-number">4.2. </span>Performing homomorphic encryption with multiple operations<a class="headerlink" href="#performing-homomorphic-encryption-with-multiple-operations" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.4. </span>Performing homomorphic encryption with multiple operations<a class="headerlink" href="#performing-homomorphic-encryption-with-multiple-operations" title="Link to this heading">#</a></h2>
 <p>We are going to show how to perform more complex operations with homomorphic encryption. Let’s assume we want to perform homomorphic encryption to:</p>
 <div class="math notranslate nohighlight">
 \[f(x,y) = (x+y)^2 - (x-y)^2\]</div>
@@ -638,7 +631,7 @@ Noise budget after operation: 81 bits
 <p>Performing an additional homomorphic multiplication increases the noise reducing the <strong>Noise budget</strong>.</p>
 </section>
 <section id="batching-operation">
-<h2><span class="section-number">4.3. </span>Batching operation<a class="headerlink" href="#batching-operation" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.5. </span>Batching operation<a class="headerlink" href="#batching-operation" title="Link to this heading">#</a></h2>
 <p>Batching allows us to perform the same homomorphic operation to several data at the same time, parallelism.</p>
 <p>If we are familiar with processor architectures we will know what <strong>SIMD</strong> (<strong>S</strong>imple <strong>I</strong>nstruction <strong>M</strong>ultiple <strong>D</strong>ata) is. One single operation using only one clock cicle operate on multiple data. Batching is the same but used in homomorphic encryption and it is used to speed up operations.</p>
 <div class="cell docutils container">
@@ -709,7 +702,7 @@ Noise budget after operation: 114 bits
 <p>As expected this operation increases noise.</p>
 </section>
 <section id="dot-product-or-scalar-product">
-<h2><span class="section-number">4.4. </span>Dot product or scalar product<a class="headerlink" href="#dot-product-or-scalar-product" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.6. </span>Dot product or scalar product<a class="headerlink" href="#dot-product-or-scalar-product" title="Link to this heading">#</a></h2>
 <p>Dot product or scalar product is a fundamental operation used in multiple algorithms such as linear regresion, support vector machines (SVM) or neural network algorithms. For this reason been able to operate it using homomorphic encription will ease using such algoritms with homomorphic encryption.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -753,7 +746,7 @@ Noise budget: 114 bits
 </div>
 </section>
 <section id="how-many-operations-can-be-done-before-data-is-corrupted">
-<h2><span class="section-number">4.5. </span>How many operations can be done before data is corrupted?<a class="headerlink" href="#how-many-operations-can-be-done-before-data-is-corrupted" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">4.7. </span>How many operations can be done before data is corrupted?<a class="headerlink" href="#how-many-operations-can-be-done-before-data-is-corrupted" title="Link to this heading">#</a></h2>
 <p>We have seen that the multiplication operation adds noise to the data. For this reason is important to know how many operations can be done without corrupting data. This number  of operations is the operational limit which indicates the maximum number of operations that can be performed by the algorithm.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -843,7 +836,7 @@ Iteration  5: 5^32       | Expected value: 23283064365386962890625 Encrypted val
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title"><span class="section-number">5. </span>Author: José Ángel de Bustos Pérez</p>
+        <p class="prev-next-title"><span class="section-number">5. </span>Basic implementation for CKKS algorithm using Pyphel</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -865,18 +858,14 @@ Iteration  5: 5^32       | Expected value: 23283064365386962890625 Encrypted val
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">4. Author: José Ángel de Bustos Pérez</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3-0">4. License: GNU General Public License v3.0</a></li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-implementation-for-bfv-algorithm-using-pyphel-https-pyfhel-readthedocs-io">4. Basic implementation for BFV algorithm using Pyphel (https://pyfhel.readthedocs.io/)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">4.1. Basic operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">4.2. Performing homomorphic encryption with multiple operations</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">4.3. Batching operation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-or-scalar-product">4.4. Dot product or scalar product</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-operations-can-be-done-before-data-is-corrupted">4.5. How many operations can be done before data is corrupted?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">4.1. Author: José Ángel de Bustos Pérez</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3-0">4.2. License: GNU General Public License v3.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">4.3. Basic operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">4.4. Performing homomorphic encryption with multiple operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">4.5. Batching operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-or-scalar-product">4.6. Dot product or scalar product</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-operations-can-be-done-before-data-is-corrupted">4.7. How many operations can be done before data is corrupted?</a></li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
