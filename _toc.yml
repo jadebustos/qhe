@@ -17,7 +17,7 @@ parts:
           - file: notebooks/Paillier       # a Jupyter notebook
           - file: notebooks/BFV            # a Jupyter notebook
           - file: notebooks/CKKS           # another Jupyter notebook
-      - file: chapters/he/references    # a Markdown chapter with links to papers, libraries, etc. 
+      - file: chapters/references    # a Markdown chapter with links to papers, libraries, etc. 
 
   - caption: "Quantum Computing"
     chapters:
