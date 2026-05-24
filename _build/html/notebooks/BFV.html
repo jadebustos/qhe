@@ -1,0 +1,930 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Basic implementation for the BFV algorithm using Pyphel &#8212; When Quantum Computing meets Homomorphic Encryption</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=b8b12719"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'notebooks/BFV';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Basic implementation for the CKKS algorithm using Pyphel" href="CKKS.html" />
+    <link rel="prev" title="Basic example of homomorphic encryption with the Paillier algorithm" href="Paillier.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">When Quantum Computing meets Homomorphic Encryption</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    Welcome
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running the Jupyter Notebooks on your own environment</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapters/sw/running-notebooks.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/sw/creating-container.html">Creating the container</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/sw/running-container.html">Running the container</a></li>
+
+
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Homomorphic Encryption</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../chapters/he/he-basics.html">Homomorphic encryption in 5 minutes</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Paillier.html">Basic example of homomorphic encryption with the Paillier algorithm</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Basic implementation for the BFV algorithm using Pyphel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CKKS.html">Basic implementation for the CKKS algorithm using Pyphel</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../chapters/he/references.html">References</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../chapters/qc/quantum-basics.html">Quantum computing in 5 minutes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/quantum-gates.html">Gates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/shor.html">Shor’s algorithm</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/jadebustos/qhe" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jadebustos/qhe/edit/main/notebooks/BFV.ipynb" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/jadebustos/qhe/issues/new?title=Issue%20on%20page%20%2Fnotebooks/BFV.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/notebooks/BFV.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Basic implementation for the BFV algorithm using Pyphel</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">Basic operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">Performing homomorphic encryption with multiple operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">Batching operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-or-scalar-product">Dot product or scalar product</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-operations-can-be-done-before-data-is-corrupted">How many operations can be done before data is corrupted?</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="basic-implementation-for-the-bfv-algorithm-using-pyphel">
+<h1>Basic implementation for the BFV algorithm using Pyphel<a class="headerlink" href="#basic-implementation-for-the-bfv-algorithm-using-pyphel" title="Link to this heading">#</a></h1>
+<section id="author-jose-angel-de-bustos-perez">
+<h2>Author: José Ángel de Bustos Pérez<a class="headerlink" href="#author-jose-angel-de-bustos-perez" title="Link to this heading">#</a></h2>
+</section>
+<section id="license-gnu-general-public-license-v3">
+<h2>License: <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GENERAL PUBLIC LICENSE v3</a><a class="headerlink" href="#license-gnu-general-public-license-v3" title="Link to this heading">#</a></h2>
+<p>This notebook uses <a class="reference external" href="https://pyfhel.readthedocs.io/">Pyphel</a> to implement the BFV homomorphic encryption algorithm.</p>
+<p>BFV (Brakerski–Fan–Vercauteren) is a homomorphic encryption scheme based on the RLWE (Ring Learning With Errors) problem, which is resistant to quantum attacks.</p>
+<p>This scheme works with integers modulo t exactly.</p>
+<p>The first step is to set the parameters and generate the keys:</p>
+<ul class="simple">
+<li><p><strong>n</strong>, polynomial degree, a power of two. The higher the polynomial degree, the greater the security and the more slots for batching, but it will also require a larger number of operations and therefore be slower.</p></li>
+<li><p><strong>t_bits</strong>, range of values that can be encrypted: [-2^(t_bits - 1), 2^(t_bits - 1)]</p></li>
+<li><p><strong>sec</strong>, security level.</p></li>
+</ul>
+<p>We can operate on elements individually or operate on all of them at once (vectorization), which makes FHE usable for real-world problems. This property is referred to as <strong>batching</strong>.</p>
+<p>Slots are the number of elements the scheme can act on simultaneously; in other words, they indicate the level of parallelism we can achieve.</p>
+<p>When operating with homomorphic algorithms, noise is introduced; when that noise is contained it does not affect the operation (the data can still be decrypted), but when the noise is not contained it will prevent decryption and therefore further operations. The <strong>noise budget</strong> indicates the tolerance we have before reaching noise levels that would make the scheme unusable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">Pyfhel</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pyfhel</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="n">HE</span> <span class="o">=</span> <span class="n">Pyfhel</span><span class="p">()</span>
+
+<span class="n">bfv_params</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;scheme&#39;</span><span class="p">:</span> <span class="s1">&#39;BFV&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;n&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="o">**</span><span class="mi">13</span><span class="p">,</span>        <span class="c1"># 8192 coefficients =&gt; 8192 slots for batching</span>
+    <span class="s1">&#39;t_bits&#39;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span>      <span class="c1"># plaintext modulus of approximately 20 bits</span>
+    <span class="s1">&#39;sec&#39;</span><span class="p">:</span> <span class="mi">128</span><span class="p">,</span>        <span class="c1"># 128 security bits</span>
+<span class="p">}</span>
+
+<span class="n">HE</span><span class="o">.</span><span class="n">contextGen</span><span class="p">(</span><span class="o">**</span><span class="n">bfv_params</span><span class="p">)</span>
+<span class="n">HE</span><span class="o">.</span><span class="n">keyGen</span><span class="p">()</span>           <span class="c1"># Key creation</span>
+<span class="n">HE</span><span class="o">.</span><span class="n">rotateKeyGen</span><span class="p">()</span>     <span class="c1"># Required for rotations (we will use it in batching)</span>
+<span class="n">HE</span><span class="o">.</span><span class="n">relinKeyGen</span><span class="p">()</span>      <span class="c1"># Required to reduce size after multiplication</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scheme: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">scheme</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n (polinomial degree): </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t (plaintext modulus): </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Batching slot number: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial noise budget(bits): </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">HE</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">Pyfhel</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pyfhel</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> 
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">HE</span> <span class="o">=</span> <span class="n">Pyfhel</span><span class="p">()</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;Pyfhel&#39;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="basic-operations">
+<h2>Basic operations<a class="headerlink" href="#basic-operations" title="Link to this heading">#</a></h2>
+<p>We will perform basic operations such as addition and multiplications to check how noise is increasing. We will start with addition:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">random</span><span class="w"> </span><span class="kn">import</span> <span class="n">randrange</span>
+
+<span class="c1"># Randon number generation</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">randrange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">randrange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Encrypting data</span>
+<span class="n">fhe_a</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">encryptInt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">a</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span>
+<span class="n">fhe_b</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">encryptInt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">b</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Plaintext data: a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, b = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget for fhe_a after encrypting a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_a</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget for fhe_b after encrypting b = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_b</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
+
+<span class="c1"># Homomorphic operation (addition)</span>
+<span class="n">fhe_suma</span> <span class="o">=</span> <span class="n">fhe_a</span> <span class="o">+</span> <span class="n">fhe_b</span>
+
+<span class="c1"># Getting the operation value, decrypting</span>
+<span class="n">suma</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">decryptInt</span><span class="p">(</span><span class="n">fhe_suma</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Homomorphic addition: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">suma</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget after addition: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_suma</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plaintext data: a = 66, b = 67
+Noise budget for fhe_a after encrypting a = 66: 146 bits
+Noise budget for fhe_b after encrypting b = 67: 146 bits
+
+Homomorphic addition: 66 + 67 = 133
+Noise budget after addition: 146 bits 
+</pre></div>
+</div>
+</div>
+</div>
+<p>Addition using homomorphic encryption hardly add noise.</p>
+<p>We are going to proceed with multiplication.</p>
+<p>The BFV algorithm internally operates using polynomials. Polynomial multiplication result in a higher degree polynomial and for that reason the algorithm must use an operation known as <strong>relinearisation</strong> to come back to the original polynomial degree.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Homomorphic multiplication</span>
+<span class="n">fhe_mult</span> <span class="o">=</span> <span class="n">fhe_a</span> <span class="o">*</span> <span class="n">fhe_b</span>
+<span class="c1"># Relinearisation</span>
+<span class="o">~</span><span class="n">fhe_mult</span>
+
+<span class="c1"># Getting the operation value, decrypting</span>
+<span class="n">mult</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">decryptInt</span><span class="p">(</span><span class="n">fhe_mult</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Homomorphic multiplication: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> * </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">mult</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget after multiplication: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_mult</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits &quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Homomorphic multiplication: 66 * 67 = 4422
+Noise budget after multiplication: 114 bits 
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Noise budget</strong> has been increased from 146 bits to 114 bits. Homomorphic multiplication adds more noise than homomorphic addition. This means that after a number of operations we will not be able to perform more homomorphic multiplications due to data will be corrupted.</p>
+</section>
+<section id="performing-homomorphic-encryption-with-multiple-operations">
+<h2>Performing homomorphic encryption with multiple operations<a class="headerlink" href="#performing-homomorphic-encryption-with-multiple-operations" title="Link to this heading">#</a></h2>
+<p>We are going to show how to perform more complex operations with homomorphic encryption. Let’s assume we want to perform homomorphic encryption to:</p>
+<div class="math notranslate nohighlight">
+\[f(x,y) = (x+y)^2 - (x-y)^2\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Random number generation</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">randrange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">randrange</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="n">expected_value</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+
+<span class="c1"># Encrypting data</span>
+<span class="n">fhe_x</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">encryptInt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span>
+<span class="n">fhe_y</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">encryptInt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">y</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span>
+
+<span class="c1"># (x + y)</span>
+<span class="n">fhe_addition_xy</span> <span class="o">=</span> <span class="n">fhe_x</span> <span class="o">+</span> <span class="n">fhe_y</span>
+
+<span class="c1"># (x + y)^2</span>
+<span class="n">fhe_square_add</span> <span class="o">=</span> <span class="n">fhe_addition_xy</span> <span class="o">*</span> <span class="n">fhe_addition_xy</span>
+<span class="c1"># Relinearisation</span>
+<span class="o">~</span><span class="n">fhe_square_add</span>
+
+<span class="c1"># (x - y)</span>
+<span class="n">fhe_substraction_xy</span> <span class="o">=</span> <span class="n">fhe_x</span> <span class="o">-</span> <span class="n">fhe_y</span>
+
+<span class="c1"># (x - y)^2</span>
+<span class="n">fhe_square_substraction</span> <span class="o">=</span> <span class="n">fhe_substraction_xy</span> <span class="o">*</span> <span class="n">fhe_substraction_xy</span>
+<span class="c1"># Relinearisation</span>
+<span class="o">~</span><span class="n">fhe_square_substraction</span>
+
+<span class="c1"># Final</span>
+<span class="n">fhe_final</span> <span class="o">=</span> <span class="n">fhe_square_add</span> <span class="o">-</span> <span class="n">fhe_square_substraction</span>
+
+<span class="c1"># Getting the operation value, decrypting</span>
+<span class="n">final</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">decryptInt</span><span class="p">(</span><span class="n">fhe_final</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operation: (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">)**2 - (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">)**2&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected value: </span><span class="si">{</span><span class="n">expected_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Homomorphic value: </span><span class="si">{</span><span class="n">final</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget after operation: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_final</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (46 + 7)**2 - (46-7)**2
+Expected value: 1288
+Homomorphic value: 1288
+Noise budget after operation: 113 bits
+</pre></div>
+</div>
+</div>
+</div>
+<p>Added noise is mostly the same that the noise added by the homomorphic multiplication. Now, we will perform the following:</p>
+<div class="math notranslate nohighlight">
+\[f(x,y) = (x+y)^2 - (x-y)^3\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">expected_value_third</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">3</span>
+
+<span class="c1"># (x - y)^3</span>
+<span class="n">fhe_third_substraction</span> <span class="o">=</span> <span class="n">fhe_square_substraction</span> <span class="o">*</span> <span class="n">fhe_substraction_xy</span>
+<span class="c1"># Relinearisation</span>
+<span class="o">~</span><span class="n">fhe_third_substraction</span>
+
+<span class="c1"># Final</span>
+<span class="n">fhe_final</span> <span class="o">=</span> <span class="n">fhe_square_add</span> <span class="o">-</span> <span class="n">fhe_third_substraction</span>
+
+<span class="c1"># Getting the operation value, decrypting</span>
+<span class="n">final</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">decryptInt</span><span class="p">(</span><span class="n">fhe_final</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operation: (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">)**2 - (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">)**3&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected value: </span><span class="si">{</span><span class="n">expected_value_third</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Homomorphic value: </span><span class="si">{</span><span class="n">final</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget after operation: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_final</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (46 + 7)**2 - (46-7)**3
+Expected value: -56510
+Homomorphic value: -56510
+Noise budget after operation: 81 bits
+</pre></div>
+</div>
+</div>
+</div>
+<p>Performing an additional homomorphic multiplication increases the noise reducing the <strong>Noise budget</strong>.</p>
+</section>
+<section id="batching-operation">
+<h2>Batching operation<a class="headerlink" href="#batching-operation" title="Link to this heading">#</a></h2>
+<p>Batching allows us to perform the same homomorphic operation to several data at the same time, parallelism.</p>
+<p>If we are familiar with processor architectures we will know what <strong>SIMD</strong> (<strong>S</strong>imple <strong>I</strong>nstruction <strong>M</strong>ultiple <strong>D</strong>ata) is. One single operation using only one clock cicle operate on multiple data. Batching is the same but used in homomorphic encryption and it is used to speed up operations.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Randon number generation</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># number of integer to operate at the same time</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Encrypting data</span>
+<span class="n">fhe_v1</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">encryptInt</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+<span class="n">fhe_v2</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">encryptInt</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+
+<span class="c1"># Item by item homomorphic addition</span>
+<span class="n">fhe_add_vectorial</span> <span class="o">=</span> <span class="n">fhe_v1</span> <span class="o">+</span> <span class="n">fhe_v2</span>
+
+<span class="c1"># Getting the operation value, decrypting</span>
+<span class="n">final</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">decryptInt</span><span class="p">(</span><span class="n">fhe_add_vectorial</span><span class="p">)[:</span><span class="n">size</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;v1: </span><span class="si">{</span><span class="n">v1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;v2: </span><span class="si">{</span><span class="n">v2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget for fhe_v1 after encrypting v1: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_v1</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget for fhe_v2 after encrypting v2: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_v2</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Homomorphic v1 + v2:  </span><span class="si">{</span><span class="n">final</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected value: </span><span class="si">{</span><span class="n">v1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">v2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget after operation: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_add_vectorial</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [84 35 33 90 49 72  5 55 59 56]
+v2: [ 6 47 94 66 99 60 95 65 82  8]
+Noise budget for fhe_v1 after encrypting v1: 146 bits
+Noise budget for fhe_v2 after encrypting v2: 146 bits
+Homomorphic v1 + v2:  [ 90  82 127 156 148 132 100 120 141  64]
+Expected value: [ 90  82 127 156 148 132 100 120 141  64]
+Noise budget after operation: 146 bits
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected this operation does not increases noise.</p>
+<p>Let’s see what happens with batching multiplication:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Item by item homomorphic multiplication</span>
+<span class="n">fhe_multiplication_vectorial</span> <span class="o">=</span> <span class="n">fhe_v1</span> <span class="o">*</span> <span class="n">fhe_v2</span>
+<span class="c1"># Relinearisation</span>
+<span class="o">~</span><span class="n">fhe_multiplication_vectorial</span>
+
+<span class="c1"># Getting the operation value, decrypting</span>
+<span class="n">final</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">decryptInt</span><span class="p">(</span><span class="n">fhe_multiplication_vectorial</span><span class="p">)[:</span><span class="n">size</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Homomorphic v1 * v2  = </span><span class="si">{</span><span class="n">final</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected value = </span><span class="si">{</span><span class="n">v1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">v2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget after operation: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_multiplication_vectorial</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Homomorphic v1 * v2  = [ 504 1645 3102 5940 4851 4320  475 3575 4838  448]
+Expected value = [ 504 1645 3102 5940 4851 4320  475 3575 4838  448]
+Noise budget after operation: 114 bits
+</pre></div>
+</div>
+</div>
+</div>
+<p>As expected this operation increases noise.</p>
+</section>
+<section id="dot-product-or-scalar-product">
+<h2>Dot product or scalar product<a class="headerlink" href="#dot-product-or-scalar-product" title="Link to this heading">#</a></h2>
+<p>Dot product or scalar product is a fundamental operation used in multiple algorithms such as linear regresion, support vector machines (SVM) or neural network algorithms. For this reason been able to operate it using homomorphic encription will ease using such algoritms with homomorphic encryption.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Random sample</span>
+<span class="n">size</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># random sample size</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">size</span><span class="p">),</span> <span class="n">replace</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">expected_value</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">))</span>
+
+<span class="c1"># Encrypt data</span>
+<span class="n">fhe_v1</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">encryptInt</span><span class="p">(</span><span class="n">v1</span><span class="p">)</span>
+<span class="n">fhe_v2</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">encryptInt</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span>
+
+<span class="c1"># Cdot operation with encrypted data</span>
+<span class="n">fhe_cdot</span> <span class="o">=</span> <span class="n">fhe_v1</span> <span class="o">*</span> <span class="n">fhe_v2</span>
+<span class="c1"># Relinearisation</span>
+<span class="o">~</span><span class="n">fhe_cdot</span>
+
+<span class="c1"># vector with product, component to component</span>
+<span class="n">value_cdot</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">decryptInt</span><span class="p">(</span><span class="n">fhe_cdot</span><span class="p">)[:</span><span class="n">size</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;v1: </span><span class="si">{</span><span class="n">v1</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;v2: </span><span class="si">{</span><span class="n">v2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># cdot product is the sum for all the values in value_cdot</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Homomorphic v1 * v2: </span><span class="si">{</span><span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">value_cdot</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected value: </span><span class="si">{</span><span class="n">expected_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_cdot</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [31 69 40 35 38 51 21 48  9 42]
+v2: [28 22 59 63 85 58 61 66 55 78]
+Homomorphic v1 * v2: 21359
+Expected value: 21359
+Noise budget: 114 bits
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="how-many-operations-can-be-done-before-data-is-corrupted">
+<h2>How many operations can be done before data is corrupted?<a class="headerlink" href="#how-many-operations-can-be-done-before-data-is-corrupted" title="Link to this heading">#</a></h2>
+<p>We have seen that the multiplication operation adds noise to the data. For this reason is important to know how many operations can be done without corrupting data. This number  of operations is the operational limit which indicates the maximum number of operations that can be performed by the algorithm.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="n">randrange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">fhe_data</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">encryptInt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">data</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Encrypting data = </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial noise budget: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_data</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Start multiplying encrypted data</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
+    <span class="n">fhe_data</span> <span class="o">=</span> <span class="n">fhe_data</span> <span class="o">*</span> <span class="n">fhe_data</span>   
+    <span class="c1"># Relinearisation</span>
+    <span class="o">~</span><span class="n">fhe_data</span>
+    <span class="n">expected_value</span> <span class="o">=</span> <span class="n">data</span> <span class="o">**</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">i</span><span class="p">)</span>
+    <span class="n">fhe_value</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">decryptInt</span><span class="p">(</span><span class="n">fhe_data</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">noise</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_data</span><span class="p">)</span>
+    <span class="n">ok</span> <span class="o">=</span> <span class="s2">&quot;OK &quot;</span> <span class="k">if</span> <span class="n">fhe_value</span> <span class="o">==</span> <span class="n">expected_value</span> <span class="k">else</span> <span class="s2">&quot;FAIL&quot;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Iteration </span><span class="si">{</span><span class="n">i</span><span class="si">:</span><span class="s2">2d</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">^</span><span class="si">{</span><span class="mi">2</span><span class="o">**</span><span class="n">i</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> | &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;Expected value: </span><span class="si">{</span><span class="n">expected_value</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> Encrypted value: </span><span class="si">{</span><span class="n">fhe_value</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> | &quot;</span>
+          <span class="sa">f</span><span class="s2">&quot;Noise budget: </span><span class="si">{</span><span class="n">noise</span><span class="si">:</span><span class="s2">3d</span><span class="si">}</span><span class="s2"> bits | </span><span class="si">{</span><span class="n">ok</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">noise</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&gt;&gt;&gt; Noise budget empty: data corruption.&quot;</span><span class="p">)</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Encrypting data = 5
+Initial noise budget: 146 bits
+
+Iteration  1: 5^2        | Expected value: 25           Encrypted value: 25           | Noise budget: 114 bits | OK 
+Iteration  2: 5^4        | Expected value: 625          Encrypted value: 625          | Noise budget:  81 bits | OK 
+Iteration  3: 5^8        | Expected value: 390625       Encrypted value: 390625       | Noise budget:  48 bits | OK 
+Iteration  4: 5^16       | Expected value: 152587890625 Encrypted value: -168372      | Noise budget:  15 bits | FAIL
+Iteration  5: 5^32       | Expected value: 23283064365386962890625 Encrypted value: 108197       | Noise budget:   0 bits | FAIL
+
+&gt;&gt;&gt; Noise budget empty: data corruption.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./notebooks"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Paillier.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Basic example of homomorphic encryption with the Paillier algorithm</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="CKKS.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Basic implementation for the CKKS algorithm using Pyphel</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">Basic operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">Performing homomorphic encryption with multiple operations</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">Batching operation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dot-product-or-scalar-product">Dot product or scalar product</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-many-operations-can-be-done-before-data-is-corrupted">How many operations can be done before data is corrupted?</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By José Ángel de Bustos Pérez
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
