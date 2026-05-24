@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -165,6 +165,12 @@
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="chapters/quantum-basics.html">Quantum computing in 5 minutes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapters/he-basics.html">Homomorphic encryption in 5 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="notebooks/BFV.html">Author: José Ángel de Bustos Pérez</a></li>
+
+
+<li class="toctree-l1"><a class="reference internal" href="notebooks/CKKS.html">Author: José Ángel de Bustos Pérez</a></li>
+
+
 <li class="toctree-l1"><a class="reference internal" href="chapters/references.html">References</a></li>
 </ul>
 
@@ -392,9 +398,7 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="thesis-book-jupyter-book-example">
 <h1>Thesis book — Jupyter Book example<a class="headerlink" href="#thesis-book-jupyter-book-example" title="Link to this heading">#</a></h1>
-<p>A minimal Jupyter Book site demonstrating the structure for a
-thesis-style technical documentation site (quantum computing +
-homomorphic encryption used as the running example).</p>
+<p>A minimal Jupyter Book site demonstrating the structure for a thesis-style technical documentation site (quantum computing + homomorphic encryption used as the running example).</p>
 <section id="layout">
 <h2>Layout<a class="headerlink" href="#layout" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.
@@ -426,26 +430,20 @@ jupyter-book<span class="w"> </span>build<span class="w"> </span>.
 <h2>Deploy to GitHub Pages<a class="headerlink" href="#deploy-to-github-pages" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Create a GitHub repo and push this content.</p></li>
-<li><p>In the repo, go to <strong>Settings → Pages</strong> and set <strong>Source</strong> to
-<strong>GitHub Actions</strong>.</p></li>
+<li><p>In the repo, go to <strong>Settings → Pages</strong> and set <strong>Source</strong> to     <strong>GitHub Actions</strong>.</p></li>
 <li><p>Edit <code class="docutils literal notranslate"><span class="pre">_config.yml</span></code>: set <code class="docutils literal notranslate"><span class="pre">repository.url</span></code> to your repo URL.</p></li>
-<li><p>Push to <code class="docutils literal notranslate"><span class="pre">main</span></code>. The workflow in <code class="docutils literal notranslate"><span class="pre">.github/workflows/deploy.yml</span></code>
-builds the book and publishes it.</p></li>
+<li><p>Push to <code class="docutils literal notranslate"><span class="pre">main</span></code>. The workflow in <code class="docutils literal notranslate"><span class="pre">.github/workflows/deploy.yml</span></code>    builds the book and publishes it.</p></li>
 <li><p>Site goes live at <code class="docutils literal notranslate"><span class="pre">https://&lt;your-username&gt;.github.io/&lt;repo&gt;/</span></code>.</p></li>
 </ol>
 </section>
 <section id="add-new-content">
 <h2>Add new content<a class="headerlink" href="#add-new-content" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>A new page</strong>: drop a <code class="docutils literal notranslate"><span class="pre">.md</span></code> file in <code class="docutils literal notranslate"><span class="pre">chapters/</span></code>, then add its path
-(without <code class="docutils literal notranslate"><span class="pre">.md</span></code>) to <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> under <code class="docutils literal notranslate"><span class="pre">chapters:</span></code>.</p></li>
-<li><p><strong>A new notebook</strong>: drop a <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file in <code class="docutils literal notranslate"><span class="pre">notebooks/</span></code>, then add
-it to <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> the same way.</p></li>
+<li><p><strong>A new page</strong>: drop a <code class="docutils literal notranslate"><span class="pre">.md</span></code> file in <code class="docutils literal notranslate"><span class="pre">chapters/</span></code>, then add its path (without <code class="docutils literal notranslate"><span class="pre">.md</span></code>) to <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> under <code class="docutils literal notranslate"><span class="pre">chapters:</span></code>.</p></li>
+<li><p><strong>A new notebook</strong>: drop a <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code> file in <code class="docutils literal notranslate"><span class="pre">notebooks/</span></code>, then add it to <code class="docutils literal notranslate"><span class="pre">_toc.yml</span></code> the same way.</p></li>
 <li><p><strong>Math</strong>: use <code class="docutils literal notranslate"><span class="pre">$...$</span></code> inline and <code class="docutils literal notranslate"><span class="pre">$$...$$</span></code> for display.</p></li>
-<li><p><strong>Citations</strong>: add a BibTeX entry to <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>, then cite
-with <code class="docutils literal notranslate"><span class="pre">{cite}`yourkey`</span></code>.</p></li>
-<li><p><strong>Callouts</strong> (note / tip / warning): use <code class="docutils literal notranslate"><span class="pre">```{admonition}</span> <span class="pre">...</span> <span class="pre">```</span></code>
-or <code class="docutils literal notranslate"><span class="pre">```{note}</span> <span class="pre">...</span> <span class="pre">```</span></code> fences.</p></li>
+<li><p><strong>Citations</strong>: add a BibTeX entry to <code class="docutils literal notranslate"><span class="pre">references.bib</span></code>, then cite with <code class="docutils literal notranslate"><span class="pre">{cite}`yourkey`</span></code>.</p></li>
+<li><p><strong>Callouts</strong> (note / tip / warning): use <code class="docutils literal notranslate"><span class="pre">```{admonition}</span> <span class="pre">...</span> <span class="pre">```</span></code> or <code class="docutils literal notranslate"><span class="pre">```{note}</span> <span class="pre">...</span> <span class="pre">```</span></code> fences.</p></li>
 </ul>
 </section>
 </section>
