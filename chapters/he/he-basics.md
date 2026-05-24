@@ -1,4 +1,4 @@
-# Homomorphic encryption in 5 minutes
+# Quick introduction to Homomorphic encryption
 
 A **homomorphic** encryption scheme lets you compute on ciphertexts. If $\mathrm{Enc}$ is encryption and $\oplus, \otimes$ are operations on ciphertexts, the scheme satisfies:
 
