@@ -23,7 +23,7 @@ Homomorphic encryption algorithms can be classified into:
 Modern FHE schemes most thesis projects are about the following algorithms:
 
 - **BFV** {cite}`bfv2012`, which is a homomorphic encryption algorithm to perform integer arithmetic.
-- **BGV** {cite}`BGV2014`, which is a homomorphic encryption algorithm to perform integer arithmetic.
+- **BGV** {cite}`BGV14`, which is a homomorphic encryption algorithm to perform integer arithmetic.
 - **CKKS** {cite}`ckks2017`, which is a homomorphic encryption algorithm to perform approximate arithmetic on real/complex numbers (great for ML inference on encrypted inputs).
 - **TFHE** {cite}`CGGI20`, which is a homomorphic encryption algorithm supporting fast bootstrapping, good for Boolean circuits.
 
