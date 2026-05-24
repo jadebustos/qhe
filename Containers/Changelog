@@ -1,5 +1,6 @@
 2026-05-24 José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
 
+	* Fixed https not starting due to Jupyter configuration file was in wrong path.
 	* Added phe python module to requirements.txt
 
 2026-05-13 José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>

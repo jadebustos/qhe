@@ -39,7 +39,7 @@ $
 You can add this file via a volume to your container:
 
 ```console
-$ podman run -v ../Containers/jupyter_server_config.json:/home/qcomputing/.jupyter/jupyter_server_config.json:ro -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
+$ podman run --rm --name qhe -v ../Containers/jupyter_server_config.json:/home/qcomputing/.jupyter/jupyter_server_config.json:ro -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
 ...
 $
 ```
@@ -48,3 +48,12 @@ You can also create your own certificates and map them as a volume:
 
 * Map your key to **/home/qcomputing/.jupyter/certs/jupyter.key**.
 * Map your certificate to **/home/qcomputing/.jupyter/certs/jupyter.crt**.
+
+## Attaching a shell to the running container
+
+To attach a shell to the running container named **qhe**:
+
+```console
+$ podman exec -it qhe /bin/bash
+(venv) qcomputing@bd89748d680f:/workspace$ 
+```

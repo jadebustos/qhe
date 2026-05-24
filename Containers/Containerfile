@@ -108,7 +108,9 @@ RUN python3.12 -m pip install --no-cache-dir --break-system-packages \
     python3.12 -m pip wheel --no-cache-dir --no-deps \
         --wheel-dir=/opt/wheels .    
 
+#
 # RUNTIME
+#
 FROM ubuntu:24.04 AS runtime
 
 # Metadata
@@ -184,7 +186,7 @@ RUN python3.12 -m venv /home/${USERNAME}/venv && \
 
 # Copying Jupyter Server configuration file to the container. 
 # This file can be overridden at runtime with a volume mount.
-COPY jupyter_server_config.json /home/${USERNAME}/.jupyter/certs/jupyter_server_config.json
+COPY --chown=${USERNAME}:${USERNAME} --chmod=600 jupyter_server_config.json /home/${USERNAME}/.jupyter/jupyter_server_config.json
 
 # Copying certificates for Jupyter Server configuration
 # These files can be overridden at runtime with volume mounts.
