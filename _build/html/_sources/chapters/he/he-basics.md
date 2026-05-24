@@ -14,7 +14,7 @@ When we talk about homomorphic encryption we mean that the homomorphic algorithm
 
 ## A quick taxonomy
 
-- **Partially HE (PHE)**: supports *one* operation an unbounded number of times. RSA is multiplicatively homomorphic; Paillier is additively.
+- **Partially HE (PHE)**: supports *one* operation an unbounded number of times. RSA {cite}`rivestMethodObtainingDigital1978` is multiplicatively homomorphic; Paillier is additively.
 - **Somewhat HE (SHE)**: supports both, but for a bounded number of operations before noise overwhelms the ciphertext.
 - **Fully HE (FHE)**: arbitrary circuits. Made practical by Gentry's 2009 breakthrough using *bootstrapping* {cite}`10.1145/1536414.1536440`.
 
