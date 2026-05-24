@@ -9,7 +9,4 @@ $$
 
 The coefficients $\alpha, \beta \in \mathbb{C}$ are called *amplitudes*. On measurement in the computational basis, you observe $0$ with probability $|\alpha|^2$ and $1$ with probability $|\beta|^2$.
 
-```{admonition} Total probability for observations
-:class: important
-$|\alpha|^2 + |\beta|^2 = 1$
-```
+
