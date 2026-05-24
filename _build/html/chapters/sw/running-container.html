@@ -173,18 +173,16 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homomorphic Encryption</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../he/he-basics.html">2. Homomorphic encryption in 5 minutes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../he/references.html">3. References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks/BFV.html">4. Author: José Ángel de Bustos Pérez</a></li>
-
-
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks/CKKS.html">5. Author: José Ángel de Bustos Pérez</a></li>
-
-
+<li class="toctree-l1 has-children"><a class="reference internal" href="../he/he-basics.html">2. Homomorphic encryption in 5 minutes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/Paillier.html">2.3. Basic example of homomorphic encryption with the Paillier algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/BFV.html">2.4. Basic implementation for the BFV algorithm using Pyphel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/CKKS.html">2.5. Basic implementation for the CKKS algorithm using Pyphel</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../qc/quantum-basics.html">6. Quantum computing in 5 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qc/quantum-basics.html">3. Quantum computing in 5 minutes</a></li>
 </ul>
 
     </div>
@@ -411,7 +409,7 @@
   <section id="running-the-container">
 <h1><span class="section-number">1.2. </span>Running the container<a class="headerlink" href="#running-the-container" title="Link to this heading">#</a></h1>
 <p>Go to the directory where you have the jupyter notebooks you want to run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>localhost/qhe:1.0
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>localhost/qhe:1.0
 </pre></div>
 </div>
 <p>If you are not using SELinux you can skip <strong>:Z</strong>. Ensure write privileges for all users in the notebooks directory due to Jupyterlab will be executing as a non-root user.</p>

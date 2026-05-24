@@ -3,7 +3,7 @@
 Go to the directory where you have the jupyter notebooks you want to run:
 
 ```console
-$ podman run -p 8888:8888 -v $(pwd):/workspace:Z localhost/qhe:1.0
+$ podman run --rm --name qhe -p 8888:8888 -v $(pwd):/workspace:Z localhost/qhe:1.0
 ```
 
 If you are not using SELinux you can skip **:Z**. Ensure write privileges for all users in the notebooks directory due to Jupyterlab will be executing as a non-root user.

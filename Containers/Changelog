@@ -1,15 +1,19 @@
-2026-05-13  José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
+2026-05-24 José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
+
+	* Added phe python module to requirements.txt
+
+2026-05-13 José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
 
 	* Added support for https.
 	* Added Jupyter widgets python modules.
 	* Added custom configuration for Jupyter Lab.
 	* Containerfile optimizations, merging several RUN commands in one single RUN command.
 	
-2026-05-13  José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
+2026-05-13 José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
 
 	* New containerfile with OpenFHE (1.4.2) and Pyfhel (3.5.0), Jupyterlab and more.
 
-2025-06-11  José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
+2025-06-11 José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
 
 	* Initial version for the containerfile.
 

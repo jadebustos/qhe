@@ -7,6 +7,7 @@ ipywidgets
 jupyterlab
 matplotlib
 numpy
+phe
 pandas
 plotly
 scipy
