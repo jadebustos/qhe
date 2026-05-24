@@ -1,4 +1,4 @@
-# Running the container
+## Running the container
 
 Go to the directory where you have the jupyter notebooks you want to run:
 
@@ -16,7 +16,7 @@ $ podman run --rm -d --name qhe -p 8888:8888 quay.io/rhte_2019/qhe:latest
 
 Now you can use your favorite browser to browse https://localhost:8888
 
-# Running the container using your custom configuration
+## Running the container using your custom configuration
 
 You can create your custom configuration file [jupyter_server_config.json](jupyter_server_config.json.example).:
 

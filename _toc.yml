@@ -5,18 +5,18 @@ root: intro                        # the landing page
 parts:
   - caption: "Homomorphic Encryption"
     chapters:
-      - file: chapters/he-basics       # another Markdown chapter
+      - file: chapters/he/he-basics       # another Markdown chapter
+      - file: chapters/he/references      # references page
       - file: notebooks/BFV            # a Jupyter notebook
-      - file: notebooks/CKKS           # another Jupyter notebook
-      - file: chapters/references      # references page
+      - file: notebooks/CKKS           # another Jupyter notebook      
 
   - caption: "Quantum Computing"
     chapters:
-      - file: chapters/quantum-basics  # a Markdown chapter
+      - file: chapters/qc/quantum-basics  # a Markdown chapter
 
   - caption: "Running the Jupyter Notebooks on your own environment"
     chapters:
-      - file: chapters/running-notebooks       # a Markdown chapter
+      - file: chapters/sw/running-notebooks       # a Markdown chapter
         sections: 
-          - file: notebooks/creating-container         # a Markdown section
-          - file: notebooks/running-container          # a Markdown section
+          - file: notebooks/sw/creating-container         # a Markdown section
+          - file: notebooks/sw/running-container          # a Markdown section

@@ -1,4 +1,4 @@
-# Creating the container
+## Creating the container
 
 We will build the container in two phases. From this directory:
 
