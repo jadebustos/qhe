@@ -8,5 +8,3 @@ $$
 $$
 
 The coefficients $\alpha, \beta \in \mathbb{C}$ are called *amplitudes*. On measurement in the computational basis, you observe $0$ with probability $|\alpha|^2$ and $1$ with probability $|\beta|^2$.
-
-
