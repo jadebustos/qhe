@@ -1,0 +1,73 @@
+Traceback (most recent call last):
+  File "/home/jadebustos/.local/lib/python3.14/site-packages/jupyter_cache/executors/utils.py", line 58, in single_nb_execution
+    executenb(
+    ~~~~~~~~~^
+        nb,
+        ^^^
+    ...<4 lines>...
+        **kwargs,
+        ^^^^^^^^^
+    )
+    ^
+  File "/home/jadebustos/.local/lib/python3.14/site-packages/nbclient/client.py", line 1323, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/jadebustos/.local/lib/python3.14/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/usr/lib64/python3.14/asyncio/base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/jadebustos/.local/lib/python3.14/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+        cell, index, execution_count=self.code_cells_executed + 1
+    )
+  File "/home/jadebustos/.local/lib/python3.14/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/jadebustos/.local/lib/python3.14/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import numpy as np
+from concrete import fhe
+
+# Función que queremos evaluar homomórficamente (máximo entre dos enteros)
+def encrypted_max(a: int, b: int) -> int:
+    delta = a - b
+    pos = np.maximum(delta, 0)  # max(0, delta)
+    return b + pos
+
+# Compilamos la función para que Concrete genere el circuito homomórfico
+compiler = fhe.Compiler(encrypted_max, {"a": "encrypted", "b": "encrypted"})
+
+# Conjunto de ejemplos para ayudar a determinar los rangos y optimizar el circuito
+inputset = [(5, 3), (2, 7), (9, 4), (8, 8), (0, 10)]
+circuit = compiler.compile(inputset)
+
+# Generación de claves (incluye claves para bootstrapping)
+circuit.keygen()
+
+# Cifrado de dos valores de entrada
+ct_a, ct_b = circuit.encrypt(6, 4)
+
+# Evaluación homomórfica que incluye bootstrapping internamente
+ct_max = circuit.run(ct_a, ct_b)
+
+# Descifrado del resultado
+res = circuit.decrypt(ct_max)
+print("Máximo de 6 y 4 (homomórfico):", res)
+
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 2[39m
+[32m      1[39m [38;5;28;01mimport[39;00m numpy [38;5;28;01mas[39;00m np
+[32m----> [39m[32m2[39m [38;5;28;01mfrom[39;00m concrete [38;5;28;01mimport[39;00m fhe
+[32m      3[39m 
+[32m      4[39m [38;5;66;03m# Función que queremos evaluar homomórficamente (máximo entre dos enteros)[39;00m
+[32m      5[39m [38;5;28;01mdef[39;00m encrypted_max(a: int, b: int) -> int:
+
+[31mModuleNotFoundError[39m: No module named 'concrete'
+
