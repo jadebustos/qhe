@@ -410,45 +410,36 @@
                   
   <section class="tex2jax_ignore mathjax_ignore" id="homomorphic-encryption-in-5-minutes">
 <h1><span class="section-number">2. </span>Homomorphic encryption in 5 minutes<a class="headerlink" href="#homomorphic-encryption-in-5-minutes" title="Link to this heading">#</a></h1>
-<p>A <strong>homomorphic</strong> encryption scheme lets you compute on ciphertexts.
-If <span class="math notranslate nohighlight">\(\mathrm{Enc}\)</span> is encryption and <span class="math notranslate nohighlight">\(\oplus, \otimes\)</span> are operations on
-ciphertexts, the scheme satisfies:</p>
+<p>A <strong>homomorphic</strong> encryption scheme lets you compute on ciphertexts. If <span class="math notranslate nohighlight">\(\mathrm{Enc}\)</span> is encryption and <span class="math notranslate nohighlight">\(\oplus, \otimes\)</span> are operations on ciphertexts, the scheme satisfies:</p>
 <div class="math notranslate nohighlight">
 \[
 \mathrm{Dec}(\mathrm{Enc}(a) \oplus \mathrm{Enc}(b)) = a + b,
 \qquad
 \mathrm{Dec}(\mathrm{Enc}(a) \otimes \mathrm{Enc}(b)) = a \cdot b.
 \]</div>
-<p>A server can therefore evaluate a function <span class="math notranslate nohighlight">\(f\)</span> on your encrypted data
-and return <span class="math notranslate nohighlight">\(\mathrm{Enc}(f(x))\)</span> — without ever learning <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>A server can therefore evaluate a function <span class="math notranslate nohighlight">\(f\)</span> on your encrypted data and return <span class="math notranslate nohighlight">\(\mathrm{Enc}(f(x))\)</span> — without ever learning <span class="math notranslate nohighlight">\(x\)</span>.</p>
+<p>When we talk about homomorphic encryption we mean that the homomorphic algorithm is homomorphic for some mathematical operations. Most homomorphic algorithms will be homomorphic regarding addition and/or multiplication. That means that we can perform addition and/or multplication using the crypted data withouht having to decrypt it.</p>
 <section id="a-quick-taxonomy">
 <h2><span class="section-number">2.1. </span>A quick taxonomy<a class="headerlink" href="#a-quick-taxonomy" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p><strong>Partially HE (PHE)</strong>: supports <em>one</em> operation an unbounded number
-of times. RSA is multiplicatively homomorphic; Paillier is additively.</p></li>
-<li><p><strong>Somewhat HE (SHE)</strong>: supports both, but for a bounded number of
-operations before noise overwhelms the ciphertext.</p></li>
-<li><p><strong>Fully HE (FHE)</strong>: arbitrary circuits. Made practical by Gentry’s
-2009 breakthrough using <em>bootstrapping</em> <span class="bibtex-citation" id="id1">[<a class="reference internal" href="references.html#id2" title="Craig Gentry. A Fully Homomorphic Encryption Scheme. PhD thesis, Stanford University, 2009.">Gen09</a>]</span>.</p></li>
+<li><p><strong>Partially HE (PHE)</strong>: supports <em>one</em> operation an unbounded number of times. RSA is multiplicatively homomorphic; Paillier is additively.</p></li>
+<li><p><strong>Somewhat HE (SHE)</strong>: supports both, but for a bounded number of operations before noise overwhelms the ciphertext.</p></li>
+<li><p><strong>Fully HE (FHE)</strong>: arbitrary circuits. Made practical by Gentry’s 2009 breakthrough using <em>bootstrapping</em> <span class="bibtex-citation" id="id1">[<a class="reference internal" href="references.html#id2" title="Craig Gentry. A Fully Homomorphic Encryption Scheme. PhD thesis, Stanford University, 2009.">Gen09</a>]</span>.</p></li>
 </ul>
 <p>Modern FHE schemes most thesis projects touch:</p>
 <ul class="simple">
-<li><p><strong>BFV / BGV</strong> — integer arithmetic</p></li>
-<li><p><strong>CKKS</strong> — approximate arithmetic on real/complex numbers (great for
-ML inference on encrypted inputs)</p></li>
-<li><p><strong>TFHE</strong> — fast bootstrapping, good for Boolean circuits</p></li>
+<li><p><strong>BFV / BGV</strong> — integer arithmetic.</p></li>
+<li><p><strong>CKKS</strong> — approximate arithmetic on real/complex numbers (great for ML inference on encrypted inputs).</p></li>
+<li><p><strong>TFHE</strong> — fast bootstrapping, good for Boolean circuits.</p></li>
 </ul>
 </section>
 <section id="where-quantum-enters">
 <h2><span class="section-number">2.2. </span>Where quantum enters<a class="headerlink" href="#where-quantum-enters" title="Link to this heading">#</a></h2>
 <p>Two angles worth exploring:</p>
 <ol class="arabic simple">
-<li><p><strong>Post-quantum security</strong> of FHE. The hardness assumptions (LWE,
-RLWE) are believed to be quantum-resistant.</p></li>
-<li><p><strong>Quantum HE</strong> — schemes that encrypt <em>quantum</em> states and allow a
-server to apply quantum circuits blindly. An active research area.</p></li>
+<li><p><strong>Post-quantum security</strong> of FHE. The hardness assumptions (LWE, RLWE) are believed to be quantum-resistant.</p></li>
+<li><p><strong>Quantum HE</strong> — schemes that encrypt <em>quantum</em> states and allow a server to apply quantum circuits blindly. An active research area.</p></li>
 </ol>
-<p>The next chapter is a runnable notebook to make this concrete.</p>
 </section>
 <div class="toctree-wrapper compound">
 </div>
