@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Homomorphic encryption in 5 minutes &#8212; Quantum Computing meets Homomorphic Encryption (provisional title)</title>
+    <title>2. Homomorphic encryption in 5 minutes &#8212; Quantum Computing meets Homomorphic Encryption (provisional title)</title>
   
   
   
@@ -65,8 +65,8 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/he/he-basics';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="References" href="references.html" />
-    <link rel="prev" title="Introduction" href="../sw/running-notebooks.html" />
+    <link rel="next" title="3. References" href="references.html" />
+    <link rel="prev" title="1. Introduction" href="../sw/running-notebooks.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -166,24 +166,24 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Running the Jupyter Notebooks on your own environment</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../sw/running-notebooks.html">Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../sw/running-notebooks.html">1. Introduction</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="simple">
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homomorphic Encryption</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Homomorphic encryption in 5 minutes</a></li>
-<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks/BFV.html">Author: José Ángel de Bustos Pérez</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Homomorphic encryption in 5 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">3. References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/BFV.html">4. Author: José Ángel de Bustos Pérez</a></li>
 
 
-<li class="toctree-l1"><a class="reference internal" href="../../notebooks/CKKS.html">Author: José Ángel de Bustos Pérez</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../notebooks/CKKS.html">5. Author: José Ángel de Bustos Pérez</a></li>
 
 
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="../qc/quantum-basics.html">Quantum computing in 5 minutes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../qc/quantum-basics.html">6. Quantum computing in 5 minutes</a></li>
 </ul>
 
     </div>
@@ -393,8 +393,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-taxonomy">A quick taxonomy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">Where quantum enters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-taxonomy">2.1. A quick taxonomy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">2.2. Where quantum enters</a></li>
 </ul>
             </nav>
         </div>
@@ -407,7 +407,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="homomorphic-encryption-in-5-minutes">
-<h1>Homomorphic encryption in 5 minutes<a class="headerlink" href="#homomorphic-encryption-in-5-minutes" title="Link to this heading">#</a></h1>
+<h1><span class="section-number">2. </span>Homomorphic encryption in 5 minutes<a class="headerlink" href="#homomorphic-encryption-in-5-minutes" title="Link to this heading">#</a></h1>
 <p>A <strong>homomorphic</strong> encryption scheme lets you compute on ciphertexts.
 If <span class="math notranslate nohighlight">\(\mathrm{Enc}\)</span> is encryption and <span class="math notranslate nohighlight">\(\oplus, \otimes\)</span> are operations on
 ciphertexts, the scheme satisfies:</p>
@@ -420,7 +420,7 @@ ciphertexts, the scheme satisfies:</p>
 <p>A server can therefore evaluate a function <span class="math notranslate nohighlight">\(f\)</span> on your encrypted data
 and return <span class="math notranslate nohighlight">\(\mathrm{Enc}(f(x))\)</span> — without ever learning <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <section id="a-quick-taxonomy">
-<h2>A quick taxonomy<a class="headerlink" href="#a-quick-taxonomy" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.1. </span>A quick taxonomy<a class="headerlink" href="#a-quick-taxonomy" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Partially HE (PHE)</strong>: supports <em>one</em> operation an unbounded number
 of times. RSA is multiplicatively homomorphic; Paillier is additively.</p></li>
@@ -438,7 +438,7 @@ ML inference on encrypted inputs)</p></li>
 </ul>
 </section>
 <section id="where-quantum-enters">
-<h2>Where quantum enters<a class="headerlink" href="#where-quantum-enters" title="Link to this heading">#</a></h2>
+<h2><span class="section-number">2.2. </span>Where quantum enters<a class="headerlink" href="#where-quantum-enters" title="Link to this heading">#</a></h2>
 <p>Two angles worth exploring:</p>
 <ol class="arabic simple">
 <li><p><strong>Post-quantum security</strong> of FHE. The hardness assumptions (LWE,
@@ -486,7 +486,7 @@ server to apply quantum circuits blindly. An active research area.</p></li>
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Introduction</p>
+        <p class="prev-next-title"><span class="section-number">1. </span>Introduction</p>
       </div>
     </a>
     <a class="right-next"
@@ -494,7 +494,7 @@ server to apply quantum circuits blindly. An active research area.</p></li>
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">References</p>
+        <p class="prev-next-title"><span class="section-number">3. </span>References</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -516,8 +516,8 @@ server to apply quantum circuits blindly. An active research area.</p></li>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-taxonomy">A quick taxonomy</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">Where quantum enters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-taxonomy">2.1. A quick taxonomy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">2.2. Where quantum enters</a></li>
 </ul>
   </nav></div>
 
