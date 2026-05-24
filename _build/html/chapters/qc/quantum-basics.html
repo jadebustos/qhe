@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>3. Quantum computing in 5 minutes &#8212; When Quantum Computing meets Homomorphic Encryption</title>
+    <title>Quantum computing in 5 minutes &#8212; When Quantum Computing meets Homomorphic Encryption</title>
   
   
   
@@ -65,7 +65,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/qc/quantum-basics';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="2.4. Basic implementation for the CKKS algorithm using Pyphel" href="../../notebooks/CKKS.html" />
+    <link rel="prev" title="2.5. Basic implementation for the CKKS algorithm using Pyphel" href="../../notebooks/CKKS.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -169,20 +169,22 @@
 <li class="toctree-l2"><a class="reference internal" href="../sw/creating-container.html">1.1. Creating the container</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../sw/running-container.html">1.2. Running the container</a></li>
 
+
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homomorphic Encryption</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../he/he-basics.html">2. Homomorphic encryption in 5 minutes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../notebooks/BFV.html">2.3. Basic implementation for the BFV algorithm using Pyphel</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../notebooks/CKKS.html">2.4. Basic implementation for the CKKS algorithm using Pyphel</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../he/he-basics.html">Homomorphic encryption in 5 minutes</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/Paillier.html">2.3. Basic example of homomorphic encryption with the Paillier algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/BFV.html">2.4. Basic implementation for the BFV algorithm using Pyphel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../notebooks/CKKS.html">2.5. Basic implementation for the CKKS algorithm using Pyphel</a></li>
 </ul>
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">3. Quantum computing in 5 minutes</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Quantum computing in 5 minutes</a></li>
 </ul>
 
     </div>
@@ -392,7 +394,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gates">3.1. Gates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gates">Gates</a></li>
 </ul>
             </nav>
         </div>
@@ -405,21 +407,17 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="quantum-computing-in-5-minutes">
-<h1><span class="section-number">3. </span>Quantum computing in 5 minutes<a class="headerlink" href="#quantum-computing-in-5-minutes" title="Link to this heading">#</a></h1>
-<p>A <strong>qubit</strong> is the quantum analogue of a classical bit. Where a bit is
-either <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, a qubit’s state is a unit vector in <span class="math notranslate nohighlight">\(\mathbb{C}^2\)</span>:</p>
+<h1>Quantum computing in 5 minutes<a class="headerlink" href="#quantum-computing-in-5-minutes" title="Link to this heading">#</a></h1>
+<p>A <strong>qubit</strong> is the quantum analogue of a classical bit. Where a bit is either <span class="math notranslate nohighlight">\(0\)</span> or <span class="math notranslate nohighlight">\(1\)</span>, a qubit’s state is a unit vector in <span class="math notranslate nohighlight">\(\mathbb{C} ^2\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 |\psi\rangle = \alpha\,|0\rangle + \beta\,|1\rangle,
 \qquad |\alpha|^2 + |\beta|^2 = 1.
 \]</div>
-<p>The coefficients <span class="math notranslate nohighlight">\(\alpha, \beta \in \mathbb{C}\)</span> are called <em>amplitudes</em>.
-On measurement in the computational basis, you observe <span class="math notranslate nohighlight">\(0\)</span> with
-probability <span class="math notranslate nohighlight">\(|\alpha|^2\)</span> and <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(|\beta|^2\)</span>.</p>
+<p>The coefficients <span class="math notranslate nohighlight">\(\alpha, \beta \in \mathbb{C}\)</span> are called <em>amplitudes</em>. On measurement in the computational basis, you observe <span class="math notranslate nohighlight">\(0\)</span> with probability <span class="math notranslate nohighlight">\(|\alpha|^2\)</span> and <span class="math notranslate nohighlight">\(1\)</span> with probability <span class="math notranslate nohighlight">\(|\beta|^2\)</span> where <span class="math notranslate nohighlight">\(|\alpha|^2 + |\beta|^2 = 1\)</span>.</p>
 <section id="gates">
-<h2><span class="section-number">3.1. </span>Gates<a class="headerlink" href="#gates" title="Link to this heading">#</a></h2>
-<p>Single-qubit gates are <span class="math notranslate nohighlight">\(2\times 2\)</span> unitary matrices. A few you’ll see
-repeatedly:</p>
+<h2>Gates<a class="headerlink" href="#gates" title="Link to this heading">#</a></h2>
+<p>Single-qubit gates are <span class="math notranslate nohighlight">\(2\times 2\)</span> unitary matrices. A few you’ll see repeatedly:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Gate</p></th>
@@ -449,7 +447,7 @@ repeatedly:</p>
 <p>Quantum algorithms like Shor’s break the integer-factorisation and
 discrete-log problems that secure RSA and elliptic-curve crypto. Modern
 HE schemes (BFV, BGV, CKKS) instead rest on <strong>lattice problems</strong> that
-are believed to resist quantum attacks — see <span class="bibtex-citation" id="id1">[<a class="reference internal" href="../he/references.html#id2" title="Craig Gentry. A Fully Homomorphic Encryption Scheme. PhD thesis, Stanford University, 2009.">Gen09</a>]</span>.</p>
+are believed to resist quantum attacks — see <span class="bibtex-citation" id="id1">[]</span>.</p>
 </div>
 <p>Next chapter: what “homomorphic” actually means.</p>
 </section>
@@ -491,7 +489,7 @@ are believed to resist quantum attacks — see <span class="bibtex-citation" id=
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title"><span class="section-number">2.4. </span>Basic implementation for the CKKS algorithm using Pyphel</p>
+        <p class="prev-next-title"><span class="section-number">2.5. </span>Basic implementation for the CKKS algorithm using Pyphel</p>
       </div>
     </a>
 </div>
@@ -512,7 +510,7 @@ are believed to resist quantum attacks — see <span class="bibtex-citation" id=
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gates">3.1. Gates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gates">Gates</a></li>
 </ul>
   </nav></div>
 
