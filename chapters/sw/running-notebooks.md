@@ -19,5 +19,5 @@ You can find all the required files:
 
 * [Jupyter Notebooks](https://github.com/jadebustos/qhe/tree/main/notebooks)
 * [Containerfiles](https://github.com/jadebustos/qhe/tree/main/Containers)
-* [Container](quay.io/rhte_2019/qhe:latest)
+* [Container](https://quay.io/rhte_2019/qhe:latest)
 

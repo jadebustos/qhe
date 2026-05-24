@@ -8,8 +8,8 @@ parts:
     chapters:
       - file: chapters/sw/running-notebooks       # a Markdown chapter
         sections: 
-        - file: notebooks/sw/creating-container         # a Markdown section
-        - file: notebooks/sw/running-container          # a Markdown section
+          - file: notebooks/sw/creating-container         # a Markdown section
+          - file: notebooks/sw/running-container          # a Markdown section
           
   - caption: "Homomorphic Encryption"
     numbered: true
