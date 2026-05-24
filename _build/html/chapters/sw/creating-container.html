@@ -403,9 +403,9 @@
                   
   <section id="creating-the-container">
 <h1>Creating the container<a class="headerlink" href="#creating-the-container" title="Link to this heading">#</a></h1>
-<p>We will build the container in two phases. From this directory:</p>
+<p>We will build the container in two phases. From the directory where the Containerfile is:</p>
 <ul>
-<li><p>Creating the certificates:</p>
+<li><p>Creating the container certificates:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">SERVER_NAME</span><span class="o">=</span>jupyter.local<span class="w"> </span><span class="nv">SERVER_IP</span><span class="o">=</span><span class="m">192</span>.168.1.250<span class="w"> </span><span class="nv">CERT_DAYS</span><span class="o">=</span><span class="m">90</span><span class="w"> </span><span class="nv">KEY_BITS</span><span class="o">=</span><span class="m">4096</span><span class="w"> </span><span class="se">\</span>
 <span class="w">    </span><span class="nv">KEY_NAME</span><span class="o">=</span>jupyter.key<span class="w"> </span><span class="nv">CERT_NAME</span><span class="o">=</span>jupyter.crt<span class="w"> </span>./certificate-creation.sh
 </pre></div>

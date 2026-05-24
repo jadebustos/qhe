@@ -1,8 +1,8 @@
 ## Creating the container
 
-We will build the container in two phases. From this directory:
+We will build the container in two phases. From the directory where the Containerfile is:
 
-* Creating the certificates:
+* Creating the container certificates:
 
   ```console
   $ SERVER_NAME=jupyter.local SERVER_IP=192.168.1.250 CERT_DAYS=90 KEY_BITS=4096 \

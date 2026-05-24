@@ -13,7 +13,7 @@ You have different options to try these notebooks:
   $ podman pull quay.io/rhte_2019/qhe:latest
   ```
 
-  and after that running it.
+  and after that you can running it.
 
 You can find all the required files:
 

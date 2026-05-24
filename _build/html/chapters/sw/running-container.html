@@ -416,13 +416,13 @@
                   
   <section id="running-the-container">
 <h1>Running the container<a class="headerlink" href="#running-the-container" title="Link to this heading">#</a></h1>
-<p>Go to the directory where you have the jupyter notebooks you want to run:</p>
+<p>Go to the directory where you have the Jupyter Notebooks you want to run:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>localhost/qhe:1.0
 </pre></div>
 </div>
 <p>If you are not using SELinux you can skip <strong>:Z</strong>. Ensure write privileges for all users in the notebooks directory due to Jupyterlab will be executing as a non-root user.</p>
 <p>If you downloaded it from my container repository:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>-d<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>quay.io/rhte_2019/qhe:latest
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>quay.io/rhte_2019/qhe:latest
 </pre></div>
 </div>
 <p>Now you can use your favorite browser to browse <a class="reference external" href="https://localhost:8888">https://localhost:8888</a></p>
@@ -445,7 +445,9 @@
 </pre></div>
 </div>
 <p>You can add this file via a volume to your container:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-v<span class="w"> </span>../Containers/jupyter_server_config.json:/home/qcomputing/.jupyter/jupyter_server_config.json:ro<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>localhost/qhe:1.0
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span>../Containers/jupyter_server_config.json:/home/qcomputing/.jupyter/jupyter_server_config.json:ro<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>localhost/qhe:1.0
 <span class="go">...</span>
 <span class="gp">$</span>
 </pre></div>
