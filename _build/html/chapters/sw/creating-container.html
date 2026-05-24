@@ -189,6 +189,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../qc/shor.html">Shor’s algorithm</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1"><a class="reference internal" href="../qc/references.html">References</a></li>
 </ul>
 
     </div>
@@ -404,12 +405,12 @@
 <h1>Creating the container<a class="headerlink" href="#creating-the-container" title="Link to this heading">#</a></h1>
 <p>We will build the container in two phases. From this directory:</p>
 <ul>
-<li><p>Create the certificates:</p>
+<li><p>Creating the certificates:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nv">SERVER_NAME</span><span class="o">=</span>jupyter.local<span class="w"> </span><span class="nv">SERVER_IP</span><span class="o">=</span><span class="m">192</span>.168.1.250<span class="w"> </span><span class="nv">CERT_DAYS</span><span class="o">=</span><span class="m">90</span><span class="w"> </span><span class="nv">KEY_BITS</span><span class="o">=</span><span class="m">4096</span><span class="w"> </span><span class="nv">KEY_NAME</span><span class="o">=</span>jupyter.key<span class="w"> </span><span class="nv">CERT_NAME</span><span class="o">=</span>jupyter.crt<span class="w"> </span>./certificate-creation.sh
 </pre></div>
 </div>
 </li>
-<li><p>Build the container:</p>
+<li><p>Building the container:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>build<span class="w"> </span>-t<span class="w"> </span>qhe:1.0<span class="w"> </span>-f<span class="w"> </span>Containerfile<span class="w"> </span>.<span class="w"> </span>
 <span class="go">...</span>
 <span class="gp">$ </span>podman<span class="w"> </span>images
@@ -422,6 +423,15 @@
 </div>
 </li>
 </ul>
+<div class="tip admonition">
+<p class="admonition-title">You can also add building args to the container image</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>build<span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">BUILD_DATE</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>date<span class="w"> </span>-u<span class="w"> </span>+<span class="s1">&#39;%Y-%m-%dT%H:%M:%SZ&#39;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>--build-arg<span class="w"> </span><span class="nv">VCS_REF</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>git<span class="w"> </span>rev-parse<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>--short<span class="w"> </span>HEAD<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;no-git&#39;</span><span class="k">)</span><span class="s2">&quot;</span><span class="w"> </span>-t<span class="w"> </span>qhe:1.0<span class="w"> </span>-f<span class="w"> </span>Containerfile<span class="w"> </span>.
+<span class="go">...</span>
+<span class="gp">$</span>
+</pre></div>
+</div>
+</div>
 </section>
 
     <script type="text/x-thebe-config">

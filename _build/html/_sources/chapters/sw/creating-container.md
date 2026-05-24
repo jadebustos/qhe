@@ -2,13 +2,13 @@
 
 We will build the container in two phases. From this directory:
 
-* Create the certificates:
+* Creating the certificates:
 
   ```console
   $ SERVER_NAME=jupyter.local SERVER_IP=192.168.1.250 CERT_DAYS=90 KEY_BITS=4096 KEY_NAME=jupyter.key CERT_NAME=jupyter.crt ./certificate-creation.sh
   ```
 
-* Build the container:
+* Building the container:
 
   ```console
   $ podman build -t qhe:1.0 -f Containerfile . 
@@ -20,3 +20,14 @@ We will build the container in two phases. From this directory:
   docker.io/library/ubuntu   24.04       0b1ebe5dd426  4 weeks ago         80.7 MB
   $
   ```
+
+:::{admonition} You can also add building args to the container image
+:class: tip
+
+  ```console
+  $ podman build --build-arg BUILD_DATE="$(date -u +'%Y-%m-%dT%H:%M:%SZ')" --build-arg VCS_REF="$(git rev-parse \
+      --short HEAD 2>/dev/null || echo 'no-git')" -t qhe:1.0 -f Containerfile .
+...
+$
+```
+:::
