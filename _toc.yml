@@ -1,0 +1,9 @@
+# Table of contents — defines the sidebar / navigation
+# https://jupyterbook.org/customize/toc.html
+format: jb-book
+root: intro                        # the landing page
+chapters:
+  - file: chapters/quantum-basics  # a Markdown chapter
+  - file: chapters/he-basics       # another Markdown chapter
+  - file: notebooks/grover-demo    # a Jupyter notebook
+  - file: chapters/references      # references page

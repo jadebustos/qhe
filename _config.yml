@@ -1,0 +1,34 @@
+# Book settings — see https://jupyterbook.org/customize/config.html
+title: "Quantum Computing meets Homomorphic Encryption (provisional title)"
+author: "José Ángel de Bustos Pérez"
+copyright: "2026"
+logo: ""  # optional: path to a logo image
+
+# Force re-execution of notebooks on each build.
+# "auto" runs notebooks that don't have outputs yet; "off" never runs them.
+execute:
+  execute_notebooks: auto
+  timeout: 120
+
+# Math, citations, and code highlighting
+parse:
+  myst_enable_extensions:
+    - dollarmath      # $...$ inline math and $$...$$ display math
+    - amsmath         # LaTeX amsmath environments
+    - colon_fence     # ::: fences instead of ```
+    - linkify         # auto-link URLs
+
+# Bibliography file (BibTeX). Used by {cite}`key` directives.
+bibtex_bibfiles:
+  - references.bib
+
+# GitHub repo info — enables "open issue" and "edit this page" buttons
+repository:
+  url: https://github.com/jadebustos/qhe
+  branch: main
+
+html:
+  use_issues_button: true
+  use_repository_button: true
+  use_edit_page_button: true
+  favicon: ""
