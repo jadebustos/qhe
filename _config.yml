@@ -1,5 +1,5 @@
 # Book settings — see https://jupyterbook.org/customize/config.html
-title: "Quantum Computing meets Homomorphic Encryption (provisional title)"
+title: "When Quantum Computing meets Homomorphic Encryption"
 author: "José Ángel de Bustos Pérez"
 copyright: "2026"
 logo: ""  # optional: path to a logo image
