@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>2. Homomorphic encryption in 5 minutes &#8212; When Quantum Computing meets Homomorphic Encryption</title>
+    <title>Homomorphic encryption in 5 minutes &#8212; When Quantum Computing meets Homomorphic Encryption</title>
   
   
   
@@ -176,7 +176,7 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homomorphic Encryption</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">2. Homomorphic encryption in 5 minutes</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Homomorphic encryption in 5 minutes</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../notebooks/Paillier.html">2.3. Basic example of homomorphic encryption with the Paillier algorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../notebooks/BFV.html">2.4. Basic implementation for the BFV algorithm using Pyphel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../notebooks/CKKS.html">2.5. Basic implementation for the CKKS algorithm using Pyphel</a></li>
@@ -395,8 +395,8 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-introduction-to-homomorphic-encryption-he">2.1. A quick introduction to homomorphic encryption (HE)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">2.2. Where quantum enters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-introduction-to-homomorphic-encryption-he">A quick introduction to homomorphic encryption (HE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">Where quantum enters</a></li>
 </ul>
             </nav>
         </div>
@@ -409,7 +409,7 @@
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="homomorphic-encryption-in-5-minutes">
-<h1><span class="section-number">2. </span>Homomorphic encryption in 5 minutes<a class="headerlink" href="#homomorphic-encryption-in-5-minutes" title="Link to this heading">#</a></h1>
+<h1>Homomorphic encryption in 5 minutes<a class="headerlink" href="#homomorphic-encryption-in-5-minutes" title="Link to this heading">#</a></h1>
 <p>A <strong>homomorphic</strong> encryption scheme lets you compute on ciphertexts. If <span class="math notranslate nohighlight">\(\mathrm{Enc}\)</span> is encryption and <span class="math notranslate nohighlight">\(\oplus, \otimes\)</span> are operations on ciphertexts, the scheme satisfies:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -420,7 +420,7 @@
 <p>A server can therefore evaluate a function <span class="math notranslate nohighlight">\(f\)</span> on your encrypted data and return <span class="math notranslate nohighlight">\(\mathrm{Enc}(f(x))\)</span> — without ever learning <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>When we talk about homomorphic encryption we mean that the homomorphic algorithm is homomorphic for some mathematical operations. Most homomorphic algorithms will be homomorphic regarding addition and/or multiplication. That means that we can perform addition and/or multplication using the crypted data without having to decrypt it.</p>
 <section id="a-quick-introduction-to-homomorphic-encryption-he">
-<h2><span class="section-number">2.1. </span>A quick introduction to homomorphic encryption (HE)<a class="headerlink" href="#a-quick-introduction-to-homomorphic-encryption-he" title="Link to this heading">#</a></h2>
+<h2>A quick introduction to homomorphic encryption (HE)<a class="headerlink" href="#a-quick-introduction-to-homomorphic-encryption-he" title="Link to this heading">#</a></h2>
 <p>Homomorphic encryption algorithms can be classified into:</p>
 <ul class="simple">
 <li><p><strong>Partially Homomorphic Encryption (PHE)</strong>: supports <em>one</em> operation an unbounded number of times. RSA <span class="bibtex-citation" id="id1">[<a class="reference internal" href="references.html#id2" title="R. L. Rivest, A. Shamir, and L. Adleman. A method for obtaining digital signatures and public-key cryptosystems. Communications of the ACM, 21(2):120–126, February 1978. URL: https://dl.acm.org/doi/10.1145/359340.359342 (visited on 2025-04-21), doi:10.1145/359340.359342.">RSA78</a>]</span> is multiplicatively homomorphic; Paillier <span class="bibtex-citation" id="id2">[<a class="reference internal" href="references.html#id3" title="Pascal Paillier. Public-key cryptosystems based on composite degree residuosity classes. In Proceedings of the 17th international conference on theory and application of cryptographic techniques, EUROCRYPT'99, 223–238. Berlin, Heidelberg, 1999. Springer-Verlag. Number of pages: 16 Place: Prague, Czech Republic.">Pai99</a>]</span> is additively.</p></li>
@@ -436,7 +436,7 @@
 </ul>
 </section>
 <section id="where-quantum-enters">
-<h2><span class="section-number">2.2. </span>Where quantum enters<a class="headerlink" href="#where-quantum-enters" title="Link to this heading">#</a></h2>
+<h2>Where quantum enters<a class="headerlink" href="#where-quantum-enters" title="Link to this heading">#</a></h2>
 <p>Two angles worth exploring:</p>
 <ol class="arabic simple">
 <li><p><strong>Post-quantum security</strong> of FHE. The hardness assumptions (LWE, RLWE) are believed to be quantum-resistant.</p></li>
@@ -513,8 +513,8 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-introduction-to-homomorphic-encryption-he">2.1. A quick introduction to homomorphic encryption (HE)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">2.2. Where quantum enters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-introduction-to-homomorphic-encryption-he">A quick introduction to homomorphic encryption (HE)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">Where quantum enters</a></li>
 </ul>
   </nav></div>
 
