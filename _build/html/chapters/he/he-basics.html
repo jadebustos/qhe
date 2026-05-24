@@ -395,7 +395,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-taxonomy">2.1. A quick taxonomy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-introduction-to-homomorphic-encryption-he">2.1. A quick introduction to homomorphic encryption (HE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">2.2. Where quantum enters</a></li>
 </ul>
             </nav>
@@ -419,17 +419,19 @@
 \]</div>
 <p>A server can therefore evaluate a function <span class="math notranslate nohighlight">\(f\)</span> on your encrypted data and return <span class="math notranslate nohighlight">\(\mathrm{Enc}(f(x))\)</span> — without ever learning <span class="math notranslate nohighlight">\(x\)</span>.</p>
 <p>When we talk about homomorphic encryption we mean that the homomorphic algorithm is homomorphic for some mathematical operations. Most homomorphic algorithms will be homomorphic regarding addition and/or multiplication. That means that we can perform addition and/or multplication using the crypted data without having to decrypt it.</p>
-<section id="a-quick-taxonomy">
-<h2><span class="section-number">2.1. </span>A quick taxonomy<a class="headerlink" href="#a-quick-taxonomy" title="Link to this heading">#</a></h2>
+<section id="a-quick-introduction-to-homomorphic-encryption-he">
+<h2><span class="section-number">2.1. </span>A quick introduction to homomorphic encryption (HE)<a class="headerlink" href="#a-quick-introduction-to-homomorphic-encryption-he" title="Link to this heading">#</a></h2>
+<p>Homomorphic encryption algorithms can be classified into:</p>
 <ul class="simple">
-<li><p><strong>Partially HE (PHE)</strong>: supports <em>one</em> operation an unbounded number of times. RSA <span class="bibtex-citation" id="id1">[<a class="reference internal" href="references.html#id2" title="R. L. Rivest, A. Shamir, and L. Adleman. A method for obtaining digital signatures and public-key cryptosystems. Communications of the ACM, 21(2):120–126, February 1978. URL: https://dl.acm.org/doi/10.1145/359340.359342 (visited on 2025-04-21), doi:10.1145/359340.359342.">RSA78</a>]</span> is multiplicatively homomorphic; Paillier is additively.</p></li>
-<li><p><strong>Somewhat HE (SHE)</strong>: supports both, but for a bounded number of operations before noise overwhelms the ciphertext.</p></li>
-<li><p><strong>Fully HE (FHE)</strong>: arbitrary circuits. Made practical by Gentry’s 2009 breakthrough using <em>bootstrapping</em> <span class="bibtex-citation" id="id2">[<a class="reference internal" href="references.html#id3" title="Craig Gentry. Fully homomorphic encryption using ideal lattices. In Proceedings of the forty-first annual ACM symposium on theory of computing, Stoc '09, 169–178. New York, NY, USA, 2009. Association for Computing Machinery. Number of pages: 10 Place: Bethesda, MD, USA. URL: https://doi.org/10.1145/1536414.1536440, doi:10.1145/1536414.1536440.">Gen09</a>]</span>.</p></li>
+<li><p><strong>Partially Homomorphic Encryption (PHE)</strong>: supports <em>one</em> operation an unbounded number of times. RSA <span class="bibtex-citation" id="id1">[<a class="reference internal" href="references.html#id2" title="R. L. Rivest, A. Shamir, and L. Adleman. A method for obtaining digital signatures and public-key cryptosystems. Communications of the ACM, 21(2):120–126, February 1978. URL: https://dl.acm.org/doi/10.1145/359340.359342 (visited on 2025-04-21), doi:10.1145/359340.359342.">RSA78</a>]</span> is multiplicatively homomorphic; Paillier <span class="bibtex-citation" id="id2">[<a class="reference internal" href="references.html#id3" title="Pascal Paillier. Public-key cryptosystems based on composite degree residuosity classes. In Proceedings of the 17th international conference on theory and application of cryptographic techniques, EUROCRYPT'99, 223–238. Berlin, Heidelberg, 1999. Springer-Verlag. Number of pages: 16 Place: Prague, Czech Republic.">Pai99</a>]</span> is additively.</p></li>
+<li><p><strong>Somewhat Homomorphic Encryption (SHE)</strong>: supports both, but for a bounded number of operations before noise overwhelms the ciphertext.</p></li>
+<li><p><strong>Fully Homomorphic Encryption (FHE)</strong>: arbitrary circuits. Made practical by Gentry’s 2009 breakthrough using <em>bootstrapping</em> <span class="bibtex-citation" id="id3">[<a class="reference internal" href="references.html#id4" title="Craig Gentry. Fully homomorphic encryption using ideal lattices. In Proceedings of the forty-first annual ACM symposium on theory of computing, Stoc '09, 169–178. New York, NY, USA, 2009. Association for Computing Machinery. Number of pages: 10 Place: Bethesda, MD, USA. URL: https://doi.org/10.1145/1536414.1536440, doi:10.1145/1536414.1536440.">Gen09</a>]</span>.</p></li>
 </ul>
-<p>Modern FHE schemes most thesis projects touch:</p>
+<p>Modern FHE schemes most thesis projects are about the following algorithms:</p>
 <ul class="simple">
-<li><p><strong>BFV / BGV</strong> — integer arithmetic.</p></li>
-<li><p><strong>CKKS</strong> — approximate arithmetic on real/complex numbers (great for ML inference on encrypted inputs).</p></li>
+<li><p><strong>BFV</strong> <span class="bibtex-citation" id="id4">[<a class="reference internal" href="references.html#id5">FV12</a>]</span>, which is a homomorphic encryption algorithm to perform integer arithmetic.</p></li>
+<li><p><strong>BGV</strong> — integer arithmetic.</p></li>
+<li><p><strong>CKKS</strong> <span class="bibtex-citation" id="id5">[<a class="reference internal" href="references.html#id6" title="Jung Hee Cheon, Andrey Kim, Miran Kim, and Yongsoo Song. Homomorphic Encryption for Arithmetic of Approximate Numbers. In Tsuyoshi Takagi and Thomas Peyrin, editors, Advances in Cryptology – ASIACRYPT 2017, volume 10624, pages 409–437. Springer International Publishing, Cham, 2017. URL: https://link.springer.com/10.1007/978-3-319-70694-8_15 (visited on 2026-05-13), doi:10.1007/978-3-319-70694-8_15.">CKKS17</a>]</span>, which is a homomorphic encryption algorithm to perform approximate arithmetic on real/complex numbers (great for ML inference on encrypted inputs).</p></li>
 <li><p><strong>TFHE</strong> — fast bootstrapping, good for Boolean circuits.</p></li>
 </ul>
 </section>
@@ -511,7 +513,7 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-taxonomy">2.1. A quick taxonomy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-introduction-to-homomorphic-encryption-he">2.1. A quick introduction to homomorphic encryption (HE)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">2.2. Where quantum enters</a></li>
 </ul>
   </nav></div>

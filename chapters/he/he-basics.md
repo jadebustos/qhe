@@ -12,16 +12,19 @@ A server can therefore evaluate a function $f$ on your encrypted data and return
 
 When we talk about homomorphic encryption we mean that the homomorphic algorithm is homomorphic for some mathematical operations. Most homomorphic algorithms will be homomorphic regarding addition and/or multiplication. That means that we can perform addition and/or multplication using the crypted data without having to decrypt it.
 
-## A quick taxonomy
+## A quick introduction to homomorphic encryption (HE)
 
-- **Partially HE (PHE)**: supports *one* operation an unbounded number of times. RSA {cite}`rivestMethodObtainingDigital1978` is multiplicatively homomorphic; Paillier is additively.
-- **Somewhat HE (SHE)**: supports both, but for a bounded number of operations before noise overwhelms the ciphertext.
-- **Fully HE (FHE)**: arbitrary circuits. Made practical by Gentry's 2009 breakthrough using *bootstrapping* {cite}`10.1145/1536414.1536440`.
+Homomorphic encryption algorithms can be classified into:
 
-Modern FHE schemes most thesis projects touch:
+- **Partially Homomorphic Encryption (PHE)**: supports *one* operation an unbounded number of times. RSA {cite}`rivestMethodObtainingDigital1978` is multiplicatively homomorphic; Paillier {cite}`10.5555/1756123.1756146` is additively.
+- **Somewhat Homomorphic Encryption (SHE)**: supports both, but for a bounded number of operations before noise overwhelms the ciphertext.
+- **Fully Homomorphic Encryption (FHE)**: arbitrary circuits. Made practical by Gentry's 2009 breakthrough using *bootstrapping* {cite}`10.1145/1536414.1536440`.
 
-- **BFV / BGV** — integer arithmetic.
-- **CKKS** — approximate arithmetic on real/complex numbers (great for ML inference on encrypted inputs).
+Modern FHE schemes most thesis projects are about the following algorithms:
+
+- **BFV** {cite}`bfv2012`, which is a homomorphic encryption algorithm to perform integer arithmetic.
+- **BGV** — integer arithmetic.
+- **CKKS** {cite}`ckks2017`, which is a homomorphic encryption algorithm to perform approximate arithmetic on real/complex numbers (great for ML inference on encrypted inputs).
 - **TFHE** — fast bootstrapping, good for Boolean circuits.
 
 ## Where quantum enters
