@@ -23,3 +23,7 @@ parts:
       - file: chapters/qc/quantum-basics  # a Markdown chapter
         sections:
           - file: chapters/qc/quantum-gates      # a Markdown section
+
+  - caption: "References"
+    chapters:
+      - file: chapters/references          
