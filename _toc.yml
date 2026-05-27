@@ -9,6 +9,7 @@ parts:
         sections: 
           - file: chapters/sw/creating-container         # a Markdown section
           - file: chapters/sw/running-container          # a Markdown section
+          - file: chapters/sw/jupyter-book               # a Markdown section
           
   - caption: "Homomorphic Encryption"
     chapters:

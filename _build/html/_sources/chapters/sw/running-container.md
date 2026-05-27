@@ -3,7 +3,7 @@
 Go to the directory where you have the Jupyter Notebooks you want to run:
 
 ```console
-$ podman run --rm --name qhe -p 8888:8888 -v $(pwd):/workspace:Z localhost/qhe:1.0
+$ podman run --rm --userns=keep-id --name qhe -p 8888:8888 -v $(pwd):/workspace:Z quay.io/rhte_2019/qhe:latest
 ```
 
 If you are not using SELinux you can skip **:Z**. Ensure write privileges for all users in the notebooks directory due to Jupyterlab will be executing as a non-root user.
@@ -11,7 +11,7 @@ If you are not using SELinux you can skip **:Z**. Ensure write privileges for al
 If you downloaded it from my container repository:
 
 ```console
-$ podman run --rm --name qhe -p 8888:8888 -v $(pwd):/workspace:Z quay.io/rhte_2019/qhe:latest
+$ podman run --rm --userns=keep-id --name qhe -p 8888:8888 -v $(pwd):/workspace:Z quay.io/rhte_2019/qhe:latest
 ```
 
 Now you can use your favorite browser to browse https://localhost:8888
@@ -39,9 +39,9 @@ $
 You can add this file via a volume to your container:
 
 ```console
-$ podman run --rm --name qhe -v $(pwd):/workspace:Z \
+$ podman run --rm --userns=keep-id --name qhe -v $(pwd):/workspace:Z \
   -v ../Containers/jupyter_server_config.json:/home/qcomputing/.jupyter/jupyter_server_config.json:ro \
-  -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
+  -v $(pwd):/workspace:Z -p 8888:8888 quay.io/rhte_2019/qhe:latest
 ...
 $
 ```

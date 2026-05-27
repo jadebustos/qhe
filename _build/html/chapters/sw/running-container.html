@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -63,7 +63,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/sw/running-container';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Quick introduction to Homomorphic encryption" href="../he/he-basics.html" />
+    <link rel="next" title="Jupyter book" href="jupyter-book.html" />
     <link rel="prev" title="Creating the container" href="creating-container.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -169,6 +169,7 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Running the container</a></li>
 
 
+<li class="toctree-l2"><a class="reference internal" href="jupyter-book.html">Jupyter book</a></li>
 </ul>
 </details></li>
 </ul>
@@ -417,12 +418,12 @@
   <section id="running-the-container">
 <h1>Running the container<a class="headerlink" href="#running-the-container" title="Link to this heading">#</a></h1>
 <p>Go to the directory where you have the Jupyter Notebooks you want to run:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>localhost/qhe:1.0
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--userns<span class="o">=</span>keep-id<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>quay.io/rhte_2019/qhe:latest
 </pre></div>
 </div>
 <p>If you are not using SELinux you can skip <strong>:Z</strong>. Ensure write privileges for all users in the notebooks directory due to Jupyterlab will be executing as a non-root user.</p>
 <p>If you downloaded it from my container repository:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>quay.io/rhte_2019/qhe:latest
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--userns<span class="o">=</span>keep-id<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>quay.io/rhte_2019/qhe:latest
 </pre></div>
 </div>
 <p>Now you can use your favorite browser to browse <a class="reference external" href="https://localhost:8888">https://localhost:8888</a></p>
@@ -445,9 +446,9 @@
 </pre></div>
 </div>
 <p>You can add this file via a volume to your container:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span><span class="se">\</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--userns<span class="o">=</span>keep-id<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span><span class="se">\</span>
 <span class="w">  </span>-v<span class="w"> </span>../Containers/jupyter_server_config.json:/home/qcomputing/.jupyter/jupyter_server_config.json:ro<span class="w"> </span><span class="se">\</span>
-<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>localhost/qhe:1.0
+<span class="w">  </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace:Z<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>quay.io/rhte_2019/qhe:latest
 <span class="go">...</span>
 <span class="gp">$</span>
 </pre></div>
@@ -507,11 +508,11 @@
       </div>
     </a>
     <a class="right-next"
-       href="../he/he-basics.html"
+       href="jupyter-book.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Quick introduction to Homomorphic encryption</p>
+        <p class="prev-next-title">Jupyter book</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
