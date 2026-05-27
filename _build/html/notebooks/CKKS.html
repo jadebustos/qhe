@@ -476,15 +476,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
-<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
-<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
-<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span><span class="w"> </span><span class="nn">Pyfhel</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pyfhel</span>
-<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="g g-Whitespace">      </span><span class="mi">3</span> 
-<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">HE</span> <span class="o">=</span> <span class="n">Pyfhel</span><span class="p">()</span>
-
-<span class="ne">ModuleNotFoundError</span>: No module named &#39;Pyfhel&#39;
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scheme: Scheme_t.ckks
+n (Polynomial degree): 16384
+Available Slots (n/2): 8192
+Scale: 2^30
+qi modulus chain: [60, 30, 30, 30, 30, 30, 60]
+=&gt; Available multiplicative depth: 5
 </pre></div>
 </div>
 </div>
@@ -526,10 +523,10 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plaintext data: a = 0.2546509554181008, b = 0.6184822838021392
-Expected value: 0.87313323922024
-Homomorphic addition: 0.87313525611518
-Error: 2.02e-06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plaintext data: a = 0.4872363242882354, b = 0.3155227349599028
+Expected value: 0.8027590592481382
+Homomorphic addition: 0.8027603645779828
+Error: 1.31e-06
 </pre></div>
 </div>
 </div>
@@ -563,10 +560,10 @@ Error: 2.02e-06
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plaintext data: a = 0.2546509554181008, b = 0.6184822838021392
-Expected value: 0.1574971044793837
-Homomorphic multiplication: 0.15749678533188546
-Error: 3.19e-07
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plaintext data: a = 0.4872363242882354, b = 0.3155227349599028
+Expected value: 0.15373413761123414
+Homomorphic multiplication: 0.15373295299392256
+Error: 1.18e-06
 </pre></div>
 </div>
 </div>
@@ -628,10 +625,10 @@ Error: 3.19e-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (0.7770894469235451 + 0.6738939048225632)**2 - (0.7770894469235451-0.6738939048225632)**2
-Expected value: 2.0947033671348545
-Homomorphic value: 2.094711223414748
-Error: 7.86e-06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (0.3140181243872955 + 0.2769925383311461)**2 - (0.3140181243872955-0.2769925383311461)**2
+Expected value: 0.3479227094240902
+Homomorphic value: 0.34792415980142655
+Error: 1.45e-06
 </pre></div>
 </div>
 </div>
@@ -678,10 +675,10 @@ Error: 7.86e-06
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (0.7770894469235451 + 0.6738939048225632)**2 - (0.7770894469235451-0.6738939048225632)**3
-Expected value: 2.104253724703301
-Homomorphic value: 2.1044546867791674
-Error: 2.01e-04
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (0.3140181243872955 + 0.2769925383311461)**2 - (0.3140181243872955-0.2769925383311461)**3
+Expected value: 0.34924284529227645
+Homomorphic value: 0.34927757077877947
+Error: 3.47e-05
 </pre></div>
 </div>
 </div>
@@ -721,17 +718,19 @@ Error: 2.01e-04
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [-86.19112623  92.63778315 -40.74631418  -1.27232174 -76.02763053
- -66.64733601 -75.20544121  38.6023865    4.62978384  43.82028829]
-v2: [ 91.07707475  63.99018525  13.35348267  41.8841672   81.7170209
- -64.04491919 -93.17882516  40.73493852   9.0766509   56.72678748]
-Homomorphic v1 + v2:  [   4.88595124  156.62797518  -27.3928311    40.61184562    5.68939009
- -130.69225304 -168.3842678    79.33732804   13.70643937  100.54707583]
-Expected value: [   4.88594852  156.6279684   -27.39283151   40.61184546    5.68939037
- -130.6922552  -168.38426637   79.33732502   13.70643474  100.54707578]
-Error: [2.71859921e-06 6.77485698e-06 4.18722031e-07 1.60115121e-07
- 2.78972951e-07 2.15911143e-06 1.42912793e-06 3.02039078e-06
- 4.62944928e-06 5.23577768e-08]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [-89.15369904  38.76606963   7.45453721  20.58565643   5.64302259
+ -37.25814414  58.83047119  25.13620435 -91.5349948  -89.23926392]
+v2: [-98.29011776  71.44650137  32.14288834 -70.18159241 -77.53633002
+  37.81540234 -56.37812152 -67.48805278  91.70677672 -12.67158415]
+Homomorphic v1 + v2:  [-1.87443820e+02  1.10212572e+02  3.95974259e+01 -4.95959337e+01
+ -7.18933081e+01  5.57259728e-01  2.45234970e+00 -4.23518473e+01
+  1.71781081e-01 -1.01910850e+02]
+Expected value: [-1.87443817e+02  1.10212571e+02  3.95974256e+01 -4.95959360e+01
+ -7.18933074e+01  5.57258202e-01  2.45234967e+00 -4.23518484e+01
+  1.71781923e-01 -1.01910848e+02]
+Error: [3.00358181e-06 1.03692270e-06 3.34154308e-07 2.30662540e-06
+ 7.17692515e-07 1.52627595e-06 2.53072674e-08 1.11960546e-06
+ 8.42283001e-07 1.48928606e-06]
 </pre></div>
 </div>
 </div>
@@ -758,15 +757,15 @@ Error: [2.71859921e-06 6.77485698e-06 4.18722031e-07 1.60115121e-07
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Homomorphic v1 * v2  = [-7850.03584879  5927.90944696  -544.10500598   -53.29014031
- -6212.75161159  4268.42310652  7007.5547714   1572.46595853
-    42.02295499  2485.78418581]
-Expected value = [-7850.03564667  5927.90890491  -544.10520009   -53.29013642
- -6212.75147359  4268.42324871  7007.55465758  1572.46584073
-    42.02293167  2485.78418144]
-Error: [2.02115393e-04 5.42051864e-04 1.94113882e-04 3.89480871e-06
- 1.38001663e-04 1.42190806e-04 1.13817582e-04 1.17800610e-04
- 2.33213852e-05 4.37158769e-06]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Homomorphic v1 * v2  = [ 8762.92785393  2769.70010597   239.61037189 -1444.73461995
+  -437.53924441 -1408.93167429 -3316.75182671 -1696.39349706
+ -8394.3794075   1130.80303264]
+Expected value = [ 8762.92757796  2769.70004708   239.61035726 -1444.73414907
+  -437.53926207 -1408.93171102 -3316.75145373 -1696.39348575
+ -8394.37932963  1130.80284265]
+Error: [2.75967626e-04 5.88896733e-05 1.46258425e-05 4.70884351e-04
+ 1.76667218e-05 3.67276077e-05 3.72983507e-04 1.13093799e-05
+ 7.78678568e-05 1.89986014e-04]
 </pre></div>
 </div>
 </div>
@@ -808,13 +807,13 @@ Error: [2.02115393e-04 5.42051864e-04 1.94113882e-04 3.89480871e-06
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [-85.54157414   6.66273899   6.31785316 -43.04074122 -58.58349498
- -65.24334803  -1.30760021  25.86996475  63.40055635  66.44103566]
-v2: [ 58.69761219  -9.01607985 -63.40350172 -17.77949555  50.94774502
-  -4.17214728  34.19476055 -98.63292643  48.34758844  42.33897224]
-Homomorphic v1 * v2: -4147.01564083114
-Expected value: -4147.015623129597
-Error: 1.77e-05
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [-26.99294243  55.42197272   7.64644039 -56.24534857  33.0480292
+  43.98250946   9.12838299 -75.09655966  79.16971806  -9.13003465]
+v2: [  6.49514377  11.75222241 -67.94044799  78.38135909  -0.31186976
+  45.57984615 -52.94629147  44.78642825  69.71962065  52.80811385]
+Homomorphic v1 * v2: -1266.7499494653482
+Expected value: -1266.749715231876
+Error: 2.34e-04
 </pre></div>
 </div>
 </div>
@@ -858,14 +857,16 @@ Error: 1.77e-05
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Encrypting data = 8
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Encrypting data = 2
 Initial qi_sizes: [60, 30, 30, 30, 30, 30, 60]
 =&gt; Available multiplicative depth: 5
-Iteration 1: data^2     | Expected value=64.000000            Encrypted value=64.000017            | Error=1.66e-05
-Iteration 2: data^4     | Expected value=4096.000000          Encrypted value=4096.002123          | Error=2.12e-03
-Iteration 3: data^8     | Expected value=16777216.000000      Encrypted value=16777233.390440      | Error=1.74e+01
-Iteration 4: data^16    | Expected value=281474976710656.000000 Encrypted value=281475560234606.750000 | Error=5.84e+08
-Iteration 5: data^32    | Expected value=79228162514264337593543950336.000000 Encrypted value=-53693131656.177917  | Error=7.92e+28
+Iteration 1: data^2     | Expected value=4.000000             Encrypted value=4.000025             | Error=2.48e-05
+Iteration 2: data^4     | Expected value=16.000000            Encrypted value=16.000198            | Error=1.98e-04
+Iteration 3: data^8     | Expected value=256.000000           Encrypted value=256.006336           | Error=6.34e-03
+Iteration 4: data^16    | Expected value=65536.000000         Encrypted value=65539.243831         | Error=3.24e+00
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 5: data^32    | Expected value=4294967296.000000    Encrypted value=4295392478.711042    | Error=4.25e+05
 
 Iteration 6: FALLO - no more multiplication levels available.
   Excepción: ValueError: scale out of bounds

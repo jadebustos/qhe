@@ -1,3 +1,7 @@
+2626-05-24 José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
+
+	* Included jupyter-book<2 python module.
+	
 2026-05-24 José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
 
 	* Fixed https not starting due to Jupyter configuration file was in wrong path.

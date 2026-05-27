@@ -174,7 +174,10 @@ WORKDIR /home/${USERNAME}
 # Installing Python dependencies from requirements.txt.
 # Moving the openfhe module to the venv's site-packages.
 # Installing Pyfhel from the wheel precompiled in the builder. 
-# Enabling the venv when entering the container (for interactive shells).
+# Enabling the venv when entering the container (for interactive shells)
+#
+# /home/${USERNAME}/data is intended for user data, for instance a code repository to 
+# render a jupyter book.
 COPY requirements.txt /home/${USERNAME}/requirements.txt
 RUN python3.12 -m venv /home/${USERNAME}/venv && \
     /home/${USERNAME}/venv/bin/pip install --no-cache-dir --upgrade pip && \
@@ -182,7 +185,8 @@ RUN python3.12 -m venv /home/${USERNAME}/venv && \
     cp /tmp/openfhe.cpython-312-*.so /home/${USERNAME}/venv/lib/python3.12/site-packages/ && \
     /home/${USERNAME}/venv/bin/pip install --no-cache-dir /tmp/pyfhel-*.whl && \
     echo "source /home/${USERNAME}/venv/bin/activate" >> /home/${USERNAME}/.bashrc && \
-    mkdir -p /home/${USERNAME}/.jupyter/certs && chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/.jupyter
+    mkdir -p /home/${USERNAME}/.jupyter/certs && chown -R ${USERNAME}:${USERNAME} /home/${USERNAME}/.jupyter && \
+    mkdir -p /home/${USERNAME}/data
 
 # Copying Jupyter Server configuration file to the container. 
 # This file can be overridden at runtime with a volume mount.

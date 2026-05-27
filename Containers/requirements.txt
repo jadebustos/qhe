@@ -5,6 +5,7 @@ ipympl
 ipyvolume
 ipywidgets
 jupyterlab
+jupyter-book<2
 matplotlib
 numpy
 phe
