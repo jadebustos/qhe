@@ -406,14 +406,15 @@
 <h1>Jupyter book<a class="headerlink" href="#jupyter-book" title="Link to this heading">#</a></h1>
 <p>This site has been build using <a class="reference external" href="https://jupyterbook.org/">Jupyter Book</a>. When the web site is render from the repository the Jupyter Notebooks needs to be rendered so that means that all the python modules needs to be installed. As the homomorphic encryption modules used in the Jupyter Notebooks used in this site are not easy to install you can use the container provided by this repository just to render the site.</p>
 <p>First you must start the container mapping the code repository directory to container’s directory <strong>/home/qcomputing/data</strong>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--userns<span class="o">=</span>keep-id<span class="w">  </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span><span class="se">\</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--userns<span class="o">=</span>keep-id<span class="w"> </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>-v<span class="w"> </span>/home/jadebustos/src/mygithub/qhe:/home/qcomputing/data:Z<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>quay.io/rhte_2019/qhe:latest
-<span class="go">..</span>
+<span class="go">...</span>
+<span class="gp">$</span>
 </pre></div>
 </div>
 <p>After that attach a console and go to <strong>/home/qcomputing/data</strong> and render the site:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>adebustos@archimedes:~/src/mygithub/qhe$<span class="w"> </span>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>qhe<span class="w"> </span>/bin/bash
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>qhe<span class="w"> </span>/bin/bash
 <span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">qcomputing@e023dae88f7f:/workspace$ </span><span class="nb">cd</span><span class="w">    </span>
 <span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">qcomputing@e023dae88f7f:~$ </span><span class="nb">cd</span><span class="w"> </span>data/
 <span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">qcomputing@e023dae88f7f:~/data$ </span>ls<span class="w"> </span>-lh

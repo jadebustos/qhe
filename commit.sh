@@ -13,22 +13,6 @@
 
 if [ $? -eq 0 ]
 then
-    rm -Rf _build/
-else
-    echo "Error: Failed to remove _build/ directory. Please check permissions and try again."
-    exit 1
-fi
-
-if [ $? -eq 0 ]
-then
-  jupyter-book build . 2>&1 | grep -iE "warning|error|missing"
-else
-    echo "Error: Failed to build the JupyterBook. Please check the output for details and fix any issues before committing."
-    exit 1
-fi
-
-if [ $? -eq 0 ]
-then
     git add . ; LANG=C git commit -S -m "$1" ; git push
 else
     echo "Error: Commit failed. Please check the output for details and fix any issues before committing."

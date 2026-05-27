@@ -5,16 +5,17 @@ This site has been build using [Jupyter Book](https://jupyterbook.org/). When th
 First you must start the container mapping the code repository directory to container's directory **/home/qcomputing/data**:
 
 ```console
-$ podman run --rm --userns=keep-id  --name qhe -p 8888:8888 \
+$ podman run --rm --userns=keep-id --name qhe -p 8888:8888 \
     -v /home/jadebustos/src/mygithub/qhe:/home/qcomputing/data:Z \
     quay.io/rhte_2019/qhe:latest
-..
+...
+$
 ```
 
 After that attach a console and go to **/home/qcomputing/data** and render the site:
 
 ```console
-$ adebustos@archimedes:~/src/mygithub/qhe$ podman exec -it qhe /bin/bash
+$ podman exec -it qhe /bin/bash
 (venv) qcomputing@e023dae88f7f:/workspace$ cd    
 (venv) qcomputing@e023dae88f7f:~$ cd data/
 (venv) qcomputing@e023dae88f7f:~/data$ ls -lh
