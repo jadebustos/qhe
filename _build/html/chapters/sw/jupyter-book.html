@@ -406,7 +406,9 @@
 <h1>Jupyter book<a class="headerlink" href="#jupyter-book" title="Link to this heading">#</a></h1>
 <p>This site has been build using <a class="reference external" href="https://jupyterbook.org/">Jupyter Book</a>. When the web site is render from the repository the Jupyter Notebooks needs to be rendered so that means that all the python modules needs to be installed. As the homomorphic encryption modules used in the Jupyter Notebooks used in this site are not easy to install you can use the container provided by this repository just to render the site.</p>
 <p>First you must start the container mapping the code repository directory to container’s directory <strong>/home/qcomputing/data</strong>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--userns<span class="o">=</span>keep-id<span class="w">  </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span>-v<span class="w"> </span>/home/jadebustos/src/mygithub/qhe:/home/qcomputing/data:Z<span class="w"> </span>quay.io/rhte_2019/qhe:latest
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>podman<span class="w"> </span>run<span class="w"> </span>--rm<span class="w"> </span>--userns<span class="o">=</span>keep-id<span class="w">  </span>--name<span class="w"> </span>qhe<span class="w"> </span>-p<span class="w"> </span><span class="m">8888</span>:8888<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-v<span class="w"> </span>/home/jadebustos/src/mygithub/qhe:/home/qcomputing/data:Z<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>quay.io/rhte_2019/qhe:latest
 <span class="go">..</span>
 </pre></div>
 </div>
@@ -414,16 +416,28 @@
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>adebustos@archimedes:~/src/mygithub/qhe$<span class="w"> </span>podman<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>qhe<span class="w"> </span>/bin/bash
 <span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">qcomputing@e023dae88f7f:/workspace$ </span><span class="nb">cd</span><span class="w">    </span>
 <span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">qcomputing@e023dae88f7f:~$ </span><span class="nb">cd</span><span class="w"> </span>data/
-<span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">qcomputing@e023dae88f7f:~/data$ </span>ls
-<span class="go">Containers  LICENSE  README-structure.md  README.md  _build  _config.yml  _toc.yml  chapters  commit.sh  intro.md  notebooks  old  references.bib  requirements.txt</span>
+<span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">qcomputing@e023dae88f7f:~/data$ </span>ls<span class="w"> </span>-lh
+<span class="go">total 76K</span>
+<span class="go">drwxrwxrwx. 2 qcomputing qcomputing  190 May 27 15:58 Containers</span>
+<span class="go">-rwxr-xr-x. 1 qcomputing qcomputing  35K May 27 15:58 LICENSE</span>
+<span class="go">-rwxr-xr-x. 1 qcomputing qcomputing 1.8K May 27 15:58 README-structure.md</span>
+<span class="go">-rwxr-xr-x. 1 qcomputing qcomputing  409 May 27 15:58 README.md</span>
+<span class="go">drwxr-xr-x. 5 qcomputing qcomputing   58 May 27 15:55 _build</span>
+<span class="go">-rwxr-xr-x. 1 qcomputing qcomputing 1.1K May 27 15:58 _config.yml</span>
+<span class="go">-rwxr-xr-x. 1 qcomputing qcomputing 1.4K May 27 16:23 _toc.yml</span>
+<span class="go">drwxrwxrwx. 5 qcomputing qcomputing   36 May 24 21:46 chapters</span>
+<span class="go">-rwxrwxrwx. 1 qcomputing qcomputing 2.0K May 24 21:46 commit.sh</span>
+<span class="go">-rwxr-xr-x. 1 qcomputing qcomputing 1.2K May 27 15:58 intro.md</span>
+<span class="go">drwxrwxrwx. 3 qcomputing qcomputing   89 May 24 20:31 notebooks</span>
+<span class="go">drwxrwxrwx. 3 qcomputing qcomputing   19 May 24 20:31 old</span>
+<span class="go">-rwxrwxrwx. 1 qcomputing qcomputing 9.3K May 24 20:37 references.bib</span>
+<span class="go">-rwxr-xr-x. 1 qcomputing qcomputing   37 May 27 15:58 requirements.txt</span>
 <span class="gp gp-VirtualEnv">(venv)</span> <span class="gp">qcomputing@e023dae88f7f:~/data$ </span>jupyter-book<span class="w"> </span>build<span class="w"> </span>.
 <span class="go">...</span>
 <span class="gp">$</span>
-<span class="go">...</span>
-
-<span class="go">Then push your changes to your Github repository and let github actions to do its magic.</span>
 </pre></div>
 </div>
+<p>Then push your changes to your Github repository and let github actions to do its magic.</p>
 </section>
 
     <script type="text/x-thebe-config">
