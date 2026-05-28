@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -436,7 +436,8 @@
 <p>The bank ciphers the requeriment, the 60000 €:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The bank encrypts the requeriments, it encrypts it as a negative number due to the bank will ask the customer to add it salary</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># The bank encrypts the requeriments, it encrypts it as a negative number.</span>
+<span class="c1"># The bank will ask the customer to add it salary to it</span>
 <span class="n">requeriment</span> <span class="o">=</span> <span class="o">-</span><span class="mi">60000</span>
 <span class="n">crypted_requeriment</span> <span class="o">=</span> <span class="n">bank_public_key</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="n">requeriment</span><span class="p">)</span>
 </pre></div>
@@ -451,7 +452,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;phe.paillier.EncryptedNumber at 0x7f4d99f5dc40&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;phe.paillier.EncryptedNumber at 0x7fda30341ac0&gt;
 </pre></div>
 </div>
 </div>
@@ -465,7 +466,7 @@
 </div>
 </div>
 </div>
-<p>We can check the raw variable to see that it is not a number:</p>
+<p>Customer will not be able to know the requirement due to it was prevously encrypted by the bank. Customer will also not be able to decrypt the result of adding its own salary to the encrypted data. That means that customer has no way to know the bank’s requirement. We can check the raw variable to see that it is not a number:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bank_requeriment</span>
@@ -473,12 +474,12 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;phe.paillier.EncryptedNumber at 0x7f4d99f5e000&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;phe.paillier.EncryptedNumber at 0x7fda30341ee0&gt;
 </pre></div>
 </div>
 </div>
 </div>
-<p>Client send <strong>band_requeriment</strong> to the bank and bank decrypts it:</p>
+<p>Client send <strong>band_requeriment</strong> back to the bank and bank decrypts it:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">bank_private_key</span><span class="o">.</span><span class="n">decrypt</span><span class="p">(</span><span class="n">bank_requeriment</span><span class="p">)</span>
