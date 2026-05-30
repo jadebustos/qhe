@@ -24,6 +24,7 @@ parts:
     chapters:
       - file: chapters/qc/quantum-basics  # a Markdown chapter
         sections:
-          - file: chapters/qc/quantum-gates      # a Markdown section
+          - file: chapters/qc/single-qubit-gates      # a Markdown section
+          - file: chapters/qc/two-qubit-gates      # a Markdown section
           - file: chapters/qc/shor      # a Markdown section
       - file: chapters/qc/references    # a Markdown chapter with links to papers, libraries, etc.

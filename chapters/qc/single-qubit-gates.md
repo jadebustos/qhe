@@ -1,4 +1,4 @@
-## Gates
+## Single-qubit quantum gates
 
 Single-qubit gates are $2\times 2$ unitary matrices. A few you'll see repeatedly:
 
