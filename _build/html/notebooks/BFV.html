@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -188,7 +188,8 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapters/qc/quantum-basics.html">Quick introduction to Quantum computing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/quantum-gates.html">Gates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/single-qubit-gates.html">Single-qubit quantum gates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/two-qubit-gates.html">Quantum gates that use more than one qubits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapters/qc/shor.html">Shor’s algorithm</a></li>
 </ul>
 </details></li>
@@ -402,8 +403,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-notebook">Download notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">Basic operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">Performing homomorphic encryption with multiple operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">Batching operation</a></li>
@@ -424,9 +428,11 @@
 <h1>Basic implementation for the BFV algorithm using Pyphel<a class="headerlink" href="#basic-implementation-for-the-bfv-algorithm-using-pyphel" title="Link to this heading">#</a></h1>
 <section id="author-jose-angel-de-bustos-perez">
 <h2>Author: José Ángel de Bustos Pérez<a class="headerlink" href="#author-jose-angel-de-bustos-perez" title="Link to this heading">#</a></h2>
+<section id="download-notebook">
+<h3><a class="reference external" href="https://github.com/jadebustos/qhe/releases/download/v1.0/BFV.ipynb">Download notebook</a><a class="headerlink" href="#download-notebook" title="Link to this heading">#</a></h3>
 </section>
 <section id="license-gnu-general-public-license-v3">
-<h2>License: <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GENERAL PUBLIC LICENSE v3</a><a class="headerlink" href="#license-gnu-general-public-license-v3" title="Link to this heading">#</a></h2>
+<h3>License: <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GENERAL PUBLIC LICENSE v3</a><a class="headerlink" href="#license-gnu-general-public-license-v3" title="Link to this heading">#</a></h3>
 <p>This notebook uses <a class="reference external" href="https://pyfhel.readthedocs.io/">Pyphel</a> to implement the BFV homomorphic encryption algorithm.</p>
 <p>BFV (Brakerski–Fan–Vercauteren) is a homomorphic encryption scheme based on the RLWE (Ring Learning With Errors) problem, which is resistant to quantum attacks.</p>
 <p>This scheme works with integers modulo t exactly.</p>
@@ -459,7 +465,7 @@
 <span class="n">HE</span><span class="o">.</span><span class="n">relinKeyGen</span><span class="p">()</span>      <span class="c1"># Required to reduce size after multiplication</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Scheme: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">scheme</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n (polinomial degree): </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;n (polinomial degree): </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2"> (number of slots for batching)&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t (plaintext modulus): </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">t</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Batching slot number: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Initial noise budget(bits): </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">HE</span><span class="o">.</span><span class="n">encrypt</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -468,7 +474,7 @@
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Scheme: Scheme_t.bfv
-n (polinomial degree): 8192
+n (polinomial degree): 8192 (number of slots for batching)
 t (plaintext modulus): 1032193
 Batching slot number: 8192
 Initial noise budget(bits): 146
@@ -476,6 +482,7 @@ Initial noise budget(bits): 146
 </div>
 </div>
 </div>
+</section>
 </section>
 <section id="basic-operations">
 <h2>Basic operations<a class="headerlink" href="#basic-operations" title="Link to this heading">#</a></h2>
@@ -493,6 +500,7 @@ Initial noise budget(bits): 146
 <span class="n">fhe_b</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">encryptInt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">b</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">))</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Plaintext data: a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">, b = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget for fhe_a after encrypting a = </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_a</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget for fhe_b after encrypting b = </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_b</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
 
@@ -502,17 +510,19 @@ Initial noise budget(bits): 146
 <span class="c1"># Getting the operation value, decrypting</span>
 <span class="n">suma</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">decryptInt</span><span class="p">(</span><span class="n">fhe_suma</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Homomorphic addition: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">suma</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Operation: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Homomorphic addition: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">suma</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget after addition: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_suma</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits &quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plaintext data: a = 60, b = 7
-Noise budget for fhe_a after encrypting a = 60: 146 bits
-Noise budget for fhe_b after encrypting b = 7: 146 bits
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plaintext data: a = 33, b = 15
+Noise budget for fhe_a after encrypting a = 33: 146 bits
+Noise budget for fhe_b after encrypting b = 15: 146 bits
 
-Homomorphic addition: 60 + 7 = 67
+Operation: 33 + 15 = 48
+Homomorphic addition: 33 + 15 = 48
 Noise budget after addition: 146 bits 
 </pre></div>
 </div>
@@ -531,13 +541,15 @@ Noise budget after addition: 146 bits
 <span class="c1"># Getting the operation value, decrypting</span>
 <span class="n">mult</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">decryptInt</span><span class="p">(</span><span class="n">fhe_mult</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Homomorphic multiplication: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> * </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">mult</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Operation: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> * </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Homomorphic multiplication: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2"> * </span><span class="si">{</span><span class="n">b</span><span class="si">}</span><span class="s2"> = </span><span class="si">{</span><span class="n">mult</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget after multiplication: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_mult</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits &quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Homomorphic multiplication: 60 * 7 = 420
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: 33 * 15 = 495
+Homomorphic multiplication: 33 * 15 = 495
 Noise budget after multiplication: 114 bits 
 </pre></div>
 </div>
@@ -584,18 +596,16 @@ Noise budget after multiplication: 114 bits
 <span class="c1"># Getting the operation value, decrypting</span>
 <span class="n">final</span> <span class="o">=</span> <span class="n">HE</span><span class="o">.</span><span class="n">decryptInt</span><span class="p">(</span><span class="n">fhe_final</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operation: (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">)**2 - (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">)**2&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Expected value: </span><span class="si">{</span><span class="n">expected_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Operation: (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2"> + </span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">)**2 - (</span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">-</span><span class="si">{</span><span class="n">y</span><span class="si">}</span><span class="s2">)**2 = </span><span class="si">{</span><span class="n">expected_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Homomorphic value: </span><span class="si">{</span><span class="n">final</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Noise budget after operation: </span><span class="si">{</span><span class="n">HE</span><span class="o">.</span><span class="n">noise_level</span><span class="p">(</span><span class="n">fhe_final</span><span class="p">)</span><span class="si">}</span><span class="s2"> bits&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (87 + 5)**2 - (87-5)**2
-Expected value: 1740
-Homomorphic value: 1740
-Noise budget after operation: 113 bits
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (90 + 71)**2 - (90-71)**2 = 25560
+Homomorphic value: 25560
+Noise budget after operation: 112 bits
 </pre></div>
 </div>
 </div>
@@ -626,9 +636,9 @@ Noise budget after operation: 113 bits
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (87 + 5)**2 - (87-5)**3
-Expected value: -542904
-Homomorphic value: 489289
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (90 + 71)**2 - (90-71)**3
+Expected value: 19062
+Homomorphic value: 19062
 Noise budget after operation: 81 bits
 </pre></div>
 </div>
@@ -668,12 +678,12 @@ Noise budget after operation: 81 bits
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [16 34 66 80 44 69 83 56 43 76]
-v2: [94 17 55 98 49 60 43  4 82 31]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [80 52 39 43 57 62 47 15 59 11]
+v2: [66 90 51 50 98 15  3 29 45  7]
 Noise budget for fhe_v1 after encrypting v1: 146 bits
 Noise budget for fhe_v2 after encrypting v2: 146 bits
-Homomorphic v1 + v2:  [110  51 121 178  93 129 126  60 125 107]
-Expected value: [110  51 121 178  93 129 126  60 125 107]
+Homomorphic v1 + v2:  [146 142  90  93 155  77  50  44 104  18]
+Expected value: [146 142  90  93 155  77  50  44 104  18]
 Noise budget after operation: 146 bits
 </pre></div>
 </div>
@@ -698,8 +708,8 @@ Noise budget after operation: 146 bits
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Homomorphic v1 * v2  = [1504  578 3630 7840 2156 4140 3569  224 3526 2356]
-Expected value = [1504  578 3630 7840 2156 4140 3569  224 3526 2356]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Homomorphic v1 * v2  = [5280 4680 1989 2150 5586  930  141  435 2655   77]
+Expected value = [5280 4680 1989 2150 5586  930  141  435 2655   77]
 Noise budget after operation: 114 bits
 </pre></div>
 </div>
@@ -741,10 +751,10 @@ Noise budget after operation: 114 bits
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [37 51 22 75 57  4 69 74 85 11]
-v2: [22 98 44 74 52 49 28 96 14 16]
-Homomorphic v1 * v2: 25892
-Expected value: 25892
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [41  5 97 69 54 24 79 73 27 96]
+v2: [52 48 10 69 43 14 80 72 19 78]
+Homomorphic v1 * v2: 30338
+Expected value: 30338
 Noise budget: 114 bits
 </pre></div>
 </div>
@@ -781,14 +791,16 @@ Noise budget: 114 bits
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Encrypting data = 6
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Encrypting data = 8
 Initial noise budget: 146 bits
 
-Iteration  1: 6^2        | Expected value: 36           Encrypted value: 36           | Noise budget: 114 bits | OK 
-Iteration  2: 6^4        | Expected value: 1296         Encrypted value: 1296         | Noise budget:  81 bits | OK 
-Iteration  3: 6^8        | Expected value: 1679616      Encrypted value: -384770      | Noise budget:  48 bits | FAIL
-Iteration  4: 6^16       | Expected value: 2821109907456 Encrypted value: 510910       | Noise budget:  15 bits | FAIL
-Iteration  5: 6^32       | Expected value: 7958661109946400884391936 Encrypted value: -148487      | Noise budget:   0 bits | FAIL
+Iteration  1: 8^2        | Expected value: 64           Encrypted value: 64           | Noise budget: 114 bits | OK 
+Iteration  2: 8^4        | Expected value: 4096         Encrypted value: 4096         | Noise budget:  81 bits | OK 
+Iteration  3: 8^8        | Expected value: 16777216     Encrypted value: 262128       | Noise budget:  48 bits | FAIL
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration  4: 8^16       | Expected value: 281474976710656 Encrypted value: 64760        | Noise budget:  15 bits | FAIL
+Iteration  5: 8^32       | Expected value: 79228162514264337593543950336 Encrypted value: -502197      | Noise budget:   0 bits | FAIL
 
 &gt;&gt;&gt; Noise budget empty: data corruption.
 </pre></div>
@@ -864,8 +876,11 @@ Iteration  5: 6^32       | Expected value: 7958661109946400884391936 Encrypted v
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-notebook">Download notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">Basic operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">Performing homomorphic encryption with multiple operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">Batching operation</a></li>

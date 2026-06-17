@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Quick introduction to Homomorphic encryption &#8212; When Quantum Computing meets Homomorphic Encryption</title>
+    <title>Quantum gates that use more than one qubits &#8212; When Quantum Computing meets Homomorphic Encryption</title>
   
   
   
@@ -62,11 +62,11 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/he/he-basics';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'chapters/qc/two-qubit-gates';</script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Basic example of homomorphic encryption with the Paillier algorithm" href="../../notebooks/Paillier.html" />
-    <link rel="prev" title="Jupyter book" href="../sw/jupyter-book.html" />
+    <link rel="next" title="Shor’s algorithm" href="shor.html" />
+    <link rel="prev" title="Single-qubit quantum gates" href="single-qubit-gates.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="" />
@@ -176,24 +176,24 @@
 </details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Homomorphic Encryption</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Quick introduction to Homomorphic encryption</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../he/he-basics.html">Quick introduction to Homomorphic encryption</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../notebooks/Paillier.html">Basic example of homomorphic encryption with the Paillier algorithm</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../notebooks/BFV.html">Basic implementation for the BFV algorithm using Pyphel</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../notebooks/CKKS.html">Basic implementation for the CKKS algorithm using Pyphel</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../he/references.html">References</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../qc/quantum-basics.html">Quick introduction to Quantum computing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../qc/single-qubit-gates.html">Single-qubit quantum gates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../qc/two-qubit-gates.html">Quantum gates that use more than one qubits</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../qc/shor.html">Shor’s algorithm</a></li>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="quantum-basics.html">Quick introduction to Quantum computing</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="single-qubit-gates.html">Single-qubit quantum gates</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Quantum gates that use more than one qubits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="shor.html">Shor’s algorithm</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../qc/references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
     </div>
@@ -270,7 +270,7 @@
       
       
       
-      <li><a href="https://github.com/jadebustos/qhe/edit/main/chapters/he/he-basics.md" target="_blank"
+      <li><a href="https://github.com/jadebustos/qhe/edit/main/chapters/qc/two-qubit-gates.md" target="_blank"
    class="btn btn-sm btn-source-edit-button dropdown-item"
    title="Suggest edit"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -287,7 +287,7 @@
       
       
       
-      <li><a href="https://github.com/jadebustos/qhe/issues/new?title=Issue%20on%20page%20%2Fchapters/he/he-basics.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/jadebustos/qhe/issues/new?title=Issue%20on%20page%20%2Fchapters/qc/two-qubit-gates.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -317,7 +317,7 @@
       
       
       
-      <li><a href="../../_sources/chapters/he/he-basics.md" target="_blank"
+      <li><a href="../../_sources/chapters/qc/two-qubit-gates.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -380,9 +380,7 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -393,20 +391,11 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Quick introduction to Homomorphic encryption</h1>
+    <h1>Quantum gates that use more than one qubits</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-introduction-to-homomorphic-encryption-he">A quick introduction to homomorphic encryption (HE)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">Where quantum enters</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -416,42 +405,31 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="quick-introduction-to-homomorphic-encryption">
-<h1>Quick introduction to Homomorphic encryption<a class="headerlink" href="#quick-introduction-to-homomorphic-encryption" title="Link to this heading">#</a></h1>
-<p>A <strong>homomorphic</strong> encryption scheme lets you compute on ciphertexts. If <span class="math notranslate nohighlight">\(\mathrm{Enc}\)</span> is encryption and <span class="math notranslate nohighlight">\(\oplus, \otimes\)</span> are operations on ciphertexts, the scheme satisfies:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathrm{Dec}(\mathrm{Enc}(a) \oplus \mathrm{Enc}(b)) = a + b,
-\qquad
-\mathrm{Dec}(\mathrm{Enc}(a) \otimes \mathrm{Enc}(b)) = a \cdot b.
-\]</div>
-<p>A server can therefore evaluate a function <span class="math notranslate nohighlight">\(f\)</span> on your encrypted data and return <span class="math notranslate nohighlight">\(\mathrm{Enc}(f(x))\)</span> — without ever learning <span class="math notranslate nohighlight">\(x\)</span>.</p>
-<p>When we talk about homomorphic encryption we mean that the homomorphic algorithm is homomorphic for some mathematical operations. Most homomorphic algorithms will be homomorphic regarding addition and/or multiplication. That means that we can perform addition and/or multplication using the crypted data without having to decrypt it.</p>
-<section id="a-quick-introduction-to-homomorphic-encryption-he">
-<h2>A quick introduction to homomorphic encryption (HE)<a class="headerlink" href="#a-quick-introduction-to-homomorphic-encryption-he" title="Link to this heading">#</a></h2>
-<p>Homomorphic encryption algorithms can be classified into:</p>
-<ul class="simple">
-<li><p><strong>Partially Homomorphic Encryption (PHE)</strong>: supports <em>one</em> operation an unbounded number of times. RSA <span class="bibtex-citation" id="id1">[<a class="reference internal" href="../qc/references.html#id2" title="R. L. Rivest, A. Shamir, and L. Adleman. A method for obtaining digital signatures and public-key cryptosystems. Communications of the ACM, 21(2):120–126, February 1978. URL: https://dl.acm.org/doi/10.1145/359340.359342 (visited on 2025-04-21), doi:10.1145/359340.359342.">RSA78</a>]</span> is multiplicatively homomorphic; Paillier <span class="bibtex-citation" id="id2">[<a class="reference internal" href="../qc/references.html#id5" title="Pascal Paillier. Public-key cryptosystems based on composite degree residuosity classes. In Proceedings of the 17th international conference on theory and application of cryptographic techniques, EUROCRYPT'99, 223–238. Berlin, Heidelberg, 1999. Springer-Verlag. Number of pages: 16 Place: Prague, Czech Republic.">Pai99</a>]</span> is additively.</p></li>
-<li><p><strong>Somewhat Homomorphic Encryption (SHE)</strong>: supports both, but for a bounded number of operations before noise overwhelms the ciphertext.</p></li>
-<li><p><strong>Fully Homomorphic Encryption (FHE)</strong>: arbitrary circuits. Made practical by Gentry’s 2009 breakthrough using <em>bootstrapping</em> <span class="bibtex-citation" id="id3">[<a class="reference internal" href="../qc/references.html#id6" title="Craig Gentry. Fully homomorphic encryption using ideal lattices. In Proceedings of the forty-first annual ACM symposium on theory of computing, Stoc '09, 169–178. New York, NY, USA, 2009. Association for Computing Machinery. Number of pages: 10 Place: Bethesda, MD, USA. URL: https://doi.org/10.1145/1536414.1536440, doi:10.1145/1536414.1536440.">Gen09</a>]</span>.</p></li>
-</ul>
-<p>Modern FHE schemes most thesis projects are about the following algorithms:</p>
-<ul class="simple">
-<li><p><strong>BFV</strong> <span class="bibtex-citation" id="id4">[<a class="reference internal" href="../qc/references.html#id7" title="Junfeng Fan and Frederik Vercauteren. Somewhat Practical Fully Homomorphic Encryption. IACR Cryptol. ePrint Arch., 2012:144, 2012. URL: https://eprint.iacr.org/2012/144.">FV12</a>]</span>, which is a homomorphic encryption algorithm to perform integer arithmetic.</p></li>
-<li><p><strong>BGV</strong> <span class="bibtex-citation" id="id5">[<a class="reference internal" href="../qc/references.html#id8" title="Zvika Brakerski, Craig Gentry, and Vinod Vaikuntanathan. (Leveled) Fully Homomorphic Encryption without Bootstrapping. ACM Transactions on Computation Theory (TOCT), 6(3):13:1–13:36, 2014. doi:10.1145/2633600.">BGV14</a>]</span>, which is a homomorphic encryption algorithm to perform integer arithmetic.</p></li>
-<li><p><strong>CKKS</strong> <span class="bibtex-citation" id="id6">[<a class="reference internal" href="../qc/references.html#id9" title="Jung Hee Cheon, Andrey Kim, Miran Kim, and Yongsoo Song. Homomorphic Encryption for Arithmetic of Approximate Numbers. In Tsuyoshi Takagi and Thomas Peyrin, editors, Advances in Cryptology - ASIACRYPT 2017, volume 10624, pages 409–437. Springer International Publishing, Cham, 2017. URL: https://link.springer.com/10.1007/978-3-319-70694-8_15 (visited on 2026-05-13), doi:10.1007/978-3-319-70694-8_15.">CKKS17</a>]</span>, which is a homomorphic encryption algorithm to perform approximate arithmetic on real/complex numbers (great for ML inference on encrypted inputs).</p></li>
-<li><p><strong>TFHE</strong> <span class="bibtex-citation" id="id7">[<a class="reference internal" href="../qc/references.html#id10" title="Ilaria Chillotti, Nicolas Gama, Mariya Georgieva, and Malika Izabachène. TFHE: Fast Fully Homomorphic Encryption over the torus. Journal of Cryptology, 33(1):34–91, 2020. doi:10.1007/s00145-019-09319-x.">CGGIzabachene20</a>]</span>, which is a homomorphic encryption algorithm supporting fast bootstrapping (great for Boolean circuits).</p></li>
-</ul>
-</section>
-<section id="where-quantum-enters">
-<h2>Where quantum enters<a class="headerlink" href="#where-quantum-enters" title="Link to this heading">#</a></h2>
-<p>Two angles worth exploring:</p>
-<ol class="arabic simple">
-<li><p><strong>Post-quantum security</strong> of FHE. The hardness assumptions (LWE, RLWE) are believed to be quantum-resistant.</p></li>
-<li><p><strong>Quantum HE</strong> — schemes that encrypt <em>quantum</em> states and allow a server to apply quantum circuits blindly. An active research area.</p></li>
-</ol>
-</section>
-<div class="toctree-wrapper compound">
+  <section id="quantum-gates-that-use-more-than-one-qubits">
+<h1>Quantum gates that use more than one qubits<a class="headerlink" href="#quantum-gates-that-use-more-than-one-qubits" title="Link to this heading">#</a></h1>
+<p>Two-qubit gates are <span class="math notranslate nohighlight">\(4\times 4\)</span> unitary matrices. A few you’ll see repeatedly:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Gate</p></th>
+<th class="head"><p>Symbol</p></th>
+<th class="head"><p>Matrix</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
 
@@ -468,7 +446,7 @@
         },
         kernelOptions: {
             name: "python3",
-            path: "./chapters/he"
+            path: "./chapters/qc"
         },
         predefinedOutput: true
     }
@@ -486,20 +464,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../sw/jupyter-book.html"
+       href="single-qubit-gates.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Jupyter book</p>
+        <p class="prev-next-title">Single-qubit quantum gates</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../notebooks/Paillier.html"
+       href="shor.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Basic example of homomorphic encryption with the Paillier algorithm</p>
+        <p class="prev-next-title">Shor’s algorithm</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -509,24 +487,6 @@
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item"><div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-quick-introduction-to-homomorphic-encryption-he">A quick introduction to homomorphic encryption (HE)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#where-quantum-enters">Where quantum enters</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -188,7 +188,8 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapters/qc/quantum-basics.html">Quick introduction to Quantum computing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/quantum-gates.html">Gates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/single-qubit-gates.html">Single-qubit quantum gates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/two-qubit-gates.html">Quantum gates that use more than one qubits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapters/qc/shor.html">Shor’s algorithm</a></li>
 </ul>
 </details></li>
@@ -402,8 +403,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-notebook">Download notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">Basic operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">Performing homomorphic encryption with multiple operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">Batching operation</a></li>
@@ -424,9 +428,11 @@
 <h1>Basic implementation for the CKKS algorithm using Pyphel<a class="headerlink" href="#basic-implementation-for-the-ckks-algorithm-using-pyphel" title="Link to this heading">#</a></h1>
 <section id="author-jose-angel-de-bustos-perez">
 <h2>Author: José Ángel de Bustos Pérez<a class="headerlink" href="#author-jose-angel-de-bustos-perez" title="Link to this heading">#</a></h2>
+<section id="download-notebook">
+<h3><a class="reference external" href="https://github.com/jadebustos/qhe/releases/download/v1.0/CKKS.ipynb">Download notebook</a><a class="headerlink" href="#download-notebook" title="Link to this heading">#</a></h3>
 </section>
 <section id="license-gnu-general-public-license-v3">
-<h2>License: <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GENERAL PUBLIC LICENSE v3</a><a class="headerlink" href="#license-gnu-general-public-license-v3" title="Link to this heading">#</a></h2>
+<h3>License: <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GENERAL PUBLIC LICENSE v3</a><a class="headerlink" href="#license-gnu-general-public-license-v3" title="Link to this heading">#</a></h3>
 <p>This notebook uses <a class="reference external" href="https://pyfhel.readthedocs.io/">Pyphel</a> to implement the CKKS homomorphic encryption algorithm.</p>
 <p>CKKS (Cheon–Kim–Kim–Song, 2017) is a homomorphic encryption scheme based on RLWE (Ring Learning With Errors), like BFV, but designed to work with real or complex numbers in an approximate way. That means that the operations will add some error.</p>
 <p>Key differences compared to BFV:</p>
@@ -489,6 +495,7 @@ qi modulus chain: [60, 30, 30, 30, 30, 30, 60]
 </div>
 <p>Unlike BFV, in CKKS the <strong>noise budget</strong> is not measured in the same way. What matters is the LEVEL of the ciphertext (how many primes remain in the modulus chain). Each rescale consumes one level. When you reach the last level, you can no longer perform multiplications.</p>
 </section>
+</section>
 <section id="basic-operations">
 <h2>Basic operations<a class="headerlink" href="#basic-operations" title="Link to this heading">#</a></h2>
 <p>We will perform basic operations such as addition and multiplications to check how noise is increasing. We will start with addition:</p>
@@ -524,10 +531,10 @@ qi modulus chain: [60, 30, 30, 30, 30, 30, 60]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plaintext data: a = 0.8734162648318591, b = 0.5600002617345973
-Expected value: 1.4334165265664565
-Homomorphic addition: 1.4334178993913267
-Error: 1.37e-06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plaintext data: a = 0.033940765310956134, b = 0.24048833105907585
+Expected value: 0.274429096370032
+Homomorphic addition: 0.2744342951597364
+Error: 5.20e-06
 </pre></div>
 </div>
 </div>
@@ -561,10 +568,10 @@ Error: 1.37e-06
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plaintext data: a = 0.8734162648318591, b = 0.5600002617345973
-Expected value: 0.4891133369090954
-Homomorphic multiplication: 0.4891175909387754
-Error: 4.25e-06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Plaintext data: a = 0.033940765310956134, b = 0.24048833105907585
+Expected value: 0.008162358004499616
+Homomorphic multiplication: 0.008160742969157028
+Error: 1.62e-06
 </pre></div>
 </div>
 </div>
@@ -626,10 +633,10 @@ Error: 4.25e-06
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (0.4481619246690438 + 0.9626322040826019)**2 - (0.4481619246690438-0.9626322040826019)**2
-Expected value: 1.7256604053202504
-Homomorphic value: 1.7256583265231864
-Error: 2.08e-06
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (0.40496412857149644 + 0.7256308969019096)**2 - (0.40496412857149644-0.7256308969019096)**2
+Expected value: 1.1754179353137408
+Homomorphic value: 1.1754090342476136
+Error: 8.90e-06
 </pre></div>
 </div>
 </div>
@@ -676,10 +683,10 @@ Error: 2.08e-06
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (0.4481619246690438 + 0.9626322040826019)**2 - (0.4481619246690438-0.9626322040826019)**3
-Expected value: 2.126509896676881
-Homomorphic value: 2.1267383219406453
-Error: 2.28e-04
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Operation: (0.40496412857149644 + 0.7256308969019096)**2 - (0.40496412857149644-0.7256308969019096)**3
+Expected value: 1.3112183699495528
+Homomorphic value: 1.3113352536193537
+Error: 1.17e-04
 </pre></div>
 </div>
 </div>
@@ -719,17 +726,17 @@ Error: 2.28e-04
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [ 35.75972991  66.68896621 -36.70555792  -1.67841515  29.46138676
-  85.54655296  -8.11154399  61.17539204  11.35365933  83.99717032]
-v2: [-52.7463701   -1.20571368 -58.37749234 -46.55361161 -63.34808723
-  76.41688167  45.60264234 -68.41979202 -90.04665375  92.51011634]
-Homomorphic v1 + v2:  [-16.98663877  65.48325129 -95.08304948 -48.23202956 -33.88670288
- 161.96343038  37.49109871  -7.24439441 -78.69299811 176.50728888]
-Expected value: [-16.98664019  65.48325253 -95.08305026 -48.23202676 -33.88670047
- 161.96343463  37.49109836  -7.24439999 -78.69299442 176.50728667]
-Error: [1.42220031e-06 1.24085506e-06 7.83355460e-07 2.79521014e-06
- 2.40756462e-06 4.24512388e-06 3.59238463e-07 5.57154294e-06
- 3.69457958e-06 2.20868043e-06]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [ 96.04956957 -18.53635509  39.58806794 -93.16492003  13.92242717
+  -4.55419644  95.58252411 -36.33215016  46.26376658  82.7606434 ]
+v2: [-93.10959917  77.37121063  59.97956743  14.16034467  -7.49882653
+  27.67806952  61.32430078 -60.69779359 -98.49125083  49.16005536]
+Homomorphic v1 + v2:  [  2.93996971  58.83485626  99.56763389 -79.00458005   6.4236049
+  23.12386934 156.90683149 -97.02994599 -52.22748844 131.92070097]
+Expected value: [  2.93997041  58.83485554  99.56763537 -79.00457537   6.42360064
+  23.12387308 156.9068249  -97.02994376 -52.22748425 131.92069876]
+Error: [6.95901461e-07 7.16469458e-07 1.47958778e-06 4.68495882e-06
+ 4.26275398e-06 3.74242190e-06 6.59296515e-06 2.23443652e-06
+ 4.18974332e-06 2.20925878e-06]
 </pre></div>
 </div>
 </div>
@@ -756,15 +763,15 @@ Error: [1.42220031e-06 1.24085506e-06 7.83355460e-07 2.79521014e-06
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Homomorphic v1 * v2  = [-1886.19597536   -80.40798123  2142.77838284    78.13640042
- -1866.32256229  6537.20046151  -369.90781637 -4185.6077151
- -1022.35889389  7770.58818944]
-Expected value = [-1886.19594847   -80.40779863  2142.77842633    78.13628705
- -1866.32249798  6537.2008144   -369.9078393  -4185.60759992
- -1022.35903092  7770.58799916]
-Error: [2.68881890e-05 1.82603032e-04 4.34944768e-05 1.13366010e-04
- 6.43099313e-05 3.52896231e-04 2.29283643e-05 1.15179139e-04
- 1.37036475e-04 1.90283768e-04]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Homomorphic v1 * v2  = [-8943.13784827 -1434.18034486  2374.47512137 -1319.24770484
+  -104.40180633  -126.05138246  5861.53191227  2205.28144507
+ -4556.57614835  4068.51793243]
+Expected value = [-8943.13692278 -1434.18023392  2374.47519032 -1319.24737846
+  -104.40186612  -126.05136574  5861.53145822  2205.28135137
+ -4556.57623826  4068.51781083]
+Error: [9.25491548e-04 1.10944641e-04 6.89441977e-05 3.26376130e-04
+ 5.97938554e-05 1.67207071e-05 4.54045478e-04 9.36985784e-05
+ 8.99130755e-05 1.21596047e-04]
 </pre></div>
 </div>
 </div>
@@ -806,13 +813,13 @@ Error: [2.68881890e-05 1.82603032e-04 4.34944768e-05 1.13366010e-04
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [-43.72309844  20.35239636 -10.566623    69.73268705  33.64658174
-  57.42237231  31.15745582 -62.96673853  46.87562564  91.43962242]
-v2: [-94.17232464  88.15046455  89.75166231  82.12875221 -88.93177432
- -54.27995538 -86.84974933 -93.09658306 -57.55125403 -87.10585993]
-Homomorphic v1 * v2: -2925.5756185778655
-Expected value: -2925.5754158740247
-Error: 2.03e-04
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v1: [  4.65617381 -71.52080547 -30.67699116  10.35535825 -39.37891652
+  20.96417811 -32.81010649  35.04733633 -27.25928526  22.85374363]
+v2: [ 92.14635669   4.57460645 -72.13664318  38.47135967  38.37333649
+ -92.53937673   0.92366507 -21.62432291 -92.26735642   0.69381262]
+Homomorphic v1 * v2: 1004.8951393422175
+Expected value: 1004.8953386845769
+Error: 1.99e-04
 </pre></div>
 </div>
 </div>
@@ -856,16 +863,14 @@ Error: 2.03e-04
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Encrypting data = 2
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Encrypting data = 5
 Initial qi_sizes: [60, 30, 30, 30, 30, 30, 60]
 =&gt; Available multiplicative depth: 5
-Iteration 1: data^2     | Expected value=4.000000             Encrypted value=4.000021             | Error=2.09e-05
-Iteration 2: data^4     | Expected value=16.000000            Encrypted value=16.000165            | Error=1.65e-04
-Iteration 3: data^8     | Expected value=256.000000           Encrypted value=256.005286           | Error=5.29e-03
-Iteration 4: data^16    | Expected value=65536.000000         Encrypted value=65538.706327         | Error=2.71e+00
-</pre></div>
-</div>
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Iteration 5: data^32    | Expected value=4294967296.000000    Encrypted value=4295322026.706947    | Error=3.55e+05
+Iteration 1: data^2     | Expected value=25.000000            Encrypted value=24.999979            | Error=2.06e-05
+Iteration 2: data^4     | Expected value=625.000000           Encrypted value=624.998971           | Error=1.03e-03
+Iteration 3: data^8     | Expected value=390625.000000        Encrypted value=390623.713506        | Error=1.29e+00
+Iteration 4: data^16    | Expected value=152587890625.000000  Encrypted value=152586885553.333557  | Error=1.01e+06
+Iteration 5: data^32    | Expected value=23283064365386964140032.000000 Encrypted value=3205342893.310623    | Error=2.33e+22
 
 Iteration 6: FALLO - no more multiplication levels available.
   Excepción: ValueError: scale out of bounds
@@ -942,8 +947,11 @@ Iteration 6: FALLO - no more multiplication levels available.
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-notebook">Download notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-operations">Basic operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-homomorphic-encryption-with-multiple-operations">Performing homomorphic encryption with multiple operations</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#batching-operation">Batching operation</a></li>

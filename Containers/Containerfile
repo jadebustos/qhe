@@ -33,11 +33,11 @@
 #       --build-arg VCS_REF="$(git rev-parse --short HEAD 2>/dev/null || echo 'no-git')" \
 #       -t qhe:1.0 -f Containerfile .        
 #   2. Running the container with a volume mount to the current directory and port forwarding for JupyterLab:
-#      podman run -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
+#      podman run --rm --userns=keep-id -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
 #   3. Running the container with an interactive shell:
-#      podman run -it --entrypoint /bin/bash localhost/qhe:1.0
+#      podman run --rm --userns=keep-id -it --entrypoint /bin/bash localhost/qhe:1.0
 #   4. Running the container with a custom Jupyter Server configuration:
-#      podman run -v jupyter_server_config.json:/etc/jupyter/jupyter_server_config.json:ro \
+#      podman run --rm --userns=keep-id -v jupyter_server_config.json:/etc/jupyter/jupyter_server_config.json:ro \
 #       -v $(pwd):/workspace:Z -p 8888:8888 localhost/qhe:1.0
 # ============================================================
 

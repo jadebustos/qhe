@@ -34,7 +34,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=9c3e77be" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.11b39860a7a0cbfd473a3ad8a317855267ff0bd372690045ca344a6b62be495e.css?v=8cd3d715" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -186,7 +186,8 @@
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Quantum Computing</span></p>
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="../chapters/qc/quantum-basics.html">Quick introduction to Quantum computing</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/quantum-gates.html">Gates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/single-qubit-gates.html">Single-qubit quantum gates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../chapters/qc/two-qubit-gates.html">Quantum gates that use more than one qubits</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../chapters/qc/shor.html">Shor’s algorithm</a></li>
 </ul>
 </details></li>
@@ -400,8 +401,11 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-notebook">Download notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -417,9 +421,11 @@
 <h1>Basic example of homomorphic encryption with the Paillier algorithm<a class="headerlink" href="#basic-example-of-homomorphic-encryption-with-the-paillier-algorithm" title="Link to this heading">#</a></h1>
 <section id="author-jose-angel-de-bustos-perez">
 <h2>Author: José Ángel de Bustos Pérez<a class="headerlink" href="#author-jose-angel-de-bustos-perez" title="Link to this heading">#</a></h2>
+<section id="download-notebook">
+<h3><a class="reference external" href="https://github.com/jadebustos/qhe/releases/download/v1.0/Paillier.ipynb">Download notebook</a><a class="headerlink" href="#download-notebook" title="Link to this heading">#</a></h3>
 </section>
 <section id="license-gnu-general-public-license-v3">
-<h2>License: <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GENERAL PUBLIC LICENSE v3</a><a class="headerlink" href="#license-gnu-general-public-license-v3" title="Link to this heading">#</a></h2>
+<h3>License: <a class="reference external" href="https://www.gnu.org/licenses/gpl-3.0.html">GNU GENERAL PUBLIC LICENSE v3</a><a class="headerlink" href="#license-gnu-general-public-license-v3" title="Link to this heading">#</a></h3>
 <p>The <strong>LeakyVault Bank</strong> offers several services to its customers. One of those services is mortage lending. The <strong>LeakyVault Bank</strong> carries out a risk study to decide if it should approve the loan for a customer. To keep it simple let’s assume that the risk study is to check that customer salary is bigger than 60000 € per year. But <strong>LeakyVault Bank</strong> does not want customers to know the minimum salary it requires to approve a loan.</p>
 <p>To check that one customer has a bigger salary than 60000 € the bank will encrypt -60000 using the Paillier algorithm. Then the crypted text for -60000 will be sent to the customer. Customer will not be able to decrypt it due to it was encrypted using the <strong>LeakyVault Bank</strong> key. So privacy is granted to the <strong>LeakyVault Bank</strong>. Customer will add its salary to the crypted text and send the result back to the <strong>LeakyVault Bank</strong>. The <strong>LeakyVault Bank</strong> will decrypt the result and if the result is bigger than 0 that means that customer salary is bigger than 60000 €.</p>
 <p>The first step is to create bank’s keys:</p>
@@ -452,7 +458,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;phe.paillier.EncryptedNumber at 0x7fda30341ac0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;phe.paillier.EncryptedNumber at 0x7f69ba393a40&gt;
 </pre></div>
 </div>
 </div>
@@ -474,7 +480,7 @@
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;phe.paillier.EncryptedNumber at 0x7fda30341ee0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;phe.paillier.EncryptedNumber at 0x7f69b9a59430&gt;
 </pre></div>
 </div>
 </div>
@@ -502,6 +508,7 @@
 <li><p>How the <strong>LeakyVault Bank</strong> can keep secret its requirement of 60000 €/year secret.</p></li>
 <li><p>Customer does not need to access the <strong>LeakyVault Bank</strong> keys to encrypt the data.</p></li>
 </ul>
+</section>
 </section>
 </section>
 
@@ -571,8 +578,11 @@
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-jose-angel-de-bustos-perez">Author: José Ángel de Bustos Pérez</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#download-notebook">Download notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#license-gnu-general-public-license-v3">License: GNU GENERAL PUBLIC LICENSE v3</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
