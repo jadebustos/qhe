@@ -11,5 +11,7 @@ numpy
 phe
 pandas
 plotly
+qiskit[visualization]~=2.3
+qiskit-aer~=0.17.2
 scipy
 scikit-learn

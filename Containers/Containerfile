@@ -20,7 +20,13 @@
 #   - OpenFHE C++ 1.5.0 compiled from source, available on a virtualenv with the 
 #     official openfhe-python bindings (1.4.2).
 #   - Pyfhel 3.5.0 compiled from source, available on the same virtualenv.
+#   - Qiskit (with the visualization extra) and Qiskit Aer, installed as binary
+#     wheels in the same virtualenv from requirements.txt.
 #   - See requirements.txt for the Python dependencies installed in the virtualenv.
+#
+# NOTE: Qiskit Aer only publishes Linux wheels for x86_64. The runtime stage has no
+#       compilers, so on arm64 hosts (e.g. Apple Silicon) build with:
+#         podman build --platform linux/amd64 ...
 #
 # Multi-stage:
 #   Stage 1 (builder): compiling OpenFHE C++, python bindings and Pyfhel.
@@ -115,7 +121,7 @@ FROM ubuntu:24.04 AS runtime
 
 # Metadata
 LABEL org.opencontainers.image.title="qhe" \
-      org.opencontainers.image.description="Development environment for TFM on quantum computing and homomorphic encryption. Includes OpenFHE C++ with real CKKS bootstrapping and Pyfhel, in a Python 3.12 virtualenv on Ubuntu 24.04." \
+      org.opencontainers.image.description="Development environment for TFM on quantum computing and homomorphic encryption. Includes OpenFHE C++ with real CKKS bootstrapping, Pyfhel, and Qiskit with the Aer simulator, in a Python 3.12 virtualenv on Ubuntu 24.04." \
       org.opencontainers.image.version="1.0.0" \
       org.opencontainers.image.authors="José Ángel de Bustos Pérez <jadebustos@gmail.com>" \
       org.opencontainers.image.licenses="GPL-3.0-only" \

@@ -1,3 +1,7 @@
+2626-08-05 José Ángel de Bustos Pérez  <jadebustos@gauss.melmac.univ>
+	
+	* Included qiskit[visualization] and qiskit-aer.
+
 2626-05-24 José Ángel de Bustos Pérez  <jadebustos@archimedes.melmac.univ>
 
 	* Included jupyter-book<2 python module.
